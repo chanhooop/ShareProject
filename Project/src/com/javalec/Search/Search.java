@@ -1,8 +1,4 @@
-///깃허브 merge test
-///깃허브 merge test
-///깃허브 merge test
 
-// 깃허브 다시 간드아!!!
 package com.javalec.Search;
 
 import java.awt.EventQueue;
