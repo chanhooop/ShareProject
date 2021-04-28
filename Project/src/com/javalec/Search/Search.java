@@ -1,11 +1,4 @@
 
-///깃허브 merge test
-
-// 김민재 테스트
-
-// 왜안되지니요
-//ㅇㅀㅇㅀㅇㅀㅌㄹ
-//이찬호테스트
 
 package com.javalec.Search;
 
@@ -34,11 +27,14 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean;
 import com.javalec.dbaction.DbAction;
 
 public class Search {
 
+	private MainProcess main;
+	
 	private JFrame frame;
 	private JScrollPane scrollPane;
 	private JTable InnerTable;
@@ -89,7 +85,16 @@ public class Search {
 	 * Create the application.
 	 */
 	public Search() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
 		initialize();
+		frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
@@ -462,6 +467,12 @@ public class Search {
 					Outer_Table.addRow(arr);		
 	
 				}
+		}
+		
+	    // mainProcess와 연동
+
+		public void setMain(MainProcess main) {
+			this.main = main;
 		}
 		
 	// #########################################################################################################
