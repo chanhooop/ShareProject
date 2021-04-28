@@ -1,6 +1,6 @@
 ///깃허브 merge test
 
-
+// 김민재 테스트
 package com.javalec.Search;
 
 import java.awt.EventQueue;
