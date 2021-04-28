@@ -1,39 +1,26 @@
-package com.javalec.Pw.function;
+package com.javalec.ID.function;
 
-public class Bean {
+public class Bean_ID_JY {
 	
 	// field
-	String id = "";
 	String name = "";
-	String telno = "";
-
+	String telno = ""; 
+	
 	
 	// construction
-	public Bean() {
+	public Bean_ID_JY() {
 
-		
+	
 	}
 
 
-	public Bean(String id, String name, String telno) {
+	public Bean_ID_JY(String name, String telno) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.telno = telno;
 	}
 
-
 	// method (게터와 세터)
-	
-	public String getId() {
-		return id;
-	}
-
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 
 	public String getName() {
 		return name;
@@ -54,7 +41,6 @@ public class Bean {
 		this.telno = telno;
 	}
 	
-
 	
 
-}
+} //-------------------------

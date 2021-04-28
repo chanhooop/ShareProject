@@ -8,13 +8,13 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-public class DbAction {
+public class DbAction_Pw_JY {
 	
 	// field
 	
-	private final String url_mysql = ShareVar.url_mysql;
-	private final String id_mysql = ShareVar.id_mysql;
-	private final String pw_mysql = ShareVar.pw_mysql;
+	private final String url_mysql = ShareVar_Pw_JY.url_mysql;
+	private final String id_mysql = ShareVar_Pw_JY.id_mysql;
+	private final String pw_mysql = ShareVar_Pw_JY.pw_mysql;
 	
 	String id = "";
 	String name = "";
@@ -22,13 +22,13 @@ public class DbAction {
 	
 	
 	// construction
-	public DbAction() {
+	public DbAction_Pw_JY() {
 		
 //		super(); : 상속 받을 때 쓰는 것 즉, this와 같은 의미
 	}
 
 
-	public DbAction(String id, String name, String telno) {
+	public DbAction_Pw_JY(String id, String name, String telno) {
 		super();
 		this.id = id;
 		this.name = name;
