@@ -29,9 +29,9 @@ import javax.swing.table.TableColumn;
 
 import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean;
-import com.javalec.dbaction.DbAction;
+import com.javalec.dbaction.DbAction_ch;
 
-public class Search {
+public class Search_ch {
 
 	private MainProcess main;
 	
@@ -72,7 +72,7 @@ public class Search {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Search window = new Search();
+					Search_ch window = new Search_ch();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -84,7 +84,7 @@ public class Search {
 	/**
 	 * Create the application.
 	 */
-	public Search() {
+	public Search_ch() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -355,7 +355,7 @@ public class Search {
 	// 데이터 불러오기
 	private void searchAction() {
 
-		DbAction dbAction = new DbAction();
+		DbAction_ch dbAction = new DbAction_ch();
 		ArrayList<Bean> beanList = dbAction.selectList();
 		
 		int j = beanList.size();
@@ -374,7 +374,7 @@ public class Search {
 	        int i = InnerTable.getSelectedRow();
 	        String tmpSequence = (String)InnerTable.getValueAt(i, 0);
 	        
-	        DbAction dbAction = new DbAction();
+	        DbAction_ch dbAction = new DbAction_ch();
 	        Bean bean = dbAction.tableClick(tmpSequence);
 	        
 	        tfMcode.setText(Integer.toString(bean.getMenuCode()));
@@ -434,7 +434,7 @@ public class Search {
 		bean.setConditionQueryColumn(a);	
 		
 		//필요한 값 가져오기		
-		DbAction dbAction = new DbAction();
+		DbAction_ch dbAction = new DbAction_ch();
 		dbAction.conditionQueryDb(bean);
 		ArrayList<Bean> beanlist = dbAction.conditionQueryDb(bean);
 		int j = beanlist.size();
@@ -456,7 +456,7 @@ public class Search {
 				bean.setCmbPriceSelect(cmbPriceSelect.getSelectedIndex());
 				
 				//필요한 값 가져오기
-				DbAction dbAction = new DbAction();  
+				DbAction_ch dbAction = new DbAction_ch();  
 				ArrayList<Bean> beanList = dbAction.priceconditionQueryDB(bean);
 				int j = beanList.size();
 				
