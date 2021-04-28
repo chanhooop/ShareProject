@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Main_RandD {
+public class Main_Join_JY {
 
 	private JFrame frame;
 	private JLabel lblJoin;
@@ -53,7 +53,7 @@ public class Main_RandD {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main_RandD window = new Main_RandD();
+					Main_Join_JY window = new Main_Join_JY();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,7 +65,7 @@ public class Main_RandD {
 	/**
 	 * Create the application.
 	 */
-	public Main_RandD() {
+	public Main_Join_JY() {
 		initialize();
 	}
 
