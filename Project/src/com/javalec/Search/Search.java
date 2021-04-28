@@ -46,9 +46,7 @@ public class Search {
 	
 	
 	//데이터베이스 환경 정의
-	private final String url_mysql = "jdbc:mysql://127.0.0.1/coffee?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
-	private final String id_mysql = "root";
-	private final String pw_mysqll = "qwer1234";
+
 	
 	// Table 환경 정의
 	private final DefaultTableModel Outer_Table = new DefaultTableModel();
