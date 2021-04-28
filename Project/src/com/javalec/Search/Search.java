@@ -1,4 +1,8 @@
+///깃허브 merge test
+///깃허브 merge test
+///깃허브 merge test
 
+// 깃허브 왜 안되는걸까요
 package com.javalec.Search;
 
 import java.awt.EventQueue;
