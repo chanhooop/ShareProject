@@ -8,13 +8,13 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-public class DbAction {
+public class DbAction_Join_JY_ {
 	
 	// field
 	
-	private final String url_mysql = ShareVar.url_mysql;
-	private final String id_mysql = ShareVar.id_mysql;
-	private final String pw_mysql = ShareVar.pw_mysql;
+	private final String url_mysql = ShareVar_Join_JY.url_mysql;
+	private final String id_mysql = ShareVar_Join_JY.id_mysql;
+	private final String pw_mysql = ShareVar_Join_JY.pw_mysql;
 	
 	String id = "";
 	String pw = "";
@@ -25,14 +25,14 @@ public class DbAction {
 
 	
 	// construction
-	public DbAction() {
+	public DbAction_Join_JY_() {
 	
 		
 	}  // 기본 생성자는 생략가능하지만 있어주느 게 좋음
 	
 
 	
-	public DbAction(String id, String pw, String name, String telno, String nick) {
+	public DbAction_Join_JY_(String id, String pw, String name, String telno, String nick) {
 		super();
 		this.id = id;
 		this.pw = pw;
