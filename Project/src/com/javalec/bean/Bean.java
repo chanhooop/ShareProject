@@ -1,5 +1,6 @@
 package com.javalec.bean;
-// asdfasdfasdf
+//asdfasdfasdfasdf
+//DDDDD
 public class Bean {
 
 	// field
