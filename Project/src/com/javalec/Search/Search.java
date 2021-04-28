@@ -29,9 +29,9 @@ import javax.swing.table.TableColumn;
 
 import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean;
-import com.javalec.dbaction.DbAction_ch;
+import com.javalec.dbaction.DbAction;
 
-public class Search_ch {
+public class Search {
 
 	private MainProcess main;
 	
@@ -72,7 +72,7 @@ public class Search_ch {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Search_ch window = new Search_ch();
+					Search window = new Search();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -84,7 +84,7 @@ public class Search_ch {
 	/**
 	 * Create the application.
 	 */
-	public Search_ch() {
+	public Search() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -355,7 +355,7 @@ public class Search_ch {
 	// 데이터 불러오기
 	private void searchAction() {
 
-		DbAction_ch dbAction = new DbAction_ch();
+		DbAction dbAction = new DbAction();
 		ArrayList<Bean> beanList = dbAction.selectList();
 		
 		int j = beanList.size();
@@ -374,7 +374,7 @@ public class Search_ch {
 	        int i = InnerTable.getSelectedRow();
 	        String tmpSequence = (String)InnerTable.getValueAt(i, 0);
 	        
-	        DbAction_ch dbAction = new DbAction_ch();
+	        DbAction dbAction = new DbAction();
 	        Bean bean = dbAction.tableClick(tmpSequence);
 	        
 	        tfMcode.setText(Integer.toString(bean.getMenuCode()));
@@ -434,7 +434,7 @@ public class Search_ch {
 		bean.setConditionQueryColumn(a);	
 		
 		//필요한 값 가져오기		
-		DbAction_ch dbAction = new DbAction_ch();
+		DbAction dbAction = new DbAction();
 		dbAction.conditionQueryDb(bean);
 		ArrayList<Bean> beanlist = dbAction.conditionQueryDb(bean);
 		int j = beanlist.size();
@@ -456,7 +456,7 @@ public class Search_ch {
 				bean.setCmbPriceSelect(cmbPriceSelect.getSelectedIndex());
 				
 				//필요한 값 가져오기
-				DbAction_ch dbAction = new DbAction_ch();  
+				DbAction dbAction = new DbAction();  
 				ArrayList<Bean> beanList = dbAction.priceconditionQueryDB(bean);
 				int j = beanList.size();
 				
