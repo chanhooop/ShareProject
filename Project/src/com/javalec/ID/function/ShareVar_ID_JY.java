@@ -1,6 +1,6 @@
 package com.javalec.ID.function;
 
-public class ShareVar {
+public class ShareVar_ID_JY {
 	
 	public static final String url_mysql = "jdbc:mysql://localhost:3316/test1?serverTimezome=UTC&characterEncoding=utf8&useSSL=FALSE";
 	public static final String id_mysql = "root";

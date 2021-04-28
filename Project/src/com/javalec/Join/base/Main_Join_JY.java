@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 
-import com.javalec.Join.function.DbAction;
+import com.javalec.Join.function.DbAction_Join_JY_;
 
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Main_RandD {
+public class Main_Join_JY {
 
 	private JFrame frame;
 	private JLabel lblJoin;
@@ -53,7 +53,7 @@ public class Main_RandD {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main_RandD window = new Main_RandD();
+					Main_Join_JY window = new Main_Join_JY();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,7 +65,7 @@ public class Main_RandD {
 	/**
 	 * Create the application.
 	 */
-	public Main_RandD() {
+	public Main_Join_JY() {
 		initialize();
 	}
 
@@ -321,8 +321,8 @@ public class Main_RandD {
 				
 		if(pw.equals(pw2)) {
 			
-			DbAction dbAction = new DbAction(id, pw, name, telno, nick);
-			boolean msg = dbAction.okAction();
+			DbAction_Join_JY_ dbAction_Join_JY_ = new DbAction_Join_JY_(id, pw, name, telno, nick);
+			boolean msg = dbAction_Join_JY_.okAction();
 			
 			if(msg == true) {
 				JOptionPane.showMessageDialog(null, tfName.getText() + "님의 회원가입이 완료되었습니다!");
@@ -401,8 +401,8 @@ public class Main_RandD {
 		private void checkIdAction() {
 			String wkId = tfId.getText().trim();
 			
-			DbAction dbAction = new DbAction();
-			boolean checkIdAction = dbAction.checkIdAction(wkId);
+			DbAction_Join_JY_ dbAction_Join_JY_ = new DbAction_Join_JY_();
+			boolean checkIdAction = dbAction_Join_JY_.checkIdAction(wkId);
 			// boolean : 무조건 true 아니면 false이니깐 if문 사용시 if-else만 써도 가능
 			
 			if (checkIdAction == true) {
@@ -416,8 +416,8 @@ public class Main_RandD {
 		private void checkNickAction() {
 			String wkNick = tfNick.getText().trim();
 			
-			DbAction dbAction = new DbAction();
-			boolean checkNickAction = dbAction.checkNickAction(wkNick);
+			DbAction_Join_JY_ dbAction_Join_JY_ = new DbAction_Join_JY_();
+			boolean checkNickAction = dbAction_Join_JY_.checkNickAction(wkNick);
 			
 			if (checkNickAction == true) {
 				JOptionPane.showMessageDialog(null, "사용 가능한 닉네임입니다!");
