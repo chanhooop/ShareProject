@@ -1,5 +1,6 @@
 // 왜안되지니요
 //ㅇㅀㅇㅀㅇㅀㅌㄹ
+//ㅁㄴㅇㄻㄴㅇㄹ
 
 package com.javalec.Search;
 
