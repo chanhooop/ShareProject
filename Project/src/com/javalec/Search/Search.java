@@ -1,6 +1,10 @@
+
+///깃허브 merge test
+
+// 김민재 테스트
+
 // 왜안되지니요
 //ㅇㅀㅇㅀㅇㅀㅌㄹ
-//ㅁㄴㅇㄻㄴㅇㄹ
 
 package com.javalec.Search;
 
