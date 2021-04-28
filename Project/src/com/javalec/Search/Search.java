@@ -1,6 +1,11 @@
+
 ///깃허브 merge test
 
 // 김민재 테스트
+
+// 왜안되지니요
+//ㅇㅀㅇㅀㅇㅀㅌㄹ
+
 package com.javalec.Search;
 
 import java.awt.EventQueue;
@@ -44,9 +49,7 @@ public class Search {
 	
 	
 	//데이터베이스 환경 정의
-	private final String url_mysql = "jdbc:mysql://127.0.0.1/coffee?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
-	private final String id_mysql = "root";
-	private final String pw_mysqll = "qwer1234";
+
 	
 	// Table 환경 정의
 	private final DefaultTableModel Outer_Table = new DefaultTableModel();
