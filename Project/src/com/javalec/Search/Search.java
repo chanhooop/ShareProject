@@ -1,3 +1,6 @@
+///깃허브 merge test
+
+
 package com.javalec.Search;
 
 import java.awt.EventQueue;
