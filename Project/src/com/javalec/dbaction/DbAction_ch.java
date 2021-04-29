@@ -7,15 +7,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.javalec.bean.Bean;
-import com.javalec.sharevar.ShareVar;
+import com.javalec.sharevar.ShareVar_ch;
 
 
-public class DbAction {
+public class DbAction_ch {
 
 	// Field
-	private final String url_mysql = ShareVar.url_mysql;
-	private final String id_mysql = ShareVar.id_mysql;
-	private final String pw_mysql = ShareVar.pw_mysqll;
+	private final String url_mysql = ShareVar_ch.url_mysql;
+	private final String id_mysql = ShareVar_ch.id_mysql;
+	private final String pw_mysql = ShareVar_ch.pw_mysqll;
 
 	// 칼럼 선언자
 	int menucode;
@@ -27,14 +27,14 @@ public class DbAction {
 
 	// constructor
 
-	public DbAction() {
+	public DbAction_ch() {
 
 	}
 
 
 
 
-	public DbAction(int menucode, String brandName, String menuName, String menuprice) {
+	public DbAction_ch(int menucode, String brandName, String menuName, String menuprice) {
 		super();
 		this.menucode = menucode;
 		this.brandName = brandName;
@@ -44,7 +44,7 @@ public class DbAction {
 
 	
 	
-	public DbAction(int menucode) {
+	public DbAction_ch(int menucode) {
 	super();
 	this.menucode = menucode;
 }
