@@ -1,4 +1,4 @@
-package com.javalec.ID.base;
+package com.javalec.Search;
 
 import java.awt.EventQueue;
 
@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 
-import com.javalec.ID.function.DbAction_ID_JY;
+import com.javalec.dbaction.DbAction_ID_JY;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

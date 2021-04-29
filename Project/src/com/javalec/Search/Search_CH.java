@@ -28,10 +28,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import com.javalec.MainPackage.MainProcess;
-import com.javalec.bean.Bean;
-import com.javalec.dbaction.DbAction_ch;
+import com.javalec.bean.Bean_CH;
+import com.javalec.dbaction.DbAction_CH;
 
-public class Search_ch {
+public class Search_CH {
 
 	private MainProcess main;
 	
@@ -72,7 +72,7 @@ public class Search_ch {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Search_ch window = new Search_ch();
+					Search_CH window = new Search_CH();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -84,7 +84,7 @@ public class Search_ch {
 	/**
 	 * Create the application.
 	 */
-	public Search_ch() {
+	public Search_CH() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -355,8 +355,8 @@ public class Search_ch {
 	// 데이터 불러오기
 	private void searchAction() {
 
-		DbAction_ch dbAction = new DbAction_ch();
-		ArrayList<Bean> beanList = dbAction.selectList();
+		DbAction_CH dbAction_CH = new DbAction_CH();
+		ArrayList<Bean_CH> beanList = dbAction_CH.selectList();
 		
 		int j = beanList.size();
 		for(int i = 0 ; i < j; i++) {
@@ -374,14 +374,14 @@ public class Search_ch {
 	        int i = InnerTable.getSelectedRow();
 	        String tmpSequence = (String)InnerTable.getValueAt(i, 0);
 	        
-	        DbAction_ch dbAction = new DbAction_ch();
-	        Bean bean = dbAction.tableClick(tmpSequence);
+	        DbAction_CH dbAction_CH = new DbAction_CH();
+	        Bean_CH bean_CH = dbAction_CH.tableClick(tmpSequence);
 	        
-	        tfMcode.setText(Integer.toString(bean.getMenuCode()));
-	        tfBrand.setText(bean.getBrandName());
-	        tfName.setText(bean.getMenuName());
-	        tfPice.setText (bean.getmenuprice());
-	        tfMeterial.setText(bean.getMetarialName());
+	        tfMcode.setText(Integer.toString(bean_CH.getMenuCode()));
+	        tfBrand.setText(bean_CH.getBrandName());
+	        tfName.setText(bean_CH.getMenuName());
+	        tfPice.setText (bean_CH.getmenuprice());
+	        tfMeterial.setText(bean_CH.getMetarialName());
 	
 
 		}
@@ -429,14 +429,14 @@ public class Search_ch {
 	// 조건콤보상자에 맞는 조건검색
 	private void conditionQueryAction(String a) {      // a 는 conditionQueryColumn
 		// 필요한 값 보내기
-		Bean bean = new Bean();
-		bean.setTfsearch((String)tfSearch.getText());
-		bean.setConditionQueryColumn(a);	
+		Bean_CH bean_CH = new Bean_CH();
+		bean_CH.setTfsearch((String)tfSearch.getText());
+		bean_CH.setConditionQueryColumn(a);	
 		
 		//필요한 값 가져오기		
-		DbAction_ch dbAction = new DbAction_ch();
-		dbAction.conditionQueryDb(bean);
-		ArrayList<Bean> beanlist = dbAction.conditionQueryDb(bean);
+		DbAction_CH dbAction_CH = new DbAction_CH();
+		dbAction_CH.conditionQueryDb(bean_CH);
+		ArrayList<Bean_CH> beanlist = dbAction_CH.conditionQueryDb(bean_CH);
 		int j = beanlist.size();
 				
 		for(int i = 0 ; i < j ; i++) {
@@ -452,12 +452,12 @@ public class Search_ch {
 	
 		private void priceconditionQuery() {
 			  // 필요한 값 보내기
-				Bean bean = new Bean();
-				bean.setCmbPriceSelect(cmbPriceSelect.getSelectedIndex());
+				Bean_CH bean_CH = new Bean_CH();
+				bean_CH.setCmbPriceSelect(cmbPriceSelect.getSelectedIndex());
 				
 				//필요한 값 가져오기
-				DbAction_ch dbAction = new DbAction_ch();  
-				ArrayList<Bean> beanList = dbAction.priceconditionQueryDB(bean);
+				DbAction_CH dbAction_CH = new DbAction_CH();  
+				ArrayList<Bean_CH> beanList = dbAction_CH.priceconditionQueryDB(bean_CH);
 				int j = beanList.size();
 				
 				for(int i = 0 ; i < j ; i++) {

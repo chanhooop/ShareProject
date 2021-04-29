@@ -1,4 +1,4 @@
-package com.javalec.Join.function;
+package com.javalec.bean;
 
 public class Bean_Join_JY {
 	

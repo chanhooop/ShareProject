@@ -1,4 +1,4 @@
-package com.javalec.Join.base;
+package com.javalec.Search;
 
 import java.awt.EventQueue;
 
@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 
-import com.javalec.Join.function.DbAction_Join_JY_;
+import com.javalec.dbaction.DbAction_Join_JY_;
 
 import javax.swing.JPasswordField;
 import javax.swing.JButton;

@@ -1,4 +1,4 @@
-package com.javalec.Join.function;
+package com.javalec.dbaction;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
+
+import com.javalec.sharevar.ShareVar_Join_JY;
 
 public class DbAction_Join_JY_ {
 	

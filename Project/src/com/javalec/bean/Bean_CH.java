@@ -1,6 +1,6 @@
 package com.javalec.bean;
 
-public class Bean {
+public class Bean_CH {
 
 	// field
 	
@@ -16,14 +16,14 @@ public class Bean {
 	
 	//constructor
 	
-	public Bean() {
+	public Bean_CH() {
 		
 	}
 
 
 
 	// 테이블에 데이터 클릭하면 나타나게 만들기
-	public Bean(int menuCode, String menuprice, String brandName, String menuName, String materialAllerge) {
+	public Bean_CH(int menuCode, String menuprice, String brandName, String menuName, String materialAllerge) {
 		super();
 		this.menuCode = menuCode;
 		this.menuprice = menuprice;
@@ -34,7 +34,7 @@ public class Bean {
 
 
 	// 테이블에 데이터 불러오기  // 조건검색
-	public Bean(int menuCode,  String brandName, String menuName, String menuprice) {
+	public Bean_CH(int menuCode,  String brandName, String menuName, String menuprice) {
 		super();
 		this.menuCode = menuCode;
 		this.brandName = brandName;
