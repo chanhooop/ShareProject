@@ -109,7 +109,7 @@ public class coffeeSearch_KMJ {
 				searchLisetInnertable();
 			}
 		});
-		frame.setBounds(100, 100, 450, 559);
+		frame.setBounds(100, 100, 545, 478);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(getPanel(), BorderLayout.CENTER);
 	}
@@ -189,7 +189,7 @@ public class coffeeSearch_KMJ {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(6, 98, 438, 165);
+			scrollPane.setBounds(6, 98, 518, 138);
 			scrollPane.setViewportView(getSearchList_table());
 		}
 		// private final DefaultTableModel Outer_Table = new DefaultTableModel();
@@ -216,7 +216,7 @@ public class coffeeSearch_KMJ {
 	private JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("브랜드");
-			lblNewLabel_1.setBounds(6, 275, 120, 16);
+			lblNewLabel_1.setBounds(16, 248, 120, 16);
 		}
 		return lblNewLabel_1;
 	}
@@ -224,7 +224,7 @@ public class coffeeSearch_KMJ {
 	private JTextField getTextField_1() {
 		if (textField_1 == null) {
 			textField_1 = new JTextField();
-			textField_1.setBounds(47, 270, 79, 26);
+			textField_1.setBounds(57, 243, 79, 26);
 			textField_1.setColumns(10);
 		}
 		return textField_1;
@@ -234,7 +234,7 @@ public class coffeeSearch_KMJ {
 		if (textField_2 == null) {
 			textField_2 = new JTextField();
 			textField_2.setColumns(10);
-			textField_2.setBounds(196, 270, 79, 26);
+			textField_2.setBounds(196, 243, 79, 26);
 		}
 		return textField_2;
 	}
@@ -242,7 +242,7 @@ public class coffeeSearch_KMJ {
 	private JLabel getLblNewLabel_1_1() {
 		if (lblNewLabel_1_1 == null) {
 			lblNewLabel_1_1 = new JLabel("메뉴");
-			lblNewLabel_1_1.setBounds(170, 275, 105, 16);
+			lblNewLabel_1_1.setBounds(170, 248, 105, 16);
 		}
 		return lblNewLabel_1_1;
 	}
@@ -251,7 +251,7 @@ public class coffeeSearch_KMJ {
 		if (textField_3 == null) {
 			textField_3 = new JTextField();
 			textField_3.setColumns(10);
-			textField_3.setBounds(346, 270, 79, 26);
+			textField_3.setBounds(346, 242, 79, 26);
 		}
 		return textField_3;
 	}
@@ -259,7 +259,7 @@ public class coffeeSearch_KMJ {
 	private JLabel getLblNewLabel_1_2() {
 		if (lblNewLabel_1_2 == null) {
 			lblNewLabel_1_2 = new JLabel("가격");
-			lblNewLabel_1_2.setBounds(320, 275, 105, 16);
+			lblNewLabel_1_2.setBounds(320, 247, 105, 16);
 		}
 		return lblNewLabel_1_2;
 	}
@@ -267,7 +267,7 @@ public class coffeeSearch_KMJ {
 	private JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
 			lblNewLabel_2 = new JLabel("원");
-			lblNewLabel_2.setBounds(428, 275, 16, 16);
+			lblNewLabel_2.setBounds(428, 247, 16, 16);
 		}
 		return lblNewLabel_2;
 	}
@@ -275,7 +275,7 @@ public class coffeeSearch_KMJ {
 	private JScrollPane getScrollPane_1() {
 		if (scrollPane_1 == null) {
 			scrollPane_1 = new JScrollPane();
-			scrollPane_1.setBounds(6, 322, 438, 165);
+			scrollPane_1.setBounds(15, 277, 509, 118);
 			scrollPane_1.setViewportView(getComment_table());
 		}
 		return scrollPane_1;
@@ -293,7 +293,7 @@ public class coffeeSearch_KMJ {
 	private JLabel getLblNewLabel_1_3() {
 		if (lblNewLabel_1_3 == null) {
 			lblNewLabel_1_3 = new JLabel("브랜드");
-			lblNewLabel_1_3.setBounds(6, 499, 43, 16);
+			lblNewLabel_1_3.setBounds(6, 404, 43, 16);
 		}
 		return lblNewLabel_1_3;
 	}
@@ -302,7 +302,7 @@ public class coffeeSearch_KMJ {
 		if (tfComment == null) {
 			tfComment = new JTextField();
 			tfComment.setColumns(10);
-			tfComment.setBounds(47, 494, 328, 26);
+			tfComment.setBounds(47, 399, 328, 26);
 		}
 		return tfComment;
 	}
@@ -315,7 +315,7 @@ public class coffeeSearch_KMJ {
 					addComment();
 				}
 			});
-			btnNewButton_1.setBounds(371, 494, 73, 29);
+			btnNewButton_1.setBounds(371, 399, 73, 29);
 		}
 		return btnNewButton_1;
 	}

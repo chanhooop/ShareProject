@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.dbaction.DbAction_ID_JY;
 
 import javax.swing.JButton;
@@ -21,6 +22,7 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class Main_Id_JY {
+	private MainProcess main;	
 
 	private JFrame frame;
 	private JLabel lblNewLabel;
@@ -60,7 +62,7 @@ public class Main_Id_JY {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("카페행");
-		frame.setBounds(100, 100, 560, 585);
+		frame.setBounds(100, 100, 545, 478);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getLblNewLabel());
@@ -127,7 +129,7 @@ public class Main_Id_JY {
 				}
 			});
 			btnOK.setFont(new Font("돋움", Font.PLAIN, 15));
-			btnOK.setBounds(441, 476, 93, 40);
+			btnOK.setBounds(441, 390, 93, 40);
 		}
 		return btnOK;
 	}
@@ -142,7 +144,7 @@ public class Main_Id_JY {
 				}
 			});
 			btnCancel.setFont(new Font("돋움", Font.PLAIN, 15));
-			btnCancel.setBounds(316, 476, 93, 40);
+			btnCancel.setBounds(316, 390, 93, 40);
 		}
 		return btnCancel;
 	}
