@@ -33,7 +33,7 @@ import com.javalec.dbaction.DbAction_CH;
 
 public class Search_CH {
 
-	private MainProcess main;
+	private MainProcess main;	
 	
 	private JFrame frame;
 	private JScrollPane scrollPane;
@@ -61,7 +61,6 @@ public class Search_CH {
 	private JLabel lblNewLabel_3;
 	private JLabel lblNewLabel_4;
 	private JTextField tfMcode;
-	private JLabel lblNewLabel_1_1;
 	private JComboBox cmbPriceSelect;
 
 
@@ -128,7 +127,6 @@ public class Search_CH {
 		frame.getContentPane().add(getLblNewLabel_3());
 		frame.getContentPane().add(getLblNewLabel_4());
 		frame.getContentPane().add(getTfMcode());
-		frame.getContentPane().add(getLblNewLabel_1_1());
 		frame.getContentPane().add(getCmbPriceSelect());
 	}
 	private JScrollPane getScrollPane() {
@@ -226,7 +224,8 @@ public class Search_CH {
 	private JTextField getTfBrand() {
 		if (tfBrand == null) {
 			tfBrand = new JTextField();
-			tfBrand.setBounds(177, 291, 96, 21);
+			tfBrand.setEditable(false);
+			tfBrand.setBounds(113, 291, 96, 21);
 			tfBrand.setColumns(10);
 		}
 		return tfBrand;
@@ -234,52 +233,55 @@ public class Search_CH {
 	private JTextField getTfName() {
 		if (tfName == null) {
 			tfName = new JTextField();
+			tfName.setEditable(false);
 			tfName.setColumns(10);
-			tfName.setBounds(318, 291, 96, 21);
+			tfName.setBounds(252, 291, 96, 21);
 		}
 		return tfName;
 	}
 	private JTextField getTfPice() {
 		if (tfPice == null) {
 			tfPice = new JTextField();
+			tfPice.setEditable(false);
 			tfPice.setColumns(10);
-			tfPice.setBounds(458, 291, 77, 21);
+			tfPice.setBounds(388, 291, 77, 21);
 		}
 		return tfPice;
 	}
 	private JTextField getTfMeterial() {
 		if (tfMeterial == null) {
 			tfMeterial = new JTextField();
+			tfMeterial.setEditable(false);
 			tfMeterial.setColumns(10);
-			tfMeterial.setBounds(598, 291, 91, 21);
+			tfMeterial.setBounds(531, 291, 91, 21);
 		}
 		return tfMeterial;
 	}
 	private JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("브랜드");
-			lblNewLabel_1.setBounds(133, 294, 50, 15);
+			lblNewLabel_1.setBounds(75, 294, 50, 15);
 		}
 		return lblNewLabel_1;
 	}
 	private JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
 			lblNewLabel_2 = new JLabel("이름");
-			lblNewLabel_2.setBounds(285, 294, 50, 15);
+			lblNewLabel_2.setBounds(221, 294, 50, 15);
 		}
 		return lblNewLabel_2;
 	}
 	private JLabel getLblNewLabel_3() {
 		if (lblNewLabel_3 == null) {
 			lblNewLabel_3 = new JLabel("가격");
-			lblNewLabel_3.setBounds(426, 294, 50, 15);
+			lblNewLabel_3.setBounds(360, 294, 50, 15);
 		}
 		return lblNewLabel_3;
 	}
 	private JLabel getLblNewLabel_4() {
 		if (lblNewLabel_4 == null) {
 			lblNewLabel_4 = new JLabel("알레르기");
-			lblNewLabel_4.setBounds(547, 292, 50, 18);
+			lblNewLabel_4.setBounds(477, 292, 50, 18);
 		}
 		return lblNewLabel_4;
 	}
@@ -287,17 +289,12 @@ public class Search_CH {
 	private JTextField getTfMcode() {
 		if (tfMcode == null) {
 			tfMcode = new JTextField();
+			tfMcode.setEditable(false);
 			tfMcode.setColumns(10);
-			tfMcode.setBounds(65, 291, 56, 21);
+			tfMcode.setBounds(12, 291, 56, 21);
+			tfMcode.setVisible(false);
 		}
 		return tfMcode;
-	}
-	private JLabel getLblNewLabel_1_1() {
-		if (lblNewLabel_1_1 == null) {
-			lblNewLabel_1_1 = new JLabel("메뉴코드");
-			lblNewLabel_1_1.setBounds(12, 294, 50, 15);
-		}
-		return lblNewLabel_1_1;
 	}
 	private JComboBox getCmbPriceSelect() {
 		if (cmbPriceSelect == null) {
