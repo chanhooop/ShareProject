@@ -62,6 +62,7 @@ public class Search_CH {
 	private JLabel lblNewLabel_4;
 	private JComboBox cmbPriceSelect;
 	private JButton btnComent;
+	private JLabel lbBrandProduct;
 
 
 	/**
@@ -109,7 +110,7 @@ public class Search_CH {
 				
 			}
 		});
-		frame.setBounds(100, 100, 678, 477);
+		frame.setBounds(100, 100, 545, 478 );
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getScrollPane());
@@ -128,11 +129,12 @@ public class Search_CH {
 		frame.getContentPane().add(getLblNewLabel_4());
 		frame.getContentPane().add(getCmbPriceSelect());
 		frame.getContentPane().add(getBtnComent());
+		frame.getContentPane().add(getLbBrandProduct());
 	}
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(61, 133, 473, 134);
+			scrollPane.setBounds(25, 81, 487, 134);
 			scrollPane.setViewportView(getInnerTable());
 		}
 		return scrollPane;
@@ -160,21 +162,21 @@ public class Search_CH {
 				public void actionPerformed(ActionEvent e) {
 				}
 			});
-			btnMypage.setBounds(436, 41, 91, 23);
+			btnMypage.setBounds(443, 6, 91, 23);
 		}
 		return btnMypage;
 	}
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("검색 :");
-			lblNewLabel.setBounds(65, 105, 50, 15);
+			lblNewLabel.setBounds(24, 48, 50, 15);
 		}
 		return lblNewLabel;
 	}
 	private JTextField getTfSearch() {
 		if (tfSearch == null) {
 			tfSearch = new JTextField();
-			tfSearch.setBounds(199, 99, 203, 28);
+			tfSearch.setBounds(184, 41, 203, 28);
 			tfSearch.setColumns(10);
 		}
 		return tfSearch;
@@ -196,7 +198,7 @@ public class Search_CH {
 				}
 			});
 			cmbList.setModel(new DefaultComboBoxModel(new String[] {"이름", "브랜드", "가격"}));
-			cmbList.setBounds(107, 101, 70, 23);				
+			cmbList.setBounds(66, 44, 104, 23);				
 				
 			}
 
@@ -215,7 +217,7 @@ public class Search_CH {
 
 				}
 			});
-			btnSearch.setBounds(436, 101, 91, 23);
+			btnSearch.setBounds(421, 43, 91, 23);
 		}
 		return btnSearch;
 	}
@@ -225,7 +227,7 @@ public class Search_CH {
 		if (tfBrand == null) {
 			tfBrand = new JTextField();
 			tfBrand.setEditable(false);
-			tfBrand.setBounds(96, 291, 96, 21);
+			tfBrand.setBounds(95, 228, 96, 21);
 			tfBrand.setColumns(10);
 		}
 		return tfBrand;
@@ -235,7 +237,7 @@ public class Search_CH {
 			tfName = new JTextField();
 			tfName.setEditable(false);
 			tfName.setColumns(10);
-			tfName.setBounds(252, 291, 96, 21);
+			tfName.setBounds(95, 271, 96, 21);
 		}
 		return tfName;
 	}
@@ -244,7 +246,7 @@ public class Search_CH {
 			tfPice = new JTextField();
 			tfPice.setEditable(false);
 			tfPice.setColumns(10);
-			tfPice.setBounds(388, 291, 77, 21);
+			tfPice.setBounds(95, 312, 77, 21);
 		}
 		return tfPice;
 	}
@@ -253,35 +255,35 @@ public class Search_CH {
 			tfMeterial = new JTextField();
 			tfMeterial.setEditable(false);
 			tfMeterial.setColumns(10);
-			tfMeterial.setBounds(531, 291, 91, 21);
+			tfMeterial.setBounds(95, 355, 91, 21);
 		}
 		return tfMeterial;
 	}
 	private JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("브랜드");
-			lblNewLabel_1.setBounds(50, 294, 50, 15);
+			lblNewLabel_1.setBounds(35, 232, 50, 15);
 		}
 		return lblNewLabel_1;
 	}
 	private JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
 			lblNewLabel_2 = new JLabel("이름");
-			lblNewLabel_2.setBounds(221, 294, 50, 15);
+			lblNewLabel_2.setBounds(35, 275, 50, 15);
 		}
 		return lblNewLabel_2;
 	}
 	private JLabel getLblNewLabel_3() {
 		if (lblNewLabel_3 == null) {
 			lblNewLabel_3 = new JLabel("가격");
-			lblNewLabel_3.setBounds(360, 294, 50, 15);
+			lblNewLabel_3.setBounds(35, 316, 50, 15);
 		}
 		return lblNewLabel_3;
 	}
 	private JLabel getLblNewLabel_4() {
 		if (lblNewLabel_4 == null) {
 			lblNewLabel_4 = new JLabel("알레르기");
-			lblNewLabel_4.setBounds(477, 292, 50, 18);
+			lblNewLabel_4.setBounds(33, 357, 50, 18);
 		}
 		return lblNewLabel_4;
 	}
@@ -289,7 +291,7 @@ public class Search_CH {
 		if (cmbPriceSelect == null) {
 			cmbPriceSelect = new JComboBox();
 			cmbPriceSelect.setModel(new DefaultComboBoxModel(new String[] {"전체", "1000~3000", "3000~6000", "6000~9000"}));
-			cmbPriceSelect.setBounds(199, 100, 188, 23);
+			cmbPriceSelect.setBounds(185, 44, 188, 23);
 			
 		}
 		return cmbPriceSelect;
@@ -302,7 +304,7 @@ public class Search_CH {
 				public void actionPerformed(ActionEvent e) {
 				}
 			});
-			btnComent.setBounds(436, 363, 91, 23);
+			btnComent.setBounds(443, 412, 91, 23);
 		}
 		return btnComent;
 	}
@@ -477,5 +479,13 @@ public class Search_CH {
  		
  	// #########################################################################################################
 
-
+ 		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ 		// 찬호님 이 라벨에 이미지 들어갈거에요!!!!!! 이미지 불러오고 하는건 예진이와 함께해요!!!!
+	private JLabel getLbBrandProduct() {
+		if (lbBrandProduct == null) {
+			lbBrandProduct = new JLabel("");
+			lbBrandProduct.setBounds(330, 235, 137, 128);
+		}
+		return lbBrandProduct;
+	}
 }  /// ------------------
