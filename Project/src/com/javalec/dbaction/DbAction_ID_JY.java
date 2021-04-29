@@ -1,4 +1,4 @@
-package com.javalec.ID.function;
+package com.javalec.dbaction;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,25 +8,27 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-public class DbAction {
+import com.javalec.sharevar.ShareVar_ID_JY;
+
+public class DbAction_ID_JY {
 	
 	// field
 	
-	private final String url_mysql = ShareVar.url_mysql;
-	private final String id_mysql = ShareVar.id_mysql;
-	private final String pw_mysql = ShareVar.pw_mysql;
+	private final String url_mysql = ShareVar_ID_JY.url_mysql;
+	private final String id_mysql = ShareVar_ID_JY.id_mysql;
+	private final String pw_mysql = ShareVar_ID_JY.pw_mysql;
 	
 	String name = "";
 	String telno = ""; 
 	
 	
 	// construction
-	public DbAction() {
+	public DbAction_ID_JY() {
 	
 		
 	}
 	
-	public DbAction(String name, String telno) {
+	public DbAction_ID_JY(String name, String telno) {
 		super();
 		this.name = name;
 		this.telno = telno;

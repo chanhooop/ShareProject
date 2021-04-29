@@ -1,6 +1,6 @@
-package com.javalec.Pw.function;
+package com.javalec.bean;
 
-public class Bean {
+public class Bean_Pw_JY {
 	
 	// field
 	String id = "";
@@ -9,13 +9,13 @@ public class Bean {
 
 	
 	// construction
-	public Bean() {
+	public Bean_Pw_JY() {
 
 		
 	}
 
 
-	public Bean(String id, String name, String telno) {
+	public Bean_Pw_JY(String id, String name, String telno) {
 		super();
 		this.id = id;
 		this.name = name;

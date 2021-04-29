@@ -1,6 +1,6 @@
-package com.javalec.Join.function;
+package com.javalec.bean;
 
-public class Bean {
+public class Bean_Join_JY {
 	
 	// bean은 내가 정보를 잠깐 저장한다.
 	
@@ -15,12 +15,12 @@ public class Bean {
 	String tfId = "";
 		
 	// construction
-	public Bean() {
+	public Bean_Join_JY() {
 
 	
 	}
 	
-	public Bean(String id, String pw, String name, String telno, String nick) {
+	public Bean_Join_JY(String id, String pw, String name, String telno, String nick) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -30,7 +30,7 @@ public class Bean {
 	}
 	
 	
-	public Bean(String tfId) {
+	public Bean_Join_JY(String tfId) {
 		super();
 		this.tfId = tfId;
 	}
