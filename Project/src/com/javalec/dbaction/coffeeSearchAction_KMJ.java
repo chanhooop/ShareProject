@@ -68,6 +68,9 @@ public class coffeeSearchAction_KMJ {
 		return beanList;
 	}
 
+	
+	//***********************************************************************************************
+	
 	public ArrayList<coffeeBean_KMJ> commentLisetInnertable(coffeeBean_KMJ beanData) {
 		ArrayList<coffeeBean_KMJ> beanList = new ArrayList<coffeeBean_KMJ>();
 		PreparedStatement ps = null;
@@ -96,6 +99,8 @@ public class coffeeSearchAction_KMJ {
 			// TODO: handle exception
 		}
 		return beanList;
+		
+		//***********************************************************************************************
 	}
 
 	public boolean addCommend(coffeeBean_KMJ beanData) {
