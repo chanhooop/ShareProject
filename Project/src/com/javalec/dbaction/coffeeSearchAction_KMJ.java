@@ -11,8 +11,8 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-import com.bean.base.coffeeBean_KMJ;
-import com.dbShareVar.base.searchShareVar_KMJ;
+import com.javalec.bean.coffeeBean_KMJ;
+import com.javalec.sharevar.searchShareVar_KMJ;
 
 public class coffeeSearchAction_KMJ {
 

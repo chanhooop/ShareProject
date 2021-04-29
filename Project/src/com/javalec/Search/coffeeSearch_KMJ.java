@@ -14,8 +14,8 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-import com.bean.base.coffeeBean_KMJ;
-import com.dbaction.base.coffeeSearchAction_KMJ;
+import com.javalec.bean.coffeeBean_KMJ;
+import com.javalec.dbaction.coffeeSearchAction_KMJ;
 
 import javax.swing.JTable;
 
@@ -39,7 +39,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class coffeeSearch_KMJ {
-	private mainCoffee mainCoffee;
 	
 	private JFrame frame;
 	private JPanel panel;
@@ -136,7 +135,6 @@ public class coffeeSearch_KMJ {
 			panel.add(getTfComment());
 			panel.add(getBtnNewButton_1());
 			panel.add(getTfLogin());
-			panel.add(getBtnTest());
 		}
 		return panel;
 	}
@@ -439,14 +437,6 @@ public class coffeeSearch_KMJ {
 		commentLisetInnertable();
 	}
 
-	private MainLCH mainLCH;
-
-	// mainProcess와 연동
-	public void setMain(mainCoffee mainCoffee) {
-		System.out.println(1);
-		this.mainCoffee = mainCoffee;
-	}
-
 //__________________________________________________________________
 
 	private JTextField getTfLogin() {
@@ -459,16 +449,4 @@ public class coffeeSearch_KMJ {
 		return tfLogin;
 	}
 
-	private JButton getBtnTest() {
-		if (btnTest == null) {
-			btnTest = new JButton("test");
-			btnTest.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					mainCoffee.showFrameTest();
-				}
-			});
-			btnTest.setBounds(6, 11, 117, 29);
-		}
-		return btnTest;
-	}
 }
