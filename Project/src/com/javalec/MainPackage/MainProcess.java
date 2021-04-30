@@ -19,7 +19,7 @@ public class MainProcess {
 	
 	public void MypageOpen() {
 	 	
-		search.dispose();
+//		search.dispose();
 		this.client_Mypage_YJ = new Client_Mypage_YJ();
 
 
