@@ -92,8 +92,8 @@ public class DbAction_CH {
 	public Bean_CH tableClick(Bean_CH bean_CH) {
 		Bean_CH bean_CH2 = null;
 
-		String query1 = "select b.brandName, m.menuName, mu.menuprice, mt.materialAllergy from menu m, brand b, material mt, menuupdate mu ";
-		String query2 = "where b.brandCode = m.brand_brandCode and m.menuCode = mt.menu_menuCode and m.menuCode = mu.menu_menuCode and b.brandName = '";
+		String query1 = "select b.brandName, m.menuName, mu.menuprice, m.menuAllergy from menu m, brand b, menuupdate mu ";
+		String query2 = "where b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode and b.brandName = '";
 		String query3 = "' and m.menuName = '";
 
 		System.out.println(query1 + query2 + bean_CH.getBrandName() + query3 + bean_CH.getMenuName() + "'");
