@@ -75,6 +75,7 @@ public class Admin_Brand_YJ {
 	private final DefaultTableModel Outer_Table = new DefaultTableModel();
 	private JButton btnReset;
 	private JButton btnResetOk;
+	private JTextField tfAdminCode;
 
 	/**
 	 * Launch the application.
@@ -133,6 +134,7 @@ public class Admin_Brand_YJ {
 		frmBrand.getContentPane().add(getTfFilePath());
 		frmBrand.getContentPane().add(getBtnReset());
 		frmBrand.getContentPane().add(getBtnResetOk());
+		frmBrand.getContentPane().add(getTfAdminCode());
 	}
 
 	private JLabel getLabel_1() {
@@ -302,6 +304,7 @@ public class Admin_Brand_YJ {
 						btnAddOk.setVisible(true);
 						btnReset.setVisible(true);
 						btnDelete.setEnabled(false);
+						btnAddOk.setEnabled(true);
 					}
 				}
 			});
@@ -341,6 +344,7 @@ public class Admin_Brand_YJ {
 			btnAddOk.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					insertBrand();
+					insertBrandHistory();
 					clearColumn();
 					btnDelete.setEnabled(true);
 					btnReset.setEnabled(true);
@@ -370,7 +374,7 @@ public class Admin_Brand_YJ {
 			btnReset.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					resetBtn++;
-					if (addBtn == 0) {
+					if (addBtn == 0) { 
 						btnReset.setVisible(false);
 						tfBrandName.setEditable(true);
 						btnAddLogo.setEnabled(true);
@@ -379,7 +383,7 @@ public class Admin_Brand_YJ {
 						btnDelete.setEnabled(false);
 					}
 
-					if (resetBtn > 0) {
+					if (resetBtn > 0) { 
 						btnAddOk.setVisible(true);
 						btnAdd.setEnabled(false);
 						btnAdd.setVisible(true);
@@ -403,7 +407,7 @@ public class Admin_Brand_YJ {
 						JOptionPane.showMessageDialog(null, "수정 될 정보가 없습니다. 정보를 입력해주세요");
 					} else {
 						editAction();
-//						searchAction();
+						editActionHistory();
 						clearColumn();
 					}
 				}
@@ -478,12 +482,33 @@ public class Admin_Brand_YJ {
 		searchAction();
 	}
 
+	private void insertBrandHistory() { // 신규등록 히스토리
+		String adminCode = tfAdminCode.getText().trim();
+		String brandCode = tfBrandCode.getText().trim();
+		java.sql.Date createDate = new java.sql.Date(System.currentTimeMillis());
+		java.sql.Date updateDate = new java.sql.Date(System.currentTimeMillis());
+
+		// Image File
+		FileInputStream input = null;
+		File file = new File(tfFilePath.getText());
+		try {
+			input = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ(adminCode, brandCode, createDate, updateDate, input);
+		boolean aaa = dbAction.insertBrandHistory();
+
+	}
+
 	private void tableClick() { // 클릭 정보
 		int i = Inner_table.getSelectedRow();
 		tkSequence = (String) Inner_table.getValueAt(i, 0);
 		wkSequence = Integer.parseInt(tkSequence);
 
-		DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ(wkSequence);
+		DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ(tkSequence);
 		Bean_Admin_Brand_YJ bean = dbAction.tableClick();
 
 		tfBrandCode.setText(Integer.toString(bean.getBrandCode()));
@@ -544,7 +569,7 @@ public class Admin_Brand_YJ {
 			e.printStackTrace();
 		}
 
-		DbAction_Admin_Brand_YJ dbaction = new DbAction_Admin_Brand_YJ(brandName, input, wkSequence);
+		DbAction_Admin_Brand_YJ dbaction = new DbAction_Admin_Brand_YJ(brandName, input, tkSequence);
 		boolean aaa = dbaction.editAction();
 		if (aaa == true) {
 			JOptionPane.showMessageDialog(null, tfBrandName.getText() + " 의 정보가 수정 되었습니다.!");
@@ -553,6 +578,25 @@ public class Admin_Brand_YJ {
 		}
 		tableInit();
 		searchAction();
+	}
+
+	private void editActionHistory() { // 수정히스토리
+		java.sql.Date updateDate = new java.sql.Date(System.currentTimeMillis());
+		
+		String adminCode = tfAdminCode.getText();
+
+		// Image File
+		FileInputStream input = null;
+		File file = new File(tfFilePath.getText());
+		try {
+			input = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		DbAction_Admin_Brand_YJ dbaction = new DbAction_Admin_Brand_YJ(input, tkSequence, adminCode, updateDate);
+		boolean aaa = dbaction.editActionHistory();
 	}
 
 	private void deleteAction() { // 삭제
@@ -576,4 +620,14 @@ public class Admin_Brand_YJ {
 		searchAction();
 	}
 
+	private JTextField getTfAdminCode() {
+		if (tfAdminCode == null) {
+			tfAdminCode = new JTextField();
+			tfAdminCode.setBounds(409, 10, 130, 26);
+			tfAdminCode.setColumns(10);
+			tfAdminCode.setText("1"); // 합칠 때 리셋시켜서 db연동하여 관리자 코드 가져오게끔 해야함.
+			tfAdminCode.setVisible(false);
+		}
+		return tfAdminCode;
+	}
 }
