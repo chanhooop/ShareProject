@@ -139,7 +139,7 @@ public class Admin_Brand_YJ {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("카페행");
 			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-			lblNewLabel.setBounds(243, 0, 63, 41);
+			lblNewLabel.setBounds(224, 10, 63, 41);
 		}
 		return lblNewLabel;
 	}
@@ -147,7 +147,7 @@ public class Admin_Brand_YJ {
 	private JLabel getLabel_2() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("브랜드관리");
-			lblNewLabel_1.setBounds(30, 48, 61, 16);
+			lblNewLabel_1.setBounds(30, 35, 61, 16);
 		}
 		return lblNewLabel_1;
 	}
@@ -155,7 +155,7 @@ public class Admin_Brand_YJ {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(29, 70, 483, 169);
+			scrollPane.setBounds(30, 54, 483, 169);
 			scrollPane.setViewportView(getInner_table());
 			Inner_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			Inner_table.setModel(Outer_Table);
@@ -179,7 +179,7 @@ public class Admin_Brand_YJ {
 	private JLabel getLabel_3() {
 		if (lbBrandCode == null) {
 			lbBrandCode = new JLabel("브랜드코드");
-			lbBrandCode.setBounds(30, 258, 61, 16);
+			lbBrandCode.setBounds(30, 246, 61, 16);
 		}
 		return lbBrandCode;
 	}
@@ -188,7 +188,7 @@ public class Admin_Brand_YJ {
 		if (tfBrandCode == null) {
 			tfBrandCode = new JTextField();
 			tfBrandCode.setEnabled(false);
-			tfBrandCode.setBounds(105, 253, 130, 26);
+			tfBrandCode.setBounds(105, 242, 130, 26);
 			tfBrandCode.setColumns(10);
 		}
 		return tfBrandCode;
@@ -197,7 +197,7 @@ public class Admin_Brand_YJ {
 	private JLabel getLbBrandName() {
 		if (lbBrandName == null) {
 			lbBrandName = new JLabel("브랜드명");
-			lbBrandName.setBounds(30, 298, 61, 16);
+			lbBrandName.setBounds(30, 285, 61, 16);
 		}
 		return lbBrandName;
 	}
@@ -207,7 +207,7 @@ public class Admin_Brand_YJ {
 			tfBrandName = new JTextField();
 			tfBrandName.setEditable(false);
 			tfBrandName.setColumns(10);
-			tfBrandName.setBounds(105, 293, 130, 26);
+			tfBrandName.setBounds(105, 278, 130, 26);
 		}
 		return tfBrandName;
 	}
@@ -215,7 +215,7 @@ public class Admin_Brand_YJ {
 	private JLabel getLbBrandLogo1() {
 		if (lbBrandLogo1 == null) {
 			lbBrandLogo1 = new JLabel("브랜드로고");
-			lbBrandLogo1.setBounds(30, 343, 61, 16);
+			lbBrandLogo1.setBounds(30, 324, 61, 16);
 		}
 		return lbBrandLogo1;
 	}
@@ -225,7 +225,7 @@ public class Admin_Brand_YJ {
 			tfBrandLogo = new JTextField();
 			tfBrandLogo.setEnabled(false);
 			tfBrandLogo.setColumns(10);
-			tfBrandLogo.setBounds(105, 338, 130, 26);
+			tfBrandLogo.setBounds(105, 314, 130, 26);
 		}
 		return tfBrandLogo;
 	}
@@ -247,7 +247,7 @@ public class Admin_Brand_YJ {
 					}
 				}
 			});
-			btnAddLogo.setBounds(244, 338, 75, 29);
+			btnAddLogo.setBounds(247, 312, 75, 29);
 		}
 		return btnAddLogo;
 	}
@@ -256,7 +256,7 @@ public class Admin_Brand_YJ {
 		if (lbBrandLogo == null) {
 			lbBrandLogo = new JLabel("");
 			lbBrandLogo.setHorizontalAlignment(SwingConstants.CENTER);
-			lbBrandLogo.setBounds(361, 251, 137, 128);
+			lbBrandLogo.setBounds(351, 233, 130, 112);
 		}
 		return lbBrandLogo;
 	}
@@ -271,7 +271,7 @@ public class Admin_Brand_YJ {
 					searchAction();
 				}
 			});
-			btnDelete.setBounds(430, 414, 83, 29);
+			btnDelete.setBounds(430, 402, 83, 29);
 		}
 		return btnDelete;
 	}
@@ -305,7 +305,7 @@ public class Admin_Brand_YJ {
 					}
 				}
 			});
-			btnAdd.setBounds(338, 414, 83, 29);
+			btnAdd.setBounds(335, 402, 83, 29);
 		}
 		return btnAdd;
 	}
@@ -330,7 +330,7 @@ public class Admin_Brand_YJ {
 
 				}
 			});
-			btnCencel.setBounds(154, 414, 83, 29);
+			btnCencel.setBounds(152, 402, 83, 29);
 		}
 		return btnCencel;
 	}
@@ -349,7 +349,7 @@ public class Admin_Brand_YJ {
 					btnAdd.setVisible(true);
 				}
 			});
-			btnAddOk.setBounds(338, 414, 83, 29);
+			btnAddOk.setBounds(335, 402, 83, 29);
 		}
 		return btnAddOk;
 	}
@@ -357,7 +357,7 @@ public class Admin_Brand_YJ {
 	private JTextField getTfFilePath() {
 		if (tfFilePath == null) {
 			tfFilePath = new JTextField();
-			tfFilePath.setBounds(313, 379, 130, 26);
+			tfFilePath.setBounds(351, 353, 130, 26);
 			tfFilePath.setColumns(10);
 			tfFilePath.setVisible(false);
 		}
@@ -389,7 +389,7 @@ public class Admin_Brand_YJ {
 					}
 				}
 			});
-			btnReset.setBounds(244, 414, 83, 29);
+			btnReset.setBounds(247, 402, 83, 29);
 		}
 		return btnReset;
 	}
@@ -408,7 +408,7 @@ public class Admin_Brand_YJ {
 					}
 				}
 			});
-			btnResetOk.setBounds(243, 414, 83, 29);
+			btnResetOk.setBounds(247, 402, 83, 29);
 		}
 		return btnResetOk;
 	}
