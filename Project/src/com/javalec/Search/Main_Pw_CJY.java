@@ -1,26 +1,19 @@
 package com.javalec.Search;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import java.awt.Font;
 import javax.swing.JTextField;
 
-import com.javalec.dbaction.DbAction_Pw_JY;
+import com.javalec.dbaction.DbAction_Pw_CJY;
 
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.awt.event.ActionEvent;
-
-public class Main_Pw_JY {
+public class Main_Pw_CJY {
 
 	private JFrame frame;
 	private JLabel lblNewLabel;
@@ -31,12 +24,7 @@ public class Main_Pw_JY {
 	private JButton btnCancal;
 	private JButton btnOK;
 	private JLabel lblNewLabel_1_1_1_3_1;
-	private JTextField tfTel;
-	
-	// Database 환경 정의
-	private final String url_mysql = "jdbc:mysql://localhost:3316/test1?serverTimezome=UTC&characterEncoding=utf8&useSSL=FALSE";	
-	private final String id_mysql = "root";
-	private final String pw_mysql = "qwer1234";
+	private JTextField tfTel;	
 
 	/**
 	 * Launch the application.
@@ -45,7 +33,7 @@ public class Main_Pw_JY {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main_Pw_JY window = new Main_Pw_JY();
+					Main_Pw_CJY window = new Main_Pw_CJY();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +45,7 @@ public class Main_Pw_JY {
 	/**
 	 * Create the application.
 	 */
-	public Main_Pw_JY() {
+	public Main_Pw_CJY() {
 		initialize();
 	}
 
@@ -67,7 +55,7 @@ public class Main_Pw_JY {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("카페행");
-		frame.setBounds(100, 100, 545, 478 );
+		frame.setBounds(100, 100, 500, 350);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getLblNewLabel());
@@ -84,24 +72,24 @@ public class Main_Pw_JY {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("비밀번호 찾기");
-			lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-			lblNewLabel.setBounds(12, 10, 269, 66);
+			lblNewLabel.setFont(new Font("돋움", Font.BOLD, 20));
+			lblNewLabel.setBounds(28, 29, 160, 32);
 		}
 		return lblNewLabel;
 	}
 	private JLabel getLblNewLabel_1_1_1_2() {
 		if (lblNewLabel_1_1_1_2 == null) {
 			lblNewLabel_1_1_1_2 = new JLabel("아이디");
-			lblNewLabel_1_1_1_2.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_2.setBounds(12, 89, 93, 47);
+			lblNewLabel_1_1_1_2.setFont(new Font("돋움", Font.PLAIN, 13));
+			lblNewLabel_1_1_1_2.setBounds(49, 71, 56, 32);
 		}
 		return lblNewLabel_1_1_1_2;
 	}
 	private JLabel getLblNewLabel_1_1_1_3() {
 		if (lblNewLabel_1_1_1_3 == null) {
 			lblNewLabel_1_1_1_3 = new JLabel("이름");
-			lblNewLabel_1_1_1_3.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_3.setBounds(11, 131, 93, 47);
+			lblNewLabel_1_1_1_3.setFont(new Font("돋움", Font.PLAIN, 13));
+			lblNewLabel_1_1_1_3.setBounds(49, 121, 56, 32);
 		}
 		return lblNewLabel_1_1_1_3;
 	}
@@ -109,7 +97,7 @@ public class Main_Pw_JY {
 		if (tfId == null) {
 			tfId = new JTextField();
 			tfId.setColumns(10);
-			tfId.setBounds(147, 86, 237, 32);
+			tfId.setBounds(147, 72, 237, 32);
 		}
 		return tfId;
 	}
@@ -117,7 +105,7 @@ public class Main_Pw_JY {
 		if (tfName == null) {
 			tfName = new JTextField();
 			tfName.setColumns(10);
-			tfName.setBounds(146, 131, 237, 32);
+			tfName.setBounds(147, 122, 237, 32);
 		}
 		return tfName;
 	}
@@ -131,8 +119,8 @@ public class Main_Pw_JY {
 					
 				}
 			});
-			btnCancal.setFont(new Font("돋움", Font.PLAIN, 15));
-			btnCancal.setBounds(316, 390, 93, 40);
+			btnCancal.setFont(new Font("돋움", Font.PLAIN, 13));
+			btnCancal.setBounds(257, 241, 93, 40);
 		}
 		return btnCancal;
 	}
@@ -150,16 +138,16 @@ public class Main_Pw_JY {
 					
 				}
 			});
-			btnOK.setFont(new Font("돋움", Font.PLAIN, 15));
-			btnOK.setBounds(441, 390, 93, 40);
+			btnOK.setFont(new Font("돋움", Font.PLAIN, 13));
+			btnOK.setBounds(381, 241, 93, 40);
 		}
 		return btnOK;
 	}
 	private JLabel getLblNewLabel_1_1_1_3_1() {
 		if (lblNewLabel_1_1_1_3_1 == null) {
 			lblNewLabel_1_1_1_3_1 = new JLabel("전화번호");
-			lblNewLabel_1_1_1_3_1.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_3_1.setBounds(11, 179, 93, 47);
+			lblNewLabel_1_1_1_3_1.setFont(new Font("돋움", Font.PLAIN, 13));
+			lblNewLabel_1_1_1_3_1.setBounds(49, 173, 68, 32);
 		}
 		return lblNewLabel_1_1_1_3_1;
 	}
@@ -167,7 +155,7 @@ public class Main_Pw_JY {
 		if (tfTel == null) {
 			tfTel = new JTextField();
 			tfTel.setColumns(10);
-			tfTel.setBounds(146, 179, 237, 32);
+			tfTel.setBounds(147, 174, 237, 32);
 		}
 		return tfTel;
 	}
@@ -175,7 +163,7 @@ public class Main_Pw_JY {
 	
 	// Method
 
-	// OK_btnOK (아이디, 이름, 전화번호)
+	// 완료_btnOK (아이디, 이름, 전화번호)
 	private void okAction() {
 		
 		String userId = tfId.getText().trim();
@@ -184,8 +172,8 @@ public class Main_Pw_JY {
 		
 		String findClientPw = "";  // 초기화 선언
 			
-		DbAction_Pw_JY dbAction_Pw_JY = new DbAction_Pw_JY(userId, userName, userTelno);
-		findClientPw = dbAction_Pw_JY.okAction();
+		DbAction_Pw_CJY dbAction_Pw_CJY = new DbAction_Pw_CJY(userId, userName, userTelno);
+		findClientPw = dbAction_Pw_CJY.okAction();
 		
 		if (findClientPw == "no") {
 			JOptionPane.showMessageDialog(null, "입력하신 정보를 확인해주세요!");
