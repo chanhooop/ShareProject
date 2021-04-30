@@ -1,25 +1,18 @@
 package com.javalec.Search;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import java.awt.Font;
 import javax.swing.JTextField;
 
 import com.javalec.MainPackage.MainProcess;
 import com.javalec.dbaction.DbAction_ID_JY;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.awt.event.ActionEvent;
 
 public class Main_Id_JY {
 	private MainProcess main;	

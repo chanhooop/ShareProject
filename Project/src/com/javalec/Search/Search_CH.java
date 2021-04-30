@@ -63,11 +63,8 @@ public class Search_CH {
 	private JTextField tfMcode;
 	private JLabel lblNewLabel_1_1;
 	private JComboBox cmbPriceSelect;
-<<<<<<< HEAD
 	private JButton btnComent;
 	private JLabel lbBrandProduct;
-=======
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 
 
 	/**
@@ -115,11 +112,8 @@ public class Search_CH {
 				
 			}
 		});
-<<<<<<< HEAD
 		frame.setBounds(100, 100, 545, 478 );
-=======
 		frame.setBounds(100, 100, 715, 522);
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getScrollPane());
@@ -139,11 +133,8 @@ public class Search_CH {
 		frame.getContentPane().add(getTfMcode());
 		frame.getContentPane().add(getLblNewLabel_1_1());
 		frame.getContentPane().add(getCmbPriceSelect());
-<<<<<<< HEAD
 		frame.getContentPane().add(getBtnComent());
 		frame.getContentPane().add(getLbBrandProduct());
-=======
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 	}
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
@@ -176,11 +167,8 @@ public class Search_CH {
 				public void actionPerformed(ActionEvent e) {
 				}
 			});
-<<<<<<< HEAD
 			btnMypage.setBounds(443, 6, 91, 23);
-=======
 			btnMypage.setBounds(401, 48, 91, 23);
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 		}
 		return btnMypage;
 	}
@@ -235,11 +223,8 @@ public class Search_CH {
 
 				}
 			});
-<<<<<<< HEAD
 			btnSearch.setBounds(421, 43, 91, 23);
-=======
 			btnSearch.setBounds(506, 101, 91, 23);
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 		}
 		return btnSearch;
 	}
@@ -248,12 +233,9 @@ public class Search_CH {
 	private JTextField getTfBrand() {
 		if (tfBrand == null) {
 			tfBrand = new JTextField();
-<<<<<<< HEAD
 			tfBrand.setEditable(false);
 			tfBrand.setBounds(95, 228, 96, 21);
-=======
 			tfBrand.setBounds(177, 291, 96, 21);
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 			tfBrand.setColumns(10);
 		}
 		return tfBrand;
@@ -262,11 +244,8 @@ public class Search_CH {
 		if (tfName == null) {
 			tfName = new JTextField();
 			tfName.setColumns(10);
-<<<<<<< HEAD
 			tfName.setBounds(95, 271, 96, 21);
-=======
 			tfName.setBounds(318, 291, 96, 21);
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 		}
 		return tfName;
 	}
@@ -274,11 +253,8 @@ public class Search_CH {
 		if (tfPice == null) {
 			tfPice = new JTextField();
 			tfPice.setColumns(10);
-<<<<<<< HEAD
 			tfPice.setBounds(95, 312, 77, 21);
-=======
 			tfPice.setBounds(458, 291, 77, 21);
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 		}
 		return tfPice;
 	}
@@ -286,55 +262,40 @@ public class Search_CH {
 		if (tfMeterial == null) {
 			tfMeterial = new JTextField();
 			tfMeterial.setColumns(10);
-<<<<<<< HEAD
 			tfMeterial.setBounds(95, 355, 91, 21);
-=======
 			tfMeterial.setBounds(598, 291, 91, 21);
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 		}
 		return tfMeterial;
 	}
 	private JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("브랜드");
-<<<<<<< HEAD
 			lblNewLabel_1.setBounds(35, 232, 50, 15);
-=======
 			lblNewLabel_1.setBounds(133, 294, 50, 15);
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 		}
 		return lblNewLabel_1;
 	}
 	private JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
 			lblNewLabel_2 = new JLabel("이름");
-<<<<<<< HEAD
 			lblNewLabel_2.setBounds(35, 275, 50, 15);
-=======
 			lblNewLabel_2.setBounds(285, 294, 50, 15);
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 		}
 		return lblNewLabel_2;
 	}
 	private JLabel getLblNewLabel_3() {
 		if (lblNewLabel_3 == null) {
 			lblNewLabel_3 = new JLabel("가격");
-<<<<<<< HEAD
 			lblNewLabel_3.setBounds(35, 316, 50, 15);
-=======
 			lblNewLabel_3.setBounds(426, 294, 50, 15);
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 		}
 		return lblNewLabel_3;
 	}
 	private JLabel getLblNewLabel_4() {
 		if (lblNewLabel_4 == null) {
 			lblNewLabel_4 = new JLabel("알레르기");
-<<<<<<< HEAD
 			lblNewLabel_4.setBounds(33, 357, 50, 18);
-=======
 			lblNewLabel_4.setBounds(547, 292, 50, 18);
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 		}
 		return lblNewLabel_4;
 	}
@@ -365,7 +326,6 @@ public class Search_CH {
 	}
 	//------------------------------------------------------------------------------------------------------------------
 	
-<<<<<<< HEAD
 	private JButton getBtnComent() {
 		if (btnComent == null) {
 			btnComent = new JButton("댓글창");
@@ -379,9 +339,7 @@ public class Search_CH {
 	}
 	
 	
-=======
 	// 화면정리
->>>>>>> parent of ace828c (Merge pull request #20 from chanhooop/chanho)
 	
 	
 	
