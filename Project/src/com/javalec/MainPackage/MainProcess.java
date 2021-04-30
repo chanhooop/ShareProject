@@ -3,7 +3,7 @@ package com.javalec.MainPackage;
 import com.javalec.Search.Client_Mypage_YJ;
 import com.javalec.Search.Search_CH;
 
-
+//ㅁㅁㅁㅁ
 public class MainProcess {
 	
 	Search_CH search;  // 실행시킬 클래스를 변수 설정
