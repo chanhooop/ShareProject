@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,22 +22,40 @@ public class DbAction_Admin_Brand_YJ {
 	private final String pw_mysql = ShareVar_Admin_Brand_YJ.DBPass;
 
 	FileInputStream file;
-	private int brandCode;
+	private String brandCode;
 	private String brandName;
 	private String brandLogo;
+	private String adminCode;
+	private java.sql.Date CreateDate;
+	private java.sql.Date updateDate;
+
+	public DbAction_Admin_Brand_YJ(FileInputStream file, String brandCode, String adminCode, Date updateDate) {
+		super();
+		this.file = file;
+		this.brandCode = brandCode;
+		this.adminCode = adminCode;
+		this.updateDate = updateDate;
+	}
 
 	public DbAction_Admin_Brand_YJ() {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	public DbAction_Admin_Brand_YJ(String brandName, FileInputStream file, int brandCode) {
+	public DbAction_Admin_Brand_YJ(String adminCode, String brandCode, Date createDate, Date updateDate, FileInputStream file) {
+		super();
+		this.brandCode = brandCode;
+		this.adminCode = adminCode;
+		this.CreateDate = createDate;
+		this.updateDate = updateDate;
+		this.file = file;
+	}
+
+	public DbAction_Admin_Brand_YJ(String brandName, FileInputStream file, String brandCode) {
 		super();
 		this.file = file;
 		this.brandCode = brandCode;
 		this.brandName = brandName;
 	}
-
 
 	public DbAction_Admin_Brand_YJ(String brandName, String brandLogo) {
 		super();
@@ -44,16 +63,21 @@ public class DbAction_Admin_Brand_YJ {
 		this.brandLogo = brandLogo;
 	}
 
-
 	public DbAction_Admin_Brand_YJ(String brandName, FileInputStream file) {
 		super();
 		this.file = file;
 		this.brandName = brandName;
 	}
 
-	public DbAction_Admin_Brand_YJ(int brandCode) {
+	public DbAction_Admin_Brand_YJ(String brandCode) {
 		super();
 		this.brandCode = brandCode;
+	}
+
+	public DbAction_Admin_Brand_YJ(String brandCode, Date updateDate) {
+		super();
+		this.brandCode = brandCode;
+		this.updateDate = updateDate;
 	}
 
 	public ArrayList<Bean_Admin_Brand_YJ> SelectList() {
@@ -108,6 +132,39 @@ public class DbAction_Admin_Brand_YJ {
 		return true;
 	}
 
+	public boolean insertBrandHistory() {
+		PreparedStatement ps = null;
+		try {
+			PreparedStatement selectps = null;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+			Statement stmt_mysql = conn_mysql.createStatement();
+			selectps = conn_mysql.prepareStatement("select max(brandCode) from coffee.brand");
+			ResultSet rs = selectps.executeQuery();
+			if (rs.next()) {
+				brandCode = rs.getString(1);
+			}
+
+			String query1 = "insert into brandUpdate (admin_adminCode, brand_brandCode, CreateDate, updateDate, updateImg)";
+			String query2 = " values (?, ?, ?, ?, ?)";
+			ps = conn_mysql.prepareStatement(query1 + query2);
+
+			ps.setString(1, adminCode);
+			ps.setString(2, brandCode);
+			ps.setDate(3, CreateDate);
+			ps.setDate(4, updateDate);
+			ps.setBinaryStream(5, file);
+			ps.executeUpdate();
+
+			conn_mysql.close();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	public Bean_Admin_Brand_YJ tableClick() {
 		Bean_Admin_Brand_YJ bean = null;
 		String WhereDefault = "select brandCode, brandName, brandLogo from brand ";
@@ -145,8 +202,7 @@ public class DbAction_Admin_Brand_YJ {
 
 		return bean;
 	}
-	
-	
+
 	public Bean_Admin_Brand_YJ cencelInfo(int selected) {
 		Bean_Admin_Brand_YJ bean = null;
 		String WhereDefault = "select brandCode, brandName, brandLogo from brand ";
@@ -184,11 +240,9 @@ public class DbAction_Admin_Brand_YJ {
 
 		return bean;
 	}
-	
-	
-	
+
 	public boolean editAction() {
-		
+
 		PreparedStatement ps = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -204,7 +258,7 @@ public class DbAction_Admin_Brand_YJ {
 
 			ps.setString(1, brandName);
 			ps.setBinaryStream(2, file);
-			ps.setInt(3, brandCode);
+			ps.setString(3, brandCode);
 			ps.executeUpdate();
 
 			conn_mysql.close();
@@ -214,8 +268,40 @@ public class DbAction_Admin_Brand_YJ {
 		}
 
 		return true;
-		
-		
+
+	}
+
+	public boolean editActionHistory() {
+
+		PreparedStatement ps = null;
+		try {
+			PreparedStatement selectps = null;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+			Statement stmt_mysql = conn_mysql.createStatement();
+			selectps = conn_mysql.prepareStatement("select brandCode from coffee.brand");
+			 ResultSet rs = selectps.executeQuery();
+	         if(rs.next()) {
+	            brandCode = rs.getString(1);
+	         }
+
+			String query1 = "insert into brandUpdate (updateDate, updateImg, brand_brandCode, admin_adminCode)";
+			String query2 = " value (?, ?, ?, ?)";
+			ps = conn_mysql.prepareStatement(query1 + query2);
+
+			ps.setDate(1, updateDate);
+			ps.setBinaryStream(2, file);
+			ps.setString(3, brandCode);
+			ps.setString(4, adminCode);
+			ps.executeUpdate();
+			System.out.println(ps);
+			conn_mysql.close();
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
