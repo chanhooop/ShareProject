@@ -90,7 +90,7 @@ public class Admin_ClientList_YJ {
 			}
 		});
 		frame.setTitle("카페행");
-		frame.setBounds(100, 100, 545, 506);
+		frame.setBounds(100, 100, 545, 478);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getLbAdminLogo());

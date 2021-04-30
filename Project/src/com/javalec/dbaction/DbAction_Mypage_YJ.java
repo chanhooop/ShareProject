@@ -1,5 +1,5 @@
 package com.javalec.dbaction;
-
+//테스ㅌㅌ
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
