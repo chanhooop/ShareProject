@@ -48,7 +48,7 @@ import java.awt.event.MouseEvent;
  * @변경이력 :
  * @프로그램설명 : 엑션 클래스
  */
-public class coffeeSearch_KMJ {
+public class coffeeSearch_KMJ extends JFrame{
 
 	private JFrame frame;
 	private JPanel panel;
@@ -93,16 +93,16 @@ public class coffeeSearch_KMJ {
 	 * Create the application.
 	 */
 	public coffeeSearch_KMJ() {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					initialize();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		initialize();
 	}
 

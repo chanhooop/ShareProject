@@ -31,7 +31,7 @@ import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_CH;
 import com.javalec.dbaction.DbAction_CH;
 
-public class Search_CH {
+public class Search_CH extends JFrame{
 
 	private MainProcess main;	
 	
@@ -302,6 +302,10 @@ public class Search_CH {
 			btnComent = new JButton("댓글창");
 			btnComent.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					coffeeSearch_KMJ coffeeSearch_KMJ = new coffeeSearch_KMJ();
+					coffeeSearch_KMJ.setVisible(true);		
+					frame.dispose();
+					
 				}
 			});
 			btnComent.setBounds(443, 412, 91, 23);

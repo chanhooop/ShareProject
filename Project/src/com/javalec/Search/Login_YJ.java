@@ -18,11 +18,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Login_YJ;
 import com.javalec.dbaction.DbAction_Login_YJ;
 
-public class Login_YJ {
+public class Login_YJ extends JFrame{
 
+	private MainProcess main;
 	private JFrame frame;
 	private JLabel lbMainSlogan;
 	private JRadioButton rdbtnClient;
@@ -65,7 +67,18 @@ public class Login_YJ {
 	 * Create the application.
 	 */
 	public Login_YJ() {
-		initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		
 	}
 
 	/**
@@ -96,6 +109,9 @@ public class Login_YJ {
 //		frame.getContentPane().add(getLbTest());
 	}
 
+    public void setMain(MainProcess main) {
+        this.main = main;
+    }
 	private JLabel getLbMainSlogan() {
 		if (lbMainSlogan == null) {
 			lbMainSlogan = new JLabel("강한 이끌림, 현대인의 필수품");
@@ -235,6 +251,10 @@ public class Login_YJ {
 
 		if (wkId.equals(bean.getClientId()) && wkPw.equals(bean.getClientPw())) {
 			JOptionPane.showMessageDialog(null, bean.getClientName() + "님 환영합니다.");
+			
+			main.showSearch_CH();
+			frame.dispose();
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "아이디 및 비밀번호를 확인하세요.");
 		}
