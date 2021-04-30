@@ -25,7 +25,7 @@ import javax.swing.table.TableColumn;
 
 import com.javalec.bean.Bean_Admin_ClientList_YJ;
 import com.javalec.dbaction.DbAction_Admin_ClientList_YJ;
-
+// test
 public class Admin_ClientList_YJ {
 
 	private JFrame frame;
