@@ -302,6 +302,10 @@ public class Search_CH extends JFrame{
 			btnComent = new JButton("댓글창");
 			btnComent.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					coffeeSearch_KMJ coffeeSearch_KMJ = new coffeeSearch_KMJ();
+					coffeeSearch_KMJ.setVisible(true);		
+					frame.dispose();
+					
 				}
 			});
 			btnComent.setBounds(443, 412, 91, 23);
