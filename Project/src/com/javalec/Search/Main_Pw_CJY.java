@@ -176,7 +176,7 @@ public class Main_Pw_CJY {
 		findClientPw = dbAction_Pw_CJY.okAction();
 		
 		if (findClientPw == "no") {
-			JOptionPane.showMessageDialog(null, "입력하신 정보를 확인해주세요!");
+			JOptionPane.showMessageDialog(null, "입력하신 정보를 확인해주세요!", "비밀번호 찾기", JOptionPane.WARNING_MESSAGE);
 		}else {
 			JOptionPane.showMessageDialog(null, tfName.getText() + "님의 비밀번호는 " + findClientPw + " 입니다!");
 		}
@@ -208,7 +208,7 @@ public class Main_Pw_CJY {
 				
 				// i값이 0보다 클 때 = i값이 증가했을 때 = getText()가 없었을 때
 				if(i > 0) {
-					JOptionPane.showMessageDialog(null, message + "입력하세요.");
+					JOptionPane.showMessageDialog(null, message + "입력하세요.", "비밀번호 찾기", JOptionPane.WARNING_MESSAGE);
 				}
 				
 				return i;
