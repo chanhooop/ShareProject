@@ -362,7 +362,7 @@ public class Main_Join_CJY {
 				
 				// i값이 0보다 클 때 = i값이 증가했을 때 = getText()가 없었을 때
 				if(i > 0) {
-					JOptionPane.showMessageDialog(null, message + "입력하세요.");
+					JOptionPane.showMessageDialog(null, message + "입력하세요.", "회원가입", JOptionPane.WARNING_MESSAGE);
 				}
 				
 				return i;
@@ -401,7 +401,7 @@ public class Main_Join_CJY {
 			if (checkIdAction == true) {
 				JOptionPane.showMessageDialog(null, "사용 가능한 아이디입니다!");
 			} else  {
-				JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다!");	
+				JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다!", "아이디 중복 확인", JOptionPane.WARNING_MESSAGE);	
 			}			
 		}
 		
@@ -415,7 +415,7 @@ public class Main_Join_CJY {
 			if (checkNickAction == true) {
 				JOptionPane.showMessageDialog(null, "사용 가능한 닉네임입니다!");
 			} else  {
-				JOptionPane.showMessageDialog(null, "이미 사용중인 닉네임입니다!");	
+				JOptionPane.showMessageDialog(null, "이미 사용중인 닉네임입니다!", "닉네임 중복 확인", JOptionPane.WARNING_MESSAGE);	
 			}
 		}
 		
