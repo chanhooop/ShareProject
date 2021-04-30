@@ -9,10 +9,12 @@ public class Bean_CH {
 	String menuprice;
 	String brandName;
 	String menuName;
+	String menuType;
 	String materialAllerge;
 	String tfsearch;
 	String conditionQueryColumn;
 	int cmbPriceSelect;
+	
 	
 	//constructor
 	
@@ -22,27 +24,22 @@ public class Bean_CH {
 
 
 
+
+
+
+
 	// 테이블에 데이터 클릭하면 나타나게 만들기
-	public Bean_CH(int menuCode, String menuprice, String brandName, String menuName, String materialAllerge) {
-		super();
-		this.menuCode = menuCode;
-		this.menuprice = menuprice;
-		this.brandName = brandName;
-		this.menuName = menuName;
-		this.materialAllerge = materialAllerge;
-	}
-
-
-	// 테이블에 데이터 불러오기  // 조건검색
-	public Bean_CH(int menuCode,  String brandName, String menuName, String menuprice) {
-		super();
-		this.menuCode = menuCode;
-		this.brandName = brandName;
-		this.menuName = menuName;
-		this.menuprice = menuprice;
-	}
-
 	
+	public Bean_CH(String brandName, String menuType, String menuName, String menuprice) {
+		super();
+
+		this.brandName = brandName;
+		this.menuType = menuType;
+		this.menuName = menuName;
+		this.menuprice = menuprice;
+
+	}
+
 
 	
 	// method
@@ -51,6 +48,27 @@ public class Bean_CH {
 
 	public int getMenuCode() {
 		return menuCode;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	public String getMenuType() {
+		return menuType;
+	}
+
+
+
+	public void setMenuType(String menuType) {
+		this.menuType = menuType;
 	}
 
 
