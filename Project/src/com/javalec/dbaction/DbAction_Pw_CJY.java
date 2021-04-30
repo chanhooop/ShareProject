@@ -8,15 +8,15 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-import com.javalec.sharevar.ShareVar_Pw_JY;
+import com.javalec.sharevar.ShareVar_Pw_CJY;
 
-public class DbAction_Pw_JY {
+public class DbAction_Pw_CJY {
 	
 	// field
 	
-	private final String url_mysql = ShareVar_Pw_JY.url_mysql;
-	private final String id_mysql = ShareVar_Pw_JY.id_mysql;
-	private final String pw_mysql = ShareVar_Pw_JY.pw_mysql;
+	private final String url_mysql = ShareVar_Pw_CJY.url_mysql;
+	private final String id_mysql = ShareVar_Pw_CJY.id_mysql;
+	private final String pw_mysql = ShareVar_Pw_CJY.pw_mysql;
 	
 	String id = "";
 	String name = "";
@@ -24,13 +24,13 @@ public class DbAction_Pw_JY {
 	
 	
 	// construction
-	public DbAction_Pw_JY() {
+	public DbAction_Pw_CJY() {
 		
 //		super(); : 상속 받을 때 쓰는 것 즉, this와 같은 의미
 	}
 
 
-	public DbAction_Pw_JY(String id, String name, String telno) {
+	public DbAction_Pw_CJY(String id, String name, String telno) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -44,7 +44,7 @@ public class DbAction_Pw_JY {
 	// -----------------------------
 	
 	
-	// OK_btnOK
+	// 완료_btnOK
 	public String okAction() {
 		
 		PreparedStatement ps = null;

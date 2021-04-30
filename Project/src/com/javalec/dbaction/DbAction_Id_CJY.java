@@ -8,27 +8,27 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-import com.javalec.sharevar.ShareVar_ID_JY;
+import com.javalec.sharevar.ShareVar_Id_CJY;
 
-public class DbAction_ID_JY {
+public class DbAction_Id_CJY {
 	
 	// field
 	
-	private final String url_mysql = ShareVar_ID_JY.url_mysql;
-	private final String id_mysql = ShareVar_ID_JY.id_mysql;
-	private final String pw_mysql = ShareVar_ID_JY.pw_mysql;
+	private final String url_mysql = ShareVar_Id_CJY.url_mysql;
+	private final String id_mysql = ShareVar_Id_CJY.id_mysql;
+	private final String pw_mysql = ShareVar_Id_CJY.pw_mysql;
 	
 	String name = "";
 	String telno = ""; 
 	
 	
 	// construction
-	public DbAction_ID_JY() {
+	public DbAction_Id_CJY() {
 	
 		
 	}
 	
-	public DbAction_ID_JY(String name, String telno) {
+	public DbAction_Id_CJY(String name, String telno) {
 		super();
 		this.name = name;
 		this.telno = telno;
@@ -42,7 +42,7 @@ public class DbAction_ID_JY {
 	// -----------------------------
 
 	
-	// OK_btnOK
+	// 완료_btnOK
 	public String okAction() {
 		
 		PreparedStatement ps = null;

@@ -8,15 +8,15 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-import com.javalec.sharevar.ShareVar_Join_JY;
+import com.javalec.sharevar.ShareVar_Join_CJY;
 
-public class DbAction_Join_JY_ {
+public class DbAction_Join_CJY {
 	
 	// field
 	
-	private final String url_mysql = ShareVar_Join_JY.url_mysql;
-	private final String id_mysql = ShareVar_Join_JY.id_mysql;
-	private final String pw_mysql = ShareVar_Join_JY.pw_mysql;
+	private final String url_mysql = ShareVar_Join_CJY.url_mysql;
+	private final String id_mysql = ShareVar_Join_CJY.id_mysql;
+	private final String pw_mysql = ShareVar_Join_CJY.pw_mysql;
 	
 	String id = "";
 	String pw = "";
@@ -27,14 +27,14 @@ public class DbAction_Join_JY_ {
 
 	
 	// construction
-	public DbAction_Join_JY_() {
+	public DbAction_Join_CJY() {
 	
 		
 	}  // 기본 생성자는 생략가능하지만 있어주느 게 좋음
 	
 
 	
-	public DbAction_Join_JY_(String id, String pw, String name, String telno, String nick) {
+	public DbAction_Join_CJY(String id, String pw, String name, String telno, String nick) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -63,7 +63,7 @@ public class DbAction_Join_JY_ {
 			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
 			Statement stmt_mysql = conn_mysql.createStatement();
 
-			String query = "insert into client (clientId, clientPw, clientName, clientTelno, clientNick)"; // 다 들어가지만 길어서																								// 나눠놓음
+			String query = "insert into client (clientId, clientPw, clientName, clientTelno, clientNick)"; // 다 들어가지만 길어서 뭐리문장 2개로 나눔																								// 나눠놓음
 			String query1 = " values (?, ?, ?, ?, ?)"; // valuse 앞에 띄어쓰기 꼭 해야한다. : 윗 문장하고 다른 문장으로 인식하기 위해서
 //			System.out.println(query + query1);
 //			"join_password"클래스에서는 String query문장이 try 바깥에 있다 왜? DbAction클래스 처럼 선언해주는 곳이 따로 없으니깐!!			

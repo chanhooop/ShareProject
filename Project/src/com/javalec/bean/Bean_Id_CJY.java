@@ -1,6 +1,6 @@
 package com.javalec.bean;
 
-public class Bean_ID_JY {
+public class Bean_Id_CJY {
 	
 	// field
 	String name = "";
@@ -8,13 +8,13 @@ public class Bean_ID_JY {
 	
 	
 	// construction
-	public Bean_ID_JY() {
+	public Bean_Id_CJY() {
 
 	
 	}
 
 
-	public Bean_ID_JY(String name, String telno) {
+	public Bean_Id_CJY(String name, String telno) {
 		super();
 		this.name = name;
 		this.telno = telno;

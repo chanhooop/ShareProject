@@ -1,13 +1,18 @@
 package com.javalec.MainPackage;
 
+
 import com.javalec.Search.Client_Mypage_YJ;
+
 import com.javalec.Search.Search_CH;
 
-
+//ㅁㅁㅁㅁ
 public class MainProcess {
 	
+
 	Search_CH search;  // 실행시킬 클래스를 변수 설정
 	Client_Mypage_YJ client_Mypage_YJ;
+
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
