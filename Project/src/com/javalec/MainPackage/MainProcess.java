@@ -17,7 +17,7 @@ public class MainProcess {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	MainProcess main = new MainProcess();
-	main.search = new Search_CH();
+	main.search = new Search_CH(); 
 	main.search.setMain(main);
 		
 	}
