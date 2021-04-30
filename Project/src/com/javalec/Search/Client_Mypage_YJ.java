@@ -23,11 +23,15 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Mypage_YJ;
 import com.javalec.dbaction.DbAction_Mypage_YJ;
 
-public class Client_Mypage_YJ {
+public class Client_Mypage_YJ extends JFrame {
 
+	private MainProcess main;
+	
+	
 	private JFrame frame;
 	private JLabel lbAdminLogo;
 	private JLabel lbMainSlogan;
@@ -86,7 +90,16 @@ public class Client_Mypage_YJ {
 	 * Create the application.
 	 */
 	public Client_Mypage_YJ() {
-		initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
@@ -768,5 +781,8 @@ public class Client_Mypage_YJ {
 			btnMypageResetOk.setVisible(false);
 		}
 		return btnMypageResetOk;
+	}
+	public void setMain(MainProcess main) {
+		this.main = main;
 	}
 }
