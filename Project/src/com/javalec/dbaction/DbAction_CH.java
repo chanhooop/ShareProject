@@ -20,9 +20,10 @@ public class DbAction_CH {
 	// 칼럼 선언자
 	int menucode;
 	String brandName;
+	String menuType;
 	String menuName;
 	String menuprice;
-	
+
 	
 
 	// constructor
@@ -34,10 +35,11 @@ public class DbAction_CH {
 
 
 
-	public DbAction_CH(int menucode, String brandName, String menuName, String menuprice) {
+	public DbAction_CH(String brandName, String menuType, String menuName, String menuprice) {
 		super();
-		this.menucode = menucode;
+
 		this.brandName = brandName;
+		this.menuType = menuType;
 		this.menuName = menuName;
 		this.menuprice = menuprice;
 	}
@@ -57,7 +59,7 @@ public class DbAction_CH {
 		   ArrayList<Bean_CH> beanList = new ArrayList<Bean_CH>();  // 어레이리스트 타입의 생성자 만들어주기
 		
 
-		  String WhereDefault = "select m.menuCode, b.brandName, m.menuName, mu.menuprice from brand b, menu m, menuupdate mu where b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode";
+		  String WhereDefault = "select b.brandName, m.menuType, m.menuName, mu.menuprice from brand b, menu m, menuupdate mu where b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode";
 	      try{
 	          Class.forName("com.mysql.cj.jdbc.Driver");
 	          Connection conn_mysql = DriverManager.getConnection(url_mysql,id_mysql,pw_mysql);
@@ -66,13 +68,14 @@ public class DbAction_CH {
 	          ResultSet rs = stmt_mysql.executeQuery(WhereDefault);
 
 	          while(rs.next()){
-	        	  int menuCode = rs.getInt(1);
-	        	  String brandName = rs.getString(2);
+	        	 
+	        	  String brandName = rs.getString(1);
+	        	  String menuType = rs.getString(2);
 	        	  String menuName = rs.getString(3);
 	        	  String menuprice = rs.getString(4);
 
-	        	  Bean_CH bean_CH = new Bean_CH(menuCode, brandName, menuName, menuprice);
-	        	  beanList.add(bean_CH);
+	        	  Bean_CH bean = new Bean_CH(brandName, menuType, menuName, menuprice);
+	        	  beanList.add(bean);
 	        	  
 	          }
 	          conn_mysql.close();
@@ -86,27 +89,42 @@ public class DbAction_CH {
 		
 	
 	// 테이블에 데이터 하나 클릭하면 나타나게 만들기
-	public Bean_CH tableClick(String mCode) {
-		Bean_CH bean_CH = null;
+	public Bean_CH tableClick(Bean_CH bean_CH) {
+		Bean_CH bean_CH2 = null;
 
-		String query1 = "select m.menuCode, b.brandName, m.menuName, mu.menuprice, mt.materialAllergy from menu m, brand b, material mt, menuupdate mu ";
-		String query2 = "where b.brandCode = m.brand_brandCode and m.menuCode = mt.menu_menuCode and m.menuCode = mu.menu_menuCode and m.menuCode = ";
-		
+		String query1 = "select b.brandName, m.menuName, mu.menuprice, m.menuAllergy from menu m, brand b, menuupdate mu ";
+		String query2 = "where b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode and b.brandName = '";
+		String query3 = "' and m.menuName = '";
+
+		System.out.println(query1 + query2 + bean_CH.getBrandName() + query3 + bean_CH.getMenuName() + "'");
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+
 			Statement stmt_mysql = conn_mysql.createStatement();
+	
 			
-			ResultSet rs = stmt_mysql.executeQuery(query1 + query2 + mCode);
+			ResultSet rs = stmt_mysql.executeQuery(query1 + query2 + bean_CH.getBrandName() + query3 + bean_CH.getMenuName() + "'");
+	
+
 			
-			if(rs.next()) {									
-				int tfmenuCode = rs.getInt(1);  		   
-				String tfmenuprice = rs.getString(2);  	
-				String tfbrandName = rs.getString(3);  		   
-				String tfmenuName = rs.getString(4);  		   
-				String tfmeterial = rs.getString(5);
-				bean_CH = new Bean_CH(tfmenuCode, tfmenuprice, tfbrandName, tfmenuName, tfmeterial);
+			if(rs.next()) {		
+				
+
+				String tfbrandName = rs.getString(1);  		   
+	
+				String tfmenuName = rs.getString(2);  
+	
+				String tfmenuprice = rs.getString(3);  
+			
+				String tfmeterial = rs.getString(4);
+				bean_CH.setBrandName(tfbrandName);  
+				bean_CH.setMenuName(tfmenuName);  
+				bean_CH.setmenuprice(tfmenuprice);  
+				bean_CH.setmaterialAllerge(tfmeterial);   		   
+	
+		
 			}
 			
 			conn_mysql.close();
@@ -114,7 +132,7 @@ public class DbAction_CH {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		return bean_CH;	
+		return bean_CH2;	
 	}
 	
 	//********************************조건 검색 부분******************************************************************
@@ -124,9 +142,12 @@ public class DbAction_CH {
 		
 		ArrayList<Bean_CH> bean_CH = new ArrayList<Bean_CH>();
 				
-		String query1 = "select m.menuCode, b.brandName, m.menuName, mu.menuPrice from menu m, brand b, menuupdate mu where  b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode and " + beanget.getConditionQueryColumn();
+		String query1 = "select b.brandName, m.menuType, m.menuName, mu.menuprice from brand b, menu m, menuupdate mu "
+				+ "where b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode "
+				+ "and  b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode "
+				+ "and " + beanget.getConditionQueryColumn();
 		String query2 = " like '%" + beanget.getTfsearch() + "%' ";
-				
+				System.out.println(query1 + query2);
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
@@ -136,11 +157,14 @@ public class DbAction_CH {
 			
 			while(rs.next()) {
 				
-				int tfmenuCode = rs.getInt(1);
-				String tfbrandName = rs.getString(2);
+
+				String tfbrandName = rs.getString(1);
+				String tfmenuType = rs.getString(2);
 				String tfmenuName = rs.getString(3);
 				String tfmenuPrice = rs.getString(4);
-				Bean_CH conditonBean = new Bean_CH(tfmenuCode, tfbrandName, tfmenuName, tfmenuPrice);
+				
+				Bean_CH conditonBean = new Bean_CH(tfbrandName, tfmenuType, tfmenuName, tfmenuPrice);
+				
 				bean_CH.add(conditonBean);
 									
 			}
@@ -182,7 +206,7 @@ public class DbAction_CH {
 
 		ArrayList<Bean_CH> bean_CH = new ArrayList<Bean_CH>();
 		
-		String query1 = "select m.menuCode, b.brandName, m.menuName, mu.menuPrice from menu m, brand b, menuupdate mu where  b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode and" + conditionPriceColumn;
+		String query1 = "select b.brandName, m.menuType, m.menuName, mu.menuprice from brand b, menu m, menuupdate mu where b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode and" + conditionPriceColumn;
 
 		System.out.println(query1);
 		try {
@@ -194,11 +218,13 @@ public class DbAction_CH {
 			
 			while(rs.next()) {
 			
-				int tfmenuCode = rs.getInt(1);
-				String tfbrandName = rs.getString(2);
+				String tfbrandName = rs.getString(1);
+				String tfmenuType = rs.getString(2);
 				String tfmenuName = rs.getString(3);
 				String tfmenuPrice = rs.getString(4);
-				Bean_CH conditonBean = new Bean_CH(tfmenuCode, tfbrandName, tfmenuName, tfmenuPrice);
+				
+				Bean_CH conditonBean = new Bean_CH(tfbrandName, tfmenuType, tfmenuName, tfmenuPrice);
+				
 				bean_CH.add(conditonBean);
 
 			}
@@ -210,6 +236,8 @@ public class DbAction_CH {
 		
 		return bean_CH;
 	}
+	
+	
 //  **************************************************************************************************************	
 	
 	

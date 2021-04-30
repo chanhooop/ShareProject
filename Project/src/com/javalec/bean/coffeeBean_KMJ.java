@@ -1,5 +1,14 @@
 package com.javalec.bean;
 
+
+/**
+  * @FileName : coffeeBean_KMJ.java
+  * @Project : Project2
+  * @Date : 2021. 4. 30. 
+  * @작성자 : gimminjae
+  * @변경이력 :
+  * @프로그램설명 : 메뉴리스트 Bean 
+  */
 public class coffeeBean_KMJ {
 	String Topic;
 	String searchValue;
@@ -7,16 +16,6 @@ public class coffeeBean_KMJ {
 	String menuType;
 	String menuName;
 	String price;
-
-	String clientName;
-	String comment;
-	String clientCode;
-
-	public coffeeBean_KMJ(String client, String comment) {
-		super();
-		this.clientName = client;
-		this.comment = comment;
-	}
 
 	public coffeeBean_KMJ() {
 		// TODO Auto-generated constructor stub
@@ -28,22 +27,6 @@ public class coffeeBean_KMJ {
 		this.menuType = menuType;
 		this.menuName = menuName;
 		this.price = price;
-	}
-
-	public String getClientCode() {
-		return clientCode;
-	}
-
-	public void setClientCode(String clientCode) {
-		this.clientCode = clientCode;
-	}
-
-	public String getClientName() {
-		return clientName;
-	}
-
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
 	}
 
 	public String getTopic() {
@@ -60,14 +43,6 @@ public class coffeeBean_KMJ {
 
 	public void setSearchValue(String searchValue) {
 		this.searchValue = searchValue;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
 	}
 
 	public String getBrandName() {

@@ -1,30 +1,22 @@
 package com.javalec.Search;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
-import javax.swing.JTextField;
-
-import com.javalec.dbaction.DbAction_Join_JY_;
-
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Main_Join_JY {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import com.javalec.dbaction.DbAction_Join_CJY;
+
+public class Main_Join_CJY {
 
 	private JFrame frame;
 	private JLabel lblJoin;
@@ -45,7 +37,6 @@ public class Main_Join_JY {
 	private JButton btnOK;
 	private JButton btnCancel;
 	private JLabel lblPwCheckText;
-	private JLabel lblNewLabel;
 
 
 	/**
@@ -55,7 +46,7 @@ public class Main_Join_JY {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main_Join_JY window = new Main_Join_JY();
+					Main_Join_CJY window = new Main_Join_CJY();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,7 +58,7 @@ public class Main_Join_JY {
 	/**
 	 * Create the application.
 	 */
-	public Main_Join_JY() {
+	public Main_Join_CJY() {
 		initialize();
 	}
 
@@ -98,15 +89,14 @@ public class Main_Join_JY {
 		frame.getContentPane().add(getBtnOK());
 		frame.getContentPane().add(getBtnCancel());
 		frame.getContentPane().add(getLblPwCheckText());
-		frame.getContentPane().add(getLblNewLabel());
 //		frame.getContentPane().add(getLblpw());
 	}
 
 	private JLabel getLblJoin() {
 		if (lblJoin == null) {
 			lblJoin = new JLabel("회원가입");
-			lblJoin.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
-			lblJoin.setBounds(26, 47, 126, 37);
+			lblJoin.setFont(new Font("돋움", Font.BOLD, 20));
+			lblJoin.setBounds(12, 10, 93, 40);
 		}
 		return lblJoin;
 	}
@@ -114,8 +104,8 @@ public class Main_Join_JY {
 	private JLabel getLblId() {
 		if (lblId == null) {
 			lblId = new JLabel("아이디");
-			lblId.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblId.setBounds(26, 83, 78, 47);
+			lblId.setFont(new Font("돋움", Font.PLAIN, 13));
+			lblId.setBounds(63, 59, 59, 26);
 		}
 		return lblId;
 	}
@@ -123,8 +113,8 @@ public class Main_Join_JY {
 	private JLabel getLblPw() {
 		if (lblPw == null) {
 			lblPw = new JLabel("비밀번호");
-			lblPw.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblPw.setBounds(26, 130, 93, 47);
+			lblPw.setFont(new Font("돋움", Font.PLAIN, 13));
+			lblPw.setBounds(63, 111, 66, 26);
 		}
 		return lblPw;
 	}
@@ -132,8 +122,8 @@ public class Main_Join_JY {
 	private JLabel getLblPwCheck() {
 		if (lblPwCheck == null) {
 			lblPwCheck = new JLabel("비밀번호확인");
-			lblPwCheck.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblPwCheck.setBounds(26, 174, 140, 47);
+			lblPwCheck.setFont(new Font("돋움", Font.PLAIN, 13));
+			lblPwCheck.setBounds(53, 164, 93, 26);
 		}
 		return lblPwCheck;
 	}
@@ -141,8 +131,8 @@ public class Main_Join_JY {
 	private JLabel getLblName() {
 		if (lblName == null) {
 			lblName = new JLabel("이름");
-			lblName.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblName.setBounds(26, 218, 93, 47);
+			lblName.setFont(new Font("돋움", Font.PLAIN, 13));
+			lblName.setBounds(63, 215, 59, 26);
 		}
 		return lblName;
 	}
@@ -150,8 +140,8 @@ public class Main_Join_JY {
 	private JLabel getLblTelno() {
 		if (lblTelno == null) {
 			lblTelno = new JLabel("전화번호");
-			lblTelno.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblTelno.setBounds(26, 262, 93, 47);
+			lblTelno.setFont(new Font("돋움", Font.PLAIN, 13));
+			lblTelno.setBounds(63, 265, 66, 26);
 		}
 		return lblTelno;
 	}
@@ -159,8 +149,8 @@ public class Main_Join_JY {
 	private JLabel getLblNick() {
 		if (lblNick == null) {
 			lblNick = new JLabel("닉네임");
-			lblNick.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblNick.setBounds(26, 310, 93, 47);
+			lblNick.setFont(new Font("돋움", Font.PLAIN, 13));
+			lblNick.setBounds(63, 317, 69, 26);
 		}
 		return lblNick;
 	}
@@ -169,7 +159,7 @@ public class Main_Join_JY {
 		if (tfId == null) {
 			tfId = new JTextField();
 			tfId.setColumns(10);
-			tfId.setBounds(164, 86, 237, 32);
+			tfId.setBounds(141, 60, 225, 26);
 		}
 		return tfId;
 	}
@@ -178,7 +168,7 @@ public class Main_Join_JY {
 		if (tfName == null) {
 			tfName = new JTextField();
 			tfName.setColumns(10);
-			tfName.setBounds(164, 218, 237, 32);
+			tfName.setBounds(141, 215, 225, 26);
 		}
 		return tfName;
 	}
@@ -187,7 +177,7 @@ public class Main_Join_JY {
 		if (tfTel == null) {
 			tfTel = new JTextField();
 			tfTel.setColumns(10);
-			tfTel.setBounds(164, 262, 237, 32);
+			tfTel.setBounds(141, 266, 225, 26);
 		}
 		return tfTel;
 	}
@@ -196,7 +186,7 @@ public class Main_Join_JY {
 		if (tfNick == null) {
 			tfNick = new JTextField();
 			tfNick.setColumns(10);
-			tfNick.setBounds(162, 310, 237, 32);
+			tfNick.setBounds(141, 318, 225, 26);
 		}
 		return tfNick;
 	}
@@ -204,7 +194,7 @@ public class Main_Join_JY {
 	private JPasswordField getPwtfPw() {
 		if (pwtfPw == null) {
 			pwtfPw = new JPasswordField();
-			pwtfPw.setBounds(164, 130, 237, 32);
+			pwtfPw.setBounds(141, 112, 225, 26);
 		}
 		return pwtfPw;
 	}
@@ -220,7 +210,7 @@ public class Main_Join_JY {
 					
 				}
 			});
-			pwtfPw2.setBounds(164, 174, 237, 32);
+			pwtfPw2.setBounds(141, 165, 225, 26);
 		}
 		return pwtfPw2;
 	}
@@ -235,8 +225,8 @@ public class Main_Join_JY {
 					
 				}
 			});
-			btnId.setFont(new Font("Dialog", Font.PLAIN, 13));
-			btnId.setBounds(413, 83, 121, 40);
+			btnId.setFont(new Font("돋움", Font.PLAIN, 13));
+			btnId.setBounds(378, 60, 97, 26);
 		}
 		return btnId;
 	}
@@ -251,8 +241,8 @@ public class Main_Join_JY {
 					
 				}
 			});
-			btnNick.setFont(new Font("Dialog", Font.PLAIN, 13));
-			btnNick.setBounds(411, 302, 121, 40);
+			btnNick.setFont(new Font("돋움", Font.PLAIN, 13));
+			btnNick.setBounds(378, 318, 97, 25);
 		}
 		return btnNick;
 	}
@@ -272,8 +262,8 @@ public class Main_Join_JY {
 
 				}
 			});
-			btnOK.setFont(new Font("돋움", Font.PLAIN, 15));
-			btnOK.setBounds(433, 390, 93, 40);
+			btnOK.setFont(new Font("돋움", Font.PLAIN, 13));
+			btnOK.setBounds(394, 372, 81, 32);
 		}
 		return btnOK;
 	}
@@ -288,8 +278,8 @@ public class Main_Join_JY {
 					
 				}
 			});
-			btnCancel.setFont(new Font("돋움", Font.PLAIN, 15));
-			btnCancel.setBounds(308, 390, 93, 40);
+			btnCancel.setFont(new Font("돋움", Font.PLAIN, 13));
+			btnCancel.setBounds(285, 372, 81, 32);
 		}
 		return btnCancel;
 	}
@@ -297,7 +287,7 @@ public class Main_Join_JY {
 	private JLabel getLblPwCheckText() {
 		if (lblPwCheckText == null) {
 			lblPwCheckText = new JLabel("");
-			lblPwCheckText.setBounds(164, 206, 237, 15);
+			lblPwCheckText.setBounds(141, 190, 237, 15);
 		}
 		return lblPwCheckText;
 	}
@@ -324,8 +314,8 @@ public class Main_Join_JY {
 				
 		if(pw.equals(pw2)) {
 			
-			DbAction_Join_JY_ dbAction_Join_JY_ = new DbAction_Join_JY_(id, pw, name, telno, nick);
-			boolean msg = dbAction_Join_JY_.okAction();
+			DbAction_Join_CJY dbAction_Join_CJY = new DbAction_Join_CJY(id, pw, name, telno, nick);
+			boolean msg = dbAction_Join_CJY.okAction();
 			
 			if(msg == true) {
 				JOptionPane.showMessageDialog(null, tfName.getText() + "님의 회원가입이 완료되었습니다!");
@@ -372,7 +362,7 @@ public class Main_Join_JY {
 				
 				// i값이 0보다 클 때 = i값이 증가했을 때 = getText()가 없었을 때
 				if(i > 0) {
-					JOptionPane.showMessageDialog(null, message + "입력하세요.");
+					JOptionPane.showMessageDialog(null, message + "입력하세요.", "회원가입", JOptionPane.WARNING_MESSAGE);
 				}
 				
 				return i;
@@ -404,14 +394,14 @@ public class Main_Join_JY {
 		private void checkIdAction() {
 			String wkId = tfId.getText().trim();
 			
-			DbAction_Join_JY_ dbAction_Join_JY_ = new DbAction_Join_JY_();
-			boolean checkIdAction = dbAction_Join_JY_.checkIdAction(wkId);
+			DbAction_Join_CJY dbAction_Join_CJY = new DbAction_Join_CJY();
+			boolean checkIdAction = dbAction_Join_CJY.checkIdAction(wkId);
 			// boolean : 무조건 true 아니면 false이니깐 if문 사용시 if-else만 써도 가능
 			
 			if (checkIdAction == true) {
 				JOptionPane.showMessageDialog(null, "사용 가능한 아이디입니다!");
 			} else  {
-				JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다!");	
+				JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다!", "아이디 중복 확인", JOptionPane.WARNING_MESSAGE);	
 			}			
 		}
 		
@@ -419,13 +409,13 @@ public class Main_Join_JY {
 		private void checkNickAction() {
 			String wkNick = tfNick.getText().trim();
 			
-			DbAction_Join_JY_ dbAction_Join_JY_ = new DbAction_Join_JY_();
-			boolean checkNickAction = dbAction_Join_JY_.checkNickAction(wkNick);
+			DbAction_Join_CJY dbAction_Join_CJY = new DbAction_Join_CJY();
+			boolean checkNickAction = dbAction_Join_CJY.checkNickAction(wkNick);
 			
 			if (checkNickAction == true) {
 				JOptionPane.showMessageDialog(null, "사용 가능한 닉네임입니다!");
 			} else  {
-				JOptionPane.showMessageDialog(null, "이미 사용중인 닉네임입니다!");	
+				JOptionPane.showMessageDialog(null, "이미 사용중인 닉네임입니다!", "닉네임 중복 확인", JOptionPane.WARNING_MESSAGE);	
 			}
 		}
 		
@@ -442,13 +432,4 @@ public class Main_Join_JY {
 		
 
 	
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("카페행");
-			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-			lblNewLabel.setBounds(243, 0, 63, 41);
-			lblNewLabel.setForeground(Color.white);
-		}
-		return lblNewLabel;
-	}
 } // ----------------
