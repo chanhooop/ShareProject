@@ -31,7 +31,7 @@ import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_CH;
 import com.javalec.dbaction.DbAction_CH;
 
-public class Search_CH {
+public class Search_CH extends JFrame{
 
 	private MainProcess main;	
 	
@@ -316,7 +316,13 @@ public class Search_CH {
         this.main = main;
     }
 	//------------------------------------------------------------------------------------------------------------------
-	
+
+    private void btnCommentOpen() {
+    	coffeeSearch_KMJ coffeeSearch_KMJ = new coffeeSearch_KMJ();
+    	coffeeSearch_KMJ.main(null);
+    	frame.dispose();
+    	this.dispose();
+    }
 	
 	// 테이블 초기화
 	private void tableInit() {
