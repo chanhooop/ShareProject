@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -37,6 +38,7 @@ public class Main_Pw_JY {
 	private final String url_mysql = "jdbc:mysql://localhost:3316/test1?serverTimezome=UTC&characterEncoding=utf8&useSSL=FALSE";	
 	private final String id_mysql = "root";
 	private final String pw_mysql = "qwer1234";
+	private JLabel lblNewLabel_1;
 
 	/**
 	 * Launch the application.
@@ -79,13 +81,14 @@ public class Main_Pw_JY {
 		frame.getContentPane().add(getBtnOK());
 		frame.getContentPane().add(getLblNewLabel_1_1_1_3_1());
 		frame.getContentPane().add(getTfTel());
+		frame.getContentPane().add(getLblNewLabel_1());
 	}
 
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("비밀번호 찾기");
-			lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 20));
-			lblNewLabel.setBounds(12, 10, 269, 66);
+			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+			lblNewLabel.setBounds(26, 47, 126, 37);
 		}
 		return lblNewLabel;
 	}
@@ -93,7 +96,7 @@ public class Main_Pw_JY {
 		if (lblNewLabel_1_1_1_2 == null) {
 			lblNewLabel_1_1_1_2 = new JLabel("아이디");
 			lblNewLabel_1_1_1_2.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_2.setBounds(12, 89, 93, 47);
+			lblNewLabel_1_1_1_2.setBounds(26, 89, 93, 47);
 		}
 		return lblNewLabel_1_1_1_2;
 	}
@@ -101,7 +104,7 @@ public class Main_Pw_JY {
 		if (lblNewLabel_1_1_1_3 == null) {
 			lblNewLabel_1_1_1_3 = new JLabel("이름");
 			lblNewLabel_1_1_1_3.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_3.setBounds(11, 131, 93, 47);
+			lblNewLabel_1_1_1_3.setBounds(26, 131, 93, 47);
 		}
 		return lblNewLabel_1_1_1_3;
 	}
@@ -159,7 +162,7 @@ public class Main_Pw_JY {
 		if (lblNewLabel_1_1_1_3_1 == null) {
 			lblNewLabel_1_1_1_3_1 = new JLabel("전화번호");
 			lblNewLabel_1_1_1_3_1.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_3_1.setBounds(11, 179, 93, 47);
+			lblNewLabel_1_1_1_3_1.setBounds(26, 179, 93, 47);
 		}
 		return lblNewLabel_1_1_1_3_1;
 	}
@@ -234,4 +237,13 @@ public class Main_Pw_JY {
 		}
 	
 	
+	private JLabel getLblNewLabel_1() {
+		if (lblNewLabel_1 == null) {
+			lblNewLabel_1 = new JLabel("카페행");
+			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+			lblNewLabel_1.setBounds(243, 0, 63, 41);
+			lblNewLabel_1.setForeground(Color.white);
+		}
+		return lblNewLabel_1;
+	}
 } // -------------------------------------------

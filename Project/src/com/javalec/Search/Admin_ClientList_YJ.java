@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -52,6 +53,7 @@ public class Admin_ClientList_YJ {
 	private JLabel lbClientName;
 	private JTextField tfClientName;
 	private JButton btnCheck;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -111,14 +113,16 @@ public class Admin_ClientList_YJ {
 		frame.getContentPane().add(getLbClientName());
 		frame.getContentPane().add(getTfClientName());
 		frame.getContentPane().add(getBtnCheck());
+		frame.getContentPane().add(getLblNewLabel());
 //		frame.getContentPane().add(getLbTest());
 	}
 
 	private JLabel getLbAdminLogo() {
 		if (lbAdminLogo == null) {
 			lbAdminLogo = new JLabel("카페행");
-			lbAdminLogo.setFont(new Font("Dialog", Font.PLAIN, 35));
-			lbAdminLogo.setBounds(227, 0, 96, 59);
+			lbAdminLogo.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+			lbAdminLogo.setBounds(243, 0, 63, 41);
+			lbAdminLogo.setForeground(Color.white);
 		}
 		return lbAdminLogo;
 	}
@@ -418,5 +422,13 @@ public class Admin_ClientList_YJ {
 		tfClientName.setText("");
 		tfClientTelno.setText("");
 		tfClientNick.setText("");
+	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("로그아웃");
+			lblNewLabel.setBounds(478, 16, 61, 16);
+			lblNewLabel.setForeground(Color.white);
+		}
+		return lblNewLabel;
 	}
 }

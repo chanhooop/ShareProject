@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -44,6 +45,7 @@ public class Main_Join_JY {
 	private JButton btnOK;
 	private JButton btnCancel;
 	private JLabel lblPwCheckText;
+	private JLabel lblNewLabel;
 
 
 	/**
@@ -96,14 +98,15 @@ public class Main_Join_JY {
 		frame.getContentPane().add(getBtnOK());
 		frame.getContentPane().add(getBtnCancel());
 		frame.getContentPane().add(getLblPwCheckText());
+		frame.getContentPane().add(getLblNewLabel());
 //		frame.getContentPane().add(getLblpw());
 	}
 
 	private JLabel getLblJoin() {
 		if (lblJoin == null) {
 			lblJoin = new JLabel("회원가입");
-			lblJoin.setFont(new Font("Dialog", Font.BOLD, 20));
-			lblJoin.setBounds(12, 10, 161, 66);
+			lblJoin.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+			lblJoin.setBounds(26, 47, 126, 37);
 		}
 		return lblJoin;
 	}
@@ -112,7 +115,7 @@ public class Main_Join_JY {
 		if (lblId == null) {
 			lblId = new JLabel("아이디");
 			lblId.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblId.setBounds(12, 83, 78, 47);
+			lblId.setBounds(26, 83, 78, 47);
 		}
 		return lblId;
 	}
@@ -121,7 +124,7 @@ public class Main_Join_JY {
 		if (lblPw == null) {
 			lblPw = new JLabel("비밀번호");
 			lblPw.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblPw.setBounds(12, 130, 93, 47);
+			lblPw.setBounds(26, 130, 93, 47);
 		}
 		return lblPw;
 	}
@@ -130,7 +133,7 @@ public class Main_Join_JY {
 		if (lblPwCheck == null) {
 			lblPwCheck = new JLabel("비밀번호확인");
 			lblPwCheck.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblPwCheck.setBounds(12, 174, 140, 47);
+			lblPwCheck.setBounds(26, 174, 140, 47);
 		}
 		return lblPwCheck;
 	}
@@ -139,7 +142,7 @@ public class Main_Join_JY {
 		if (lblName == null) {
 			lblName = new JLabel("이름");
 			lblName.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblName.setBounds(12, 218, 93, 47);
+			lblName.setBounds(26, 218, 93, 47);
 		}
 		return lblName;
 	}
@@ -148,7 +151,7 @@ public class Main_Join_JY {
 		if (lblTelno == null) {
 			lblTelno = new JLabel("전화번호");
 			lblTelno.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblTelno.setBounds(12, 262, 93, 47);
+			lblTelno.setBounds(26, 262, 93, 47);
 		}
 		return lblTelno;
 	}
@@ -157,7 +160,7 @@ public class Main_Join_JY {
 		if (lblNick == null) {
 			lblNick = new JLabel("닉네임");
 			lblNick.setFont(new Font("Dialog", Font.PLAIN, 13));
-			lblNick.setBounds(10, 310, 93, 47);
+			lblNick.setBounds(26, 310, 93, 47);
 		}
 		return lblNick;
 	}
@@ -439,4 +442,13 @@ public class Main_Join_JY {
 		
 
 	
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("카페행");
+			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+			lblNewLabel.setBounds(243, 0, 63, 41);
+			lblNewLabel.setForeground(Color.white);
+		}
+		return lblNewLabel;
+	}
 } // ----------------

@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -76,6 +77,7 @@ public class Admin_Brand_YJ {
 	private JButton btnReset;
 	private JButton btnResetOk;
 	private JTextField tfAdminCode;
+	private JLabel lblNewLabel_2;
 
 	/**
 	 * Launch the application.
@@ -135,13 +137,15 @@ public class Admin_Brand_YJ {
 		frmBrand.getContentPane().add(getBtnReset());
 		frmBrand.getContentPane().add(getBtnResetOk());
 		frmBrand.getContentPane().add(getTfAdminCode());
+		frmBrand.getContentPane().add(getLblNewLabel_2());
 	}
 
 	private JLabel getLabel_1() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("카페행");
-			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
 			lblNewLabel.setBounds(243, 0, 63, 41);
+			lblNewLabel.setForeground(Color.white);
 		}
 		return lblNewLabel;
 	}
@@ -149,7 +153,7 @@ public class Admin_Brand_YJ {
 	private JLabel getLabel_2() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("브랜드관리");
-			lblNewLabel_1.setBounds(30, 48, 61, 16);
+			lblNewLabel_1.setBounds(30, 55, 61, 16);
 		}
 		return lblNewLabel_1;
 	}
@@ -157,7 +161,7 @@ public class Admin_Brand_YJ {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(29, 70, 483, 169);
+			scrollPane.setBounds(29, 77, 483, 169);
 			scrollPane.setViewportView(getInner_table());
 			Inner_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			Inner_table.setModel(Outer_Table);
@@ -181,7 +185,7 @@ public class Admin_Brand_YJ {
 	private JLabel getLabel_3() {
 		if (lbBrandCode == null) {
 			lbBrandCode = new JLabel("브랜드코드");
-			lbBrandCode.setBounds(30, 258, 61, 16);
+			lbBrandCode.setBounds(30, 265, 61, 16);
 		}
 		return lbBrandCode;
 	}
@@ -190,7 +194,7 @@ public class Admin_Brand_YJ {
 		if (tfBrandCode == null) {
 			tfBrandCode = new JTextField();
 			tfBrandCode.setEnabled(false);
-			tfBrandCode.setBounds(105, 253, 130, 26);
+			tfBrandCode.setBounds(105, 260, 130, 26);
 			tfBrandCode.setColumns(10);
 		}
 		return tfBrandCode;
@@ -199,7 +203,7 @@ public class Admin_Brand_YJ {
 	private JLabel getLbBrandName() {
 		if (lbBrandName == null) {
 			lbBrandName = new JLabel("브랜드명");
-			lbBrandName.setBounds(30, 298, 61, 16);
+			lbBrandName.setBounds(30, 305, 61, 16);
 		}
 		return lbBrandName;
 	}
@@ -209,7 +213,7 @@ public class Admin_Brand_YJ {
 			tfBrandName = new JTextField();
 			tfBrandName.setEditable(false);
 			tfBrandName.setColumns(10);
-			tfBrandName.setBounds(105, 293, 130, 26);
+			tfBrandName.setBounds(105, 300, 130, 26);
 		}
 		return tfBrandName;
 	}
@@ -217,7 +221,7 @@ public class Admin_Brand_YJ {
 	private JLabel getLbBrandLogo1() {
 		if (lbBrandLogo1 == null) {
 			lbBrandLogo1 = new JLabel("브랜드로고");
-			lbBrandLogo1.setBounds(30, 343, 61, 16);
+			lbBrandLogo1.setBounds(30, 350, 61, 16);
 		}
 		return lbBrandLogo1;
 	}
@@ -227,7 +231,7 @@ public class Admin_Brand_YJ {
 			tfBrandLogo = new JTextField();
 			tfBrandLogo.setEnabled(false);
 			tfBrandLogo.setColumns(10);
-			tfBrandLogo.setBounds(105, 338, 130, 26);
+			tfBrandLogo.setBounds(105, 345, 130, 26);
 		}
 		return tfBrandLogo;
 	}
@@ -249,7 +253,7 @@ public class Admin_Brand_YJ {
 					}
 				}
 			});
-			btnAddLogo.setBounds(244, 338, 75, 29);
+			btnAddLogo.setBounds(244, 345, 75, 29);
 		}
 		return btnAddLogo;
 	}
@@ -258,7 +262,7 @@ public class Admin_Brand_YJ {
 		if (lbBrandLogo == null) {
 			lbBrandLogo = new JLabel("");
 			lbBrandLogo.setHorizontalAlignment(SwingConstants.CENTER);
-			lbBrandLogo.setBounds(361, 251, 137, 128);
+			lbBrandLogo.setBounds(361, 258, 137, 128);
 		}
 		return lbBrandLogo;
 	}
@@ -623,11 +627,21 @@ public class Admin_Brand_YJ {
 	private JTextField getTfAdminCode() {
 		if (tfAdminCode == null) {
 			tfAdminCode = new JTextField();
-			tfAdminCode.setBounds(409, 10, 130, 26);
+			tfAdminCode.setBounds(6, 11, 130, 26);
 			tfAdminCode.setColumns(10);
 			tfAdminCode.setText("1"); // 합칠 때 리셋시켜서 db연동하여 관리자 코드 가져오게끔 해야함.
 			tfAdminCode.setVisible(false);
 		}
 		return tfAdminCode;
+	}
+	
+	// ############## 액션추가해주세요 ###################
+	private JLabel getLblNewLabel_2() {
+		if (lblNewLabel_2 == null) {
+			lblNewLabel_2 = new JLabel("로그아웃");
+			lblNewLabel_2.setBounds(478, 16, 61, 16);
+			lblNewLabel_2.setForeground(Color.white);
+		}
+		return lblNewLabel_2;
 	}
 }

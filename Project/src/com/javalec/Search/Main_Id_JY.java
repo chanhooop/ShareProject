@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ public class Main_Id_JY {
 	private JTextField tfName;
 	private JButton btnOK;
 	private JButton btnCancel;
+	private JLabel lblNewLabel_1;
 	
 	/**
 	 * Launch the application.
@@ -65,29 +67,30 @@ public class Main_Id_JY {
 		frame.getContentPane().add(getTfName());
 		frame.getContentPane().add(getBtnOK());
 		frame.getContentPane().add(getBtnCancel());
+		frame.getContentPane().add(getLblNewLabel_1());
 	}
 
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("아이디 찾기");
-			lblNewLabel.setFont(new Font("돋움", Font.BOLD, 35));
-			lblNewLabel.setBounds(12, 10, 223, 66);
+			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 19));
+			lblNewLabel.setBounds(26, 47, 126, 37);
 		}
 		return lblNewLabel;
 	}
 	private JLabel getLblNewLabel_1_1_1_2() {
 		if (lblNewLabel_1_1_1_2 == null) {
 			lblNewLabel_1_1_1_2 = new JLabel("이름");
-			lblNewLabel_1_1_1_2.setFont(new Font("돋움", Font.PLAIN, 23));
-			lblNewLabel_1_1_1_2.setBounds(12, 89, 93, 47);
+			lblNewLabel_1_1_1_2.setFont(new Font("Dialog", Font.PLAIN, 13));
+			lblNewLabel_1_1_1_2.setBounds(26, 99, 93, 37);
 		}
 		return lblNewLabel_1_1_1_2;
 	}
 	private JLabel getLblNewLabel_1_1_1_3() {
 		if (lblNewLabel_1_1_1_3 == null) {
 			lblNewLabel_1_1_1_3 = new JLabel("전화번호");
-			lblNewLabel_1_1_1_3.setFont(new Font("돋움", Font.PLAIN, 23));
-			lblNewLabel_1_1_1_3.setBounds(12, 146, 93, 47);
+			lblNewLabel_1_1_1_3.setFont(new Font("Dialog", Font.PLAIN, 13));
+			lblNewLabel_1_1_1_3.setBounds(26, 132, 93, 47);
 		}
 		return lblNewLabel_1_1_1_3;
 	}
@@ -95,7 +98,7 @@ public class Main_Id_JY {
 		if (tfTel == null) {
 			tfTel = new JTextField();
 			tfTel.setColumns(10);
-			tfTel.setBounds(147, 146, 237, 32);
+			tfTel.setBounds(131, 139, 237, 32);
 		}
 		return tfTel;
 	}
@@ -103,7 +106,7 @@ public class Main_Id_JY {
 		if (tfName == null) {
 			tfName = new JTextField();
 			tfName.setColumns(10);
-			tfName.setBounds(147, 86, 237, 32);
+			tfName.setBounds(131, 101, 237, 32);
 		}
 		return tfName;
 	}
@@ -204,4 +207,13 @@ public class Main_Id_JY {
 		}
 
 	
+	private JLabel getLblNewLabel_1() {
+		if (lblNewLabel_1 == null) {
+			lblNewLabel_1 = new JLabel("카페행");
+			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+			lblNewLabel_1.setBounds(243, 0, 63, 41);
+			lblNewLabel_1.setForeground(Color.white);
+		}
+		return lblNewLabel_1;
+	}
 } // --------------------------------------
