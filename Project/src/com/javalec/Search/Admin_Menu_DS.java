@@ -32,7 +32,7 @@ import javax.swing.table.TableColumn;
 import com.javalec.bean.Bean_Admin_Menu_DS;
 import com.javalec.dbaction.DbAction_Admin_Menu_DS;
 import com.javalec.sharevar.ShareVar_Admin_Menu_DS;
-
+//yhyghyy
 public class Admin_Menu_DS {
 
 	private JFrame frame;
