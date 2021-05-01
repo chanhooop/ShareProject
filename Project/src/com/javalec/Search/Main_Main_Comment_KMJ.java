@@ -14,9 +14,9 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-import com.javalec.bean.coffeeBean_KMJ;
-import com.javalec.bean.coffeeBean_KMJ2;
-import com.javalec.dbaction.coffeeSearchAction_KMJ;
+import com.javalec.bean.Bean_Main_List_KMJ;
+import com.javalec.bean.Bean_Main_Comment_KMJ;
+import com.javalec.dbaction.DbAction_Main_Comment_KMJ;
 import com.mysql.cj.x.protobuf.MysqlxCrud.Column;
 
 import javax.swing.JTable;
@@ -48,7 +48,7 @@ import java.awt.event.MouseEvent;
  * @변경이력 :
  * @프로그램설명 : 엑션 클래스
  */
-public class coffeeSearch_KMJ extends JFrame{
+public class Main_Main_Comment_KMJ extends JFrame{
 
 	private JFrame frame;
 	private JPanel panel;
@@ -80,7 +80,7 @@ public class coffeeSearch_KMJ extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					coffeeSearch_KMJ window = new coffeeSearch_KMJ();
+					Main_Main_Comment_KMJ window = new Main_Main_Comment_KMJ();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -92,7 +92,7 @@ public class coffeeSearch_KMJ extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public coffeeSearch_KMJ() {
+	public Main_Main_Comment_KMJ() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -216,7 +216,7 @@ public class coffeeSearch_KMJ extends JFrame{
 			searchList_table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					commentLisetInnertable(); // 메뉴테이블 초기화
+					commentLisetInnertable(); // 코멘트 테이블 초기화
 				}
 			});
 			searchList_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -461,15 +461,15 @@ public class coffeeSearch_KMJ extends JFrame{
 	  * @Method설명 : 검색어 입력후 리스트 출력 , 빈값일경우 전체리스트
 	  */
 	private void searchLisetInnertable() {
-		coffeeSearchAction_KMJ coffeeSearchAction_KMJ = new coffeeSearchAction_KMJ(); // coffeeSearchAction_KMJ 클래스를 변수로
+		DbAction_Main_Comment_KMJ DbAction_Main_Comment_KMJ = new DbAction_Main_Comment_KMJ(); // coffeeSearchAction_KMJ 클래스를 변수로
 																						// 치환 선언 해준다.
 		String topic = (String) cbSerarch.getSelectedItem(); // 콤보박스 데이터가 들여온다
 		String searchValue = (String) tfSearch.getText(); // 검색어 텍스트를 들여온다
-		coffeeBean_KMJ coffeeBean_KMJ = new coffeeBean_KMJ(); // coffeeBean_KMJ 을 변수로 치환 한다
-		coffeeBean_KMJ.setTopic(topic); // topic 을 coffeeBean_KMJ 의 Topic 에 데이터를 넣는다
-		coffeeBean_KMJ.setSearchValue(searchValue); // searchValue 을 coffeeBean_KMJ 의 SearchValue 에 데이터를 넣는다
+		Bean_Main_List_KMJ Bean_Main_List_KMJ = new Bean_Main_List_KMJ(); // coffeeBean_KMJ 을 변수로 치환 한다
+		Bean_Main_List_KMJ.setTopic(topic); // topic 을 coffeeBean_KMJ 의 Topic 에 데이터를 넣는다
+		Bean_Main_List_KMJ.setSearchValue(searchValue); // searchValue 을 coffeeBean_KMJ 의 SearchValue 에 데이터를 넣는다
 
-		ArrayList<coffeeBean_KMJ> beanList = coffeeSearchAction_KMJ.searchLisetInnertable(coffeeBean_KMJ);
+		ArrayList<Bean_Main_List_KMJ> beanList = DbAction_Main_Comment_KMJ.searchLisetInnertable(Bean_Main_List_KMJ);
 		// ArrayList 를 coffeeBean_KMJ 배열로 만든다.
 		// 그리고 coffeeSearchAction_KMJ 의 searchLisetInnertable 에 coffeeBean_KMJ 데이터를 계산해서
 		// 가져온다
@@ -490,23 +490,23 @@ public class coffeeSearch_KMJ extends JFrame{
 	  */
 	private void commentLisetInnertable() { // 
 		commentOuttable();
-		coffeeSearchAction_KMJ coffeeSearchAction_KMJ = new coffeeSearchAction_KMJ(); // coffeeSearchAction_KMJ 클래스를 변수로
-
-		coffeeBean_KMJ2 coffeeBean_KMJ2 = new coffeeBean_KMJ2();// 치환 선언 해준다.
+		DbAction_Main_Comment_KMJ DbAction_Main_Comment_KMJ = new DbAction_Main_Comment_KMJ(); // coffeeSearchAction_KMJ 클래스를 변수로
+		
+		Bean_Main_Comment_KMJ Bean_Main_Comment_KMJ = new Bean_Main_Comment_KMJ();// 치환 선언 해준다.
 		int selectedMenu = searchList_table.getSelectedRow(); // 댓글 선택 리스트 맨윗줄을 1로 기준
 		String brandName = (String) searchList_table.getValueAt(selectedMenu, 0); // 해당 줄에서 0번쨰 컬럼명을 가져온다.
 		String menuName = (String) searchList_table.getValueAt(selectedMenu, 2); // 해당 줄에서 2번째 컬럼명을 가져온다.
-		coffeeBean_KMJ2.setBrandName(brandName);
-		coffeeBean_KMJ2.setMenuName(menuName);
-		ArrayList<coffeeBean_KMJ2> beanList = coffeeSearchAction_KMJ.commentLisetInnertable(coffeeBean_KMJ2);
+		Bean_Main_Comment_KMJ.setBrandName(brandName);
+		Bean_Main_Comment_KMJ.setMenuName(menuName);
+		ArrayList<Bean_Main_Comment_KMJ> beanList = DbAction_Main_Comment_KMJ.commentLisetInnertable(Bean_Main_Comment_KMJ);
 
 		for (int i = 0; i < beanList.size(); i++) {
 			if (tfAdmin.getText().equals("admin") || beanList.get(i).getClientCode().equals(tfLogin.getText())) {
-				String[] queryArray = { beanList.get(i).getClientName() + " : " + beanList.get(i).getComment(), "수정",
+				String[] queryArray = { beanList.get(i).getClientNick() + " : " + beanList.get(i).getComment(), "수정",
 						"삭제", beanList.get(i).getCommentCode(), beanList.get(i).getComment() };
 				comment_Out_Table.addRow(queryArray);
 			} else {
-				String[] queryArray = { beanList.get(i).getClientName() + " : " + beanList.get(i).getComment(), "", "",
+				String[] queryArray = { beanList.get(i).getClientNick() + " : " + beanList.get(i).getComment(), "", "",
 						beanList.get(i).getCommentCode(), beanList.get(i).getComment() };
 				comment_Out_Table.addRow(queryArray);
 			}
@@ -521,20 +521,20 @@ public class coffeeSearch_KMJ extends JFrame{
 	  * @Method설명 : '전송' 버튼 클릭시 댓글 추가 및 초기화해서 출력
 	  */
 	private void addComment() {
-		coffeeSearchAction_KMJ coffeeSearchAction_KMJ = new coffeeSearchAction_KMJ(); // coffeeSearchAction_KMJ 클래스를 변수로
+		DbAction_Main_Comment_KMJ DbAction_Main_Comment_KMJ = new DbAction_Main_Comment_KMJ(); // coffeeSearchAction_KMJ 클래스를 변수로
 																						// 치환 선언 해준다.
-		coffeeBean_KMJ2 coffeeBean_KMJ2 = new coffeeBean_KMJ2();
+		Bean_Main_Comment_KMJ Bean_Main_Comment_KMJ = new Bean_Main_Comment_KMJ();
 		String loginName = tfLogin.getText();
 		int selectedMenu = searchList_table.getSelectedRow();
 		String brandName = (String) searchList_table.getValueAt(selectedMenu, 0);
 		String menuName = (String) searchList_table.getValueAt(selectedMenu, 2);
 		String comment = tfComment.getText();
 
-		coffeeBean_KMJ2.setBrandName(brandName);
-		coffeeBean_KMJ2.setMenuName(menuName);
-		coffeeBean_KMJ2.setClientCode(loginName); // 로그인이름 클라이언트코드 찾기위해 필
-		coffeeBean_KMJ2.setComment(comment);
-		coffeeSearchAction_KMJ.addCommend(coffeeBean_KMJ2);
+		Bean_Main_Comment_KMJ.setBrandName(brandName);
+		Bean_Main_Comment_KMJ.setMenuName(menuName);
+		Bean_Main_Comment_KMJ.setClientCode(loginName); // 로그인이름 클라이언트코드 찾기위해 필
+		Bean_Main_Comment_KMJ.setComment(comment);
+		DbAction_Main_Comment_KMJ.addCommend(Bean_Main_Comment_KMJ);
 		commentLisetInnertable();
 	}
 
@@ -569,17 +569,17 @@ public class coffeeSearch_KMJ extends JFrame{
 	  * @Method설명 : 댓글 수정 버튼 누르면 댓글 수정 및 댓글리스트 초기화
 	  */
 	private void commentUpdate() {
-		coffeeSearchAction_KMJ coffeeSearchAction_KMJ = new coffeeSearchAction_KMJ(); // coffeeSearchAction_KMJ 클래스를 변수로
+		DbAction_Main_Comment_KMJ DbAction_Main_Comment_KMJ = new DbAction_Main_Comment_KMJ(); // coffeeSearchAction_KMJ 클래스를 변수로
 																						// 치환 선언 해준다.
 		int i = comment_table.getSelectedRow();
 		int UpdateDelete = comment_table.getSelectedColumn();
 		String SelectedCommentCode = (String) comment_table.getValueAt(i, 3); // 숨겨있는 commentCode 값 불러오기
 		String SelectedComment = (String) comment_table.getValueAt(i, 4); // 숨겨있는 comment 값 불러오기
 
-		coffeeBean_KMJ2 coffeeBean_KMJ2 = new coffeeBean_KMJ2();
-		coffeeBean_KMJ2.setComment(tfComment.getText());
-		coffeeBean_KMJ2.setCommentCode(SelectedCommentCode);
-		coffeeSearchAction_KMJ.commentUpdate(coffeeBean_KMJ2);
+		Bean_Main_Comment_KMJ Bean_Main_Comment_KMJ = new Bean_Main_Comment_KMJ();
+		Bean_Main_Comment_KMJ.setComment(tfComment.getText());
+		Bean_Main_Comment_KMJ.setCommentCode(SelectedCommentCode);
+		DbAction_Main_Comment_KMJ.commentUpdate(Bean_Main_Comment_KMJ);
 		btnCommentInsert.setVisible(true);
 		btnCommentUpdate.setVisible(false);
 		commentLisetInnertable();
@@ -594,17 +594,17 @@ public class coffeeSearch_KMJ extends JFrame{
 	  * @Method설명 : 삭제버튼 클릭시 comment.commentOnOff = 0 으로 업데이트 하고 리스트 초기화
 	  */
 	private void commentDelete() {
-		coffeeSearchAction_KMJ coffeeSearchAction_KMJ = new coffeeSearchAction_KMJ(); // coffeeSearchAction_KMJ 클래스를 변수로
+		DbAction_Main_Comment_KMJ DbAction_Main_Comment_KMJ = new DbAction_Main_Comment_KMJ(); // coffeeSearchAction_KMJ 클래스를 변수로
 																						// 치환 선언 해준다.
 		int i = comment_table.getSelectedRow();
 		int UpdateDelete = comment_table.getSelectedColumn();
 		String SelectedCommentCode = (String) comment_table.getValueAt(i, 3); // 숨겨있는 commentCode 값 불러오기
 		String SelectedComment = (String) comment_table.getValueAt(i, 4); // 숨겨있는 comment 값 불러오기
 
-		coffeeBean_KMJ2 coffeeBean_KMJ2 = new coffeeBean_KMJ2();
-		coffeeBean_KMJ2.setComment(tfComment.getText());
-		coffeeBean_KMJ2.setCommentCode(SelectedCommentCode);
-		coffeeSearchAction_KMJ.commentDelete(coffeeBean_KMJ2);
+		Bean_Main_Comment_KMJ Bean_Main_Comment_KMJ = new Bean_Main_Comment_KMJ();
+		Bean_Main_Comment_KMJ.setComment(tfComment.getText());
+		Bean_Main_Comment_KMJ.setCommentCode(SelectedCommentCode);
+		DbAction_Main_Comment_KMJ.commentDelete(Bean_Main_Comment_KMJ);
 		btnCommentInsert.setVisible(true);
 		btnCommentUpdate.setVisible(false);
 		commentLisetInnertable();
