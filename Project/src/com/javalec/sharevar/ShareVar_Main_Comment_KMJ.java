@@ -8,7 +8,7 @@ package com.javalec.sharevar;
   * @변경이력 :
   * @프로그램설명 : 데이터베이스 연결
   */
-public class searchShareVar_KMJ {
+public class ShareVar_Main_Comment_KMJ {
 	public static final String url_mysql = "jdbc:mysql://127.0.0.1/useraddress?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
 	public static final String id_mysql = "root";
 	public static final String pw_mysql = "qwer1234";

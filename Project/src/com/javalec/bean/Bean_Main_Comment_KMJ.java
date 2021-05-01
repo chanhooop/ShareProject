@@ -8,25 +8,51 @@ package com.javalec.bean;
   * @변경이력 :
   * @프로그램설명 : 코멘트 불러오는 빈
   */
-public class coffeeBean_KMJ2 {
+public class Bean_Main_Comment_KMJ {
 
 	String brandName;
 	String menuType;
 	String menuName;
 	String clientCode;
-	String clientName;
+	String clientNick;
 	String comment;
 	String commentCode;
+	String userNick;
+	String adminOnOff;
 
-	public coffeeBean_KMJ2(String client, String comment, String clientCode, String commentCode) {
+	public Bean_Main_Comment_KMJ(String clientNick, String comment, String clientCode, String commentCode, String userNick, String adminOnOff) {
 		super();
-		this.clientName = client;
+		this.clientNick = clientNick;
 		this.comment = comment;
 		this.clientCode = clientCode;
 		this.commentCode = commentCode;
+		this.userNick = userNick;
+		this.adminOnOff = adminOnOff;
 	}
 
-	public coffeeBean_KMJ2() {
+	public Bean_Main_Comment_KMJ(String userNick, String adminOnOff) {
+		super();
+		this.userNick = userNick;
+		this.adminOnOff = adminOnOff;
+	}
+
+	public String getUserNick() {
+		return userNick;
+	}
+
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
+	}
+
+	public String getAdminOnOff() {
+		return adminOnOff;
+	}
+
+	public void setAdminOnOff(String adminOnOff) {
+		this.adminOnOff = adminOnOff;
+	}
+
+	public Bean_Main_Comment_KMJ() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -38,12 +64,12 @@ public class coffeeBean_KMJ2 {
 		this.clientCode = clientCode;
 	}
 
-	public String getClientName() {
-		return clientName;
+	public String getClientNick() {
+		return clientNick;
 	}
 
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
+	public void setClientNick(String clientNick) {
+		this.clientNick = clientNick;
 	}
 
 	public String getComment() {

@@ -9,7 +9,7 @@ package com.javalec.bean;
   * @변경이력 :
   * @프로그램설명 : 메뉴리스트 Bean 
   */
-public class coffeeBean_KMJ {
+public class Bean_Main_List_KMJ {
 	String Topic;
 	String searchValue;
 	String brandName;
@@ -17,11 +17,11 @@ public class coffeeBean_KMJ {
 	String menuName;
 	String price;
 
-	public coffeeBean_KMJ() {
+	public Bean_Main_List_KMJ() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public coffeeBean_KMJ(String brandName, String menuType, String menuName, String price) {
+	public Bean_Main_List_KMJ(String brandName, String menuType, String menuName, String price) {
 		super();
 		this.brandName = brandName;
 		this.menuType = menuType;
