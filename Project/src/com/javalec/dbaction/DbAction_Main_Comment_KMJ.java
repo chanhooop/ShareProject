@@ -173,7 +173,6 @@ public class DbAction_Main_Comment_KMJ {
 			selectps = conn_mysql.prepareStatement(select + from + where);
 			selectps.setString(1, beanData.getBrandName());
 			selectps.setString(2, beanData.getMenuName());
-			System.out.println(selectps);
 			ResultSet rs = selectps.executeQuery();
 //			if (rs.next()) {
 //				brandName = rs.getString(1);
@@ -189,7 +188,6 @@ public class DbAction_Main_Comment_KMJ {
 			ps.setString(3, rs.getString(3));
 			ps.setString(4, beanData.getComment());
 			}
-			System.out.println(ps);
 			ps.executeUpdate();
 			conn_mysql.close();
 

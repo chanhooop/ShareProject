@@ -548,15 +548,6 @@ public class Search_CH extends JFrame{
  			Bean_Main_Comment_KMJ.setBrandName(brandName);
  			Bean_Main_Comment_KMJ.setMenuName(menuName);
  			ArrayList<Bean_Main_Comment_KMJ> beanList = DbAction_Main_Comment_KMJ.commentLisetInnertable(Bean_Main_Comment_KMJ);
-
- 			PreparedStatement ps = null;
- 			try {
- 				Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
- 				String select = "selelt clientId, adminId from Login";
- 				ps = conn_mysql.prepareStatement(select);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
  			for (int i = 0; i < beanList.size(); i++) {
  				if (beanList.get(i).getAdminOnOff().equals("admin") || beanList.get(i).getClientNick().equals(beanList.get(i).getUserNick())) {
  					String[] queryArray = { beanList.get(i).getClientNick() + " : " + beanList.get(i).getComment(), "수정",
@@ -567,9 +558,6 @@ public class Search_CH extends JFrame{
  							beanList.get(i).getCommentCode(), beanList.get(i).getComment() };
  					comment_Out_Table.addRow(queryArray);
  				}
-// 					String[] queryArray = { beanList.get(i).getClientNick() + " : " + beanList.get(i).getComment(), "", "",
-// 							beanList.get(i).getCommentCode(), beanList.get(i).getComment() };
-// 					comment_Out_Table.addRow(queryArray);
  			}
  		}
 
