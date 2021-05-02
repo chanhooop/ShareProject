@@ -23,6 +23,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import com.javalec.bean.Bean_Admin_Brand_YJ;
 import com.javalec.bean.Bean_Admin_ClientList_YJ;
 import com.javalec.dbaction.DbAction_Admin_ClientList_YJ;
 // test
@@ -54,6 +55,8 @@ public class Admin_ClientList_YJ {
 	private JTextField tfClientName;
 	private JButton btnCheck;
 	private JLabel lblNewLabel;
+	
+	String adminLogin = "", adminOnOff = "";
 
 	/**
 	 * Launch the application.
@@ -328,7 +331,10 @@ public class Admin_ClientList_YJ {
 
 	private void showAll() {
 		DbAction_Admin_ClientList_YJ dbAction = new DbAction_Admin_ClientList_YJ();
-		ArrayList<Bean_Admin_ClientList_YJ> beanList = dbAction.selectList();
+		ArrayList<Bean_Admin_ClientList_YJ> beanList = (ArrayList<Bean_Admin_ClientList_YJ>) dbAction.selectList();
+		Bean_Admin_ClientList_YJ bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
+		adminLogin = bean.getAdminLogin(); // 저장되어있는 로그인정보를 필드변수에 저장
+		adminOnOff = bean.getAdminOnoff();
 
 		int listCount = beanList.size();
 		for (int i = 0; i < listCount; i++) {

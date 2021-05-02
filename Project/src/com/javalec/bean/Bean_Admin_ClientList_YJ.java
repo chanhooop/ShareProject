@@ -11,8 +11,14 @@ public class Bean_Admin_ClientList_YJ {
 	String clientNick;
 	String adminId;
 	String adminPw;
+	String adminLogin; // 닉네임 값
+	String adminOnoff; // 어드민인지 아닌지 구분
 
 	// constructor
+	public Bean_Admin_ClientList_YJ() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Bean_Admin_ClientList_YJ(int clientCode, String clientId, String clientName, String clientTelno, String clientNick) {
 		super();
 		this.clientCode = clientCode;
@@ -33,21 +39,14 @@ public class Bean_Admin_ClientList_YJ {
 		this.clientNick = clientNick;
 	}
 
-	public Bean_Admin_ClientList_YJ(String adminId, String adminPw) {
+
+	public Bean_Admin_ClientList_YJ(String adminLogin, String adminOnoff) {
 		super();
-		this.adminId = adminId;
-		this.adminPw = adminPw;
+		this.adminLogin = adminLogin;
+		this.adminOnoff = adminOnoff;
 	}
 
-//
-//	public Bean(String clientId, String clientPw) {
-//		super();
-//		this.clientId = clientId;
-//		this.clientPw = clientPw;
-//	}
-
 	// method
-
 	public int getClientCode() {
 		return clientCode;
 	}
@@ -110,6 +109,22 @@ public class Bean_Admin_ClientList_YJ {
 
 	public void setAdminPw(String adminPw) {
 		this.adminPw = adminPw;
+	}
+
+	public String getAdminLogin() {
+		return adminLogin;
+	}
+
+	public void setAdminLogin(String adminLogin) {
+		this.adminLogin = adminLogin;
+	}
+
+	public String getAdminOnoff() {
+		return adminOnoff;
+	}
+
+	public void setAdminOnoff(String adminOnoff) {
+		this.adminOnoff = adminOnoff;
 	}
 
 }

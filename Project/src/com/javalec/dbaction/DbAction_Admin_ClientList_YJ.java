@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.javalec.bean.Bean_Admin_Brand_YJ;
 import com.javalec.bean.Bean_Admin_ClientList_YJ;
 import com.javalec.sharevar.ShareVar_Admin_ClientList_YJ;
 
@@ -16,8 +17,7 @@ public class DbAction_Admin_ClientList_YJ {
 	private final String url_mysql = ShareVar_Admin_ClientList_YJ.url_mysql;
 	private final String id_mysql = ShareVar_Admin_ClientList_YJ.id_mysql;
 	private final String pw_mysql = ShareVar_Admin_ClientList_YJ.pw_mysql;
-	
-	
+
 	int clientCode;
 	String clientId;
 	String clientPw;
@@ -26,13 +26,11 @@ public class DbAction_Admin_ClientList_YJ {
 	String clientNick;
 	String adminId;
 	String adminPw;
-	
 
 	// constructor
 	public DbAction_Admin_ClientList_YJ() {
 		// TODO Auto-generated constructor stub
 	}
-	
 
 	public DbAction_Admin_ClientList_YJ(int clientCode, String clientId, String clientPw) {
 		super();
@@ -41,9 +39,8 @@ public class DbAction_Admin_ClientList_YJ {
 		this.clientPw = clientPw;
 	}
 
-
-	public DbAction_Admin_ClientList_YJ(int clientCode, String clientId, String clientPw, String clientName, String clientTelno,
-			String clientNick) {
+	public DbAction_Admin_ClientList_YJ(int clientCode, String clientId, String clientPw, String clientName,
+			String clientTelno, String clientNick) {
 		super();
 		this.clientCode = clientCode;
 		this.clientId = clientId;
@@ -53,14 +50,10 @@ public class DbAction_Admin_ClientList_YJ {
 		this.clientNick = clientNick;
 	}
 
-
-
 	public DbAction_Admin_ClientList_YJ(int clientCode) {
 		super();
 		this.clientCode = clientCode;
 	}
-
-
 
 	public DbAction_Admin_ClientList_YJ(String adminId, String adminPw) {
 		super();
@@ -68,8 +61,28 @@ public class DbAction_Admin_ClientList_YJ {
 		this.adminPw = adminPw;
 	}
 
-
 	// method
+
+	public Bean_Admin_ClientList_YJ login() {
+		Bean_Admin_ClientList_YJ bean = new Bean_Admin_ClientList_YJ();
+		PreparedStatement ps = null;
+		try {
+			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+			String select = "SELECT login.adminLogin, login.adminOnOff from coffee.login";
+			ps = conn_mysql.prepareStatement(select);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				String adminLogin = rs.getString(1);
+				String adminOnoff = rs.getString(2);
+				bean = new Bean_Admin_ClientList_YJ(adminLogin, adminOnoff);
+				conn_mysql.close();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return bean;
+	}
+
 	public ArrayList<Bean_Admin_ClientList_YJ> selectList() {
 		ArrayList<Bean_Admin_ClientList_YJ> beanList = new ArrayList<Bean_Admin_ClientList_YJ>();
 		String WhereDefault = "select clientCode, clientId, clientName, clientTelno, clientNick from client";
@@ -88,7 +101,8 @@ public class DbAction_Admin_ClientList_YJ {
 				String clientTelno = rs.getString(4);
 				String clientNick = rs.getString(5);
 
-				Bean_Admin_ClientList_YJ bean = new Bean_Admin_ClientList_YJ(clientCode, clientId, clientName, clientTelno, clientNick);
+				Bean_Admin_ClientList_YJ bean = new Bean_Admin_ClientList_YJ(clientCode, clientId, clientName,
+						clientTelno, clientNick);
 //				Bean bean = new Bean(wkSeq, wkName, wkTelno, wkRelation);
 				beanList.add(bean);
 			}
@@ -119,7 +133,7 @@ public class DbAction_Admin_ClientList_YJ {
 				String wkName = rs.getString(4);
 				String wkTelno = rs.getString(5);
 				String wkNick = rs.getString(6);
-				
+
 				bean = new Bean_Admin_ClientList_YJ(wkCode, wkId, wkPw, wkName, wkTelno, wkNick);
 			}
 			conn_mysql.close();
@@ -128,7 +142,7 @@ public class DbAction_Admin_ClientList_YJ {
 		}
 		return bean;
 	}
-	
+
 	public boolean UpdateAction() {
 		PreparedStatement ps = null;
 		try {
@@ -155,31 +169,5 @@ public class DbAction_Admin_ClientList_YJ {
 			return false;
 		}
 	}
-	
-	
-	public Bean_Admin_ClientList_YJ adminRoginAction() {
-		String wkId = "";
-		String wkPw = "";
-		Bean_Admin_ClientList_YJ bean = null;
-		String query = "select adminId, adminPw from admin where adminId = '" + adminId + "' and adminPw = '" + adminPw + "'";
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
-				Statement stmt_mysql = conn_mysql.createStatement();
 
-				ResultSet rs = stmt_mysql.executeQuery(query);
-
-				if (rs.next()) {
-					wkId = rs.getString(1);
-					wkPw = rs.getString(2);
-				}
-				bean = new Bean_Admin_ClientList_YJ(adminId, adminPw);
-				conn_mysql.close();
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return bean;
-	}
-	
 }
