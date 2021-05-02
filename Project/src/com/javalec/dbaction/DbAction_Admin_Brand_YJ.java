@@ -83,6 +83,26 @@ public class DbAction_Admin_Brand_YJ {
 		this.updateDate = updateDate;
 	}
 
+	public Bean_Admin_Brand_YJ login() {
+		Bean_Admin_Brand_YJ bean = new Bean_Admin_Brand_YJ();
+		PreparedStatement ps = null;
+		try {
+			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+			String select = "SELECT login.adminLogin, login.adminOnOff from coffee.login";
+			ps = conn_mysql.prepareStatement(select);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				String adminLogin = rs.getString(1);
+				String adminOnoff = rs.getString(2);
+				bean = new Bean_Admin_Brand_YJ(adminLogin, adminOnoff);
+				conn_mysql.close();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return bean;
+	}
+
 	public ArrayList<Bean_Admin_Brand_YJ> SelectList() {
 		ArrayList<Bean_Admin_Brand_YJ> BeanList = new ArrayList<Bean_Admin_Brand_YJ>();
 

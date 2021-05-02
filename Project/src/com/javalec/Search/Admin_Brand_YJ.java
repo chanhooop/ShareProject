@@ -65,6 +65,8 @@ public class Admin_Brand_YJ {
 	private int resetBtnOk = 0;
 	private int cencel = 0;
 
+	String adminLogin = "", adminOnOff = "";
+
 	// Database 환경 정의
 	private final String url_mysql = "jdbc:mysql://127.0.0.1/coffee?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
 	private final String id_mysql = "root";
@@ -374,7 +376,7 @@ public class Admin_Brand_YJ {
 			btnReset.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					resetBtn++;
-					if (addBtn == 0) { 
+					if (addBtn == 0) {
 						btnReset.setVisible(false);
 						tfBrandName.setEditable(true);
 						btnAddLogo.setEnabled(true);
@@ -383,7 +385,7 @@ public class Admin_Brand_YJ {
 						btnDelete.setEnabled(false);
 					}
 
-					if (resetBtn > 0) { 
+					if (resetBtn > 0) {
 						btnAddOk.setVisible(true);
 						btnAdd.setEnabled(false);
 						btnAdd.setVisible(true);
@@ -444,9 +446,13 @@ public class Admin_Brand_YJ {
 
 	}
 
+
 	private void searchAction() { // 이너테이블에 나올 내용
 		DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ();
-		ArrayList<Bean_Admin_Brand_YJ> beanList = dbAction.SelectList();
+		ArrayList<Bean_Admin_Brand_YJ> beanList = (ArrayList<Bean_Admin_Brand_YJ>) dbAction.SelectList();
+		Bean_Admin_Brand_YJ bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
+		adminLogin = bean.getAdminLogin(); // 저장되어있는 로그인정보를 필드변수에 저장
+		adminOnOff = bean.getAdminOnoff();
 
 		int listCount = beanList.size();
 
@@ -498,7 +504,8 @@ public class Admin_Brand_YJ {
 			e.printStackTrace();
 		}
 
-		DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ(adminCode, brandCode, createDate, updateDate, input);
+		DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ(adminCode, brandCode, createDate, updateDate,
+				input);
 		boolean aaa = dbAction.insertBrandHistory();
 
 	}
@@ -582,7 +589,7 @@ public class Admin_Brand_YJ {
 
 	private void editActionHistory() { // 수정히스토리
 		java.sql.Date updateDate = new java.sql.Date(System.currentTimeMillis());
-		
+
 		String adminCode = tfAdminCode.getText();
 
 		// Image File
@@ -602,9 +609,9 @@ public class Admin_Brand_YJ {
 	private void deleteAction() { // 삭제
 		int i = Inner_table.getSelectedRow();
 		tkSequence = (String) Inner_table.getValueAt(i, 0);
-		
+
 		String brandName = tfBrandName.getText().trim();
-		
+
 		DbAction_Admin_Brand_YJ dbaction = new DbAction_Admin_Brand_YJ();
 		boolean isDelete = dbaction.deleteAction(tkSequence);
 		if (isDelete == true) {
