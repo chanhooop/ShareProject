@@ -3,11 +3,16 @@ package com.javalec.Search;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-// test
+
+import com.javalec.bean.Bean_Admin_FirstView_YJ;
+import com.javalec.dbaction.DbAction_Admin_FirstView_YJ;
+
 public class Admin_FirstView_YJ {
 
 	private JFrame frame;
@@ -18,6 +23,8 @@ public class Admin_FirstView_YJ {
 	private JLabel lblNewLabel_2;
 	private JButton btnBrand;
 	private JButton btnClient;
+	
+	String adminLogin = "", adminOnOff = "";
 
 	/**
 	 * Launch the application.
@@ -47,6 +54,12 @@ public class Admin_FirstView_YJ {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				adminLoginInfo();
+			}
+		});
 		frame.setBounds(100, 100, 545, 478);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -106,4 +119,14 @@ public class Admin_FirstView_YJ {
 		}
 		return btnClient;
 	}
+	
+	
+	  private void adminLoginInfo() {
+		  DbAction_Admin_FirstView_YJ dbAction = new DbAction_Admin_FirstView_YJ();
+	      Bean_Admin_FirstView_YJ bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
+	      adminLogin = bean.getAdminLogin(); //저장되어있는 로그인정보를 필드변수에 저장
+	      adminOnOff = bean.getAdminOnoff();
+	      System.out.println(adminLogin + adminOnOff);
+	      
+	   }
 }

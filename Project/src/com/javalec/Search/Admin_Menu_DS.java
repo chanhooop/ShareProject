@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,10 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -22,6 +27,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -31,9 +38,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-import com.javalec.bean.Bean_Admin_Menu_DS;
-import com.javalec.dbaction.DbAction_Admin_Menu_DS;
-import com.javalec.sharevar.ShareVar_Admin_Menu_DS;
+import com.javalec.function.Bean_Admin_Menu_DS;
+import com.javalec.function.DbAction_Admin_Menu_DS;
+import com.javalec.function.ShareVar_Admin_Menu_DS;
 
 public class Admin_Menu_DS {
 
@@ -103,6 +110,10 @@ public class Admin_Menu_DS {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
+				DbAction_Admin_Menu_DS dbAction = new DbAction_Admin_Menu_DS();
+				Bean_Admin_Menu_DS bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
+				adminLogin = bean.getAdminLogin(); // 저장되어있는 로그인정보를 필드변수에 저장
+				adminOnOff = bean.getAdminOnoff();
 				tableInit();
 				selectAllMenu();
 			}
@@ -395,7 +406,7 @@ public class Admin_Menu_DS {
 						tfBrandName.setEditable(true);
 						tfMenuName.setEditable(true);
 						tfMenuPrice.setEditable(true);
-						tfMenuAllergy.setEditable(true);
+						tfMenuAllergy.setEditable(false);
 						tfmenuImg.setEditable(true);
 						btnAddImg.setEnabled(true);
 						btnAdd.setEnabled(false);
@@ -410,6 +421,7 @@ public class Admin_Menu_DS {
 						btnAddOk.setVisible(false);
 						btnResetOk.setVisible(true);
 						btnResetOk.setEnabled(true);
+						tfMenuAllergy.setEditable(false);
 					}
 				}
 			});
@@ -424,6 +436,7 @@ public class Admin_Menu_DS {
 			btnDelete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					menuDelete();
+					tableInit();
 					ClearColumn();
 					selectAllMenu();
 				}
@@ -442,6 +455,8 @@ public class Admin_Menu_DS {
 
 					if (tfMenuCode.getText().length() > 0) {
 						ClearColumn();
+						tableInit();
+						selectAllMenu();
 						btnAddOk.setEnabled(true);
 					}
 
@@ -483,6 +498,7 @@ public class Admin_Menu_DS {
 					} else {
 						updateMenu();
 						updateMenuPrice();
+						tableInit();
 						ClearColumn();
 						selectAllMenu();
 					}
@@ -539,10 +555,7 @@ public class Admin_Menu_DS {
 	private void selectAllMenu() {
 		DbAction_Admin_Menu_DS dbAction = new DbAction_Admin_Menu_DS();
 		ArrayList<Bean_Admin_Menu_DS> beanList = (ArrayList<Bean_Admin_Menu_DS>) dbAction.selectAllMenu();
-		Bean_Admin_Menu_DS bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
-		adminLogin = bean.getAdminLogin(); //저장되어있는 로그인정보를 필드변수에 저장
-		adminOnOff = bean.getAdminOnoff();
-		System.out.println(adminLogin + adminOnOff);
+
 		int listCount = beanList.size();
 		for (int i = 0; i < listCount; i++) {
 			String temp = Integer.toString(beanList.get(i).getMenuCode());
@@ -666,7 +679,9 @@ public class Admin_Menu_DS {
 
 	// 메뉴 가격 수정
 	private void updateMenuPrice() {
-		String adminLogin = "";
+		Bean_Admin_Menu_DS bean = new Bean_Admin_Menu_DS();
+		
+		String adminLogin = bean.getAdminLogin();
 		String menu_menuCode = tfMenuCode.getText().trim();
 		String brandname = tfBrandName.getText().trim();
 		java.sql.Date updateDate = new java.sql.Date(System.currentTimeMillis());
@@ -763,7 +778,9 @@ public class Admin_Menu_DS {
 
 	// 메뉴 등록 (어드민 코드, 브랜드명, 메뉴가격, 메뉴코드, 작성날짜, 수정날짜)
 	private void insertMenuUpdate() {
-		String adminLogin="";
+		Bean_Admin_Menu_DS bean = new Bean_Admin_Menu_DS();
+		
+		String adminLogin = bean.getAdminLogin();
 		String brandname = tfBrandName.getText().trim();
 		String menuPrice = tfMenuPrice.getText().trim();
 		String menu_menuCode = tfMenuCode.getText().trim();
@@ -845,6 +862,7 @@ public class Admin_Menu_DS {
 				public void actionPerformed(ActionEvent e) {
 					insertAction();
 					insertMenuUpdate();
+					tableInit();
 					ClearColumn();
 					selectAllMenu();
 					btnDelete.setEnabled(true);

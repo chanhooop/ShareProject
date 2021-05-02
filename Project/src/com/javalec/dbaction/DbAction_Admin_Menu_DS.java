@@ -13,9 +13,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.javalec.bean.Bean_Admin_Menu_DS;
-import com.javalec.sharevar.ShareVar_Admin_Menu_DS;
-
 public class DbAction_Admin_Menu_DS {
 	
 	// field
@@ -245,7 +242,9 @@ public class DbAction_Admin_Menu_DS {
 
 			ps = conn_mysql.prepareStatement(query);
 
-			ps.setString(1, adminLogin);
+			Bean_Admin_Menu_DS bean = new Bean_Admin_Menu_DS();
+			
+			ps.setString(1, bean.getAdminLogin());
 			ps.setString(2, brandName);
 			ps.setInt(3, menu_brand_brandCode);
 			ps.setDate(4, updateDate);
@@ -343,7 +342,7 @@ public class DbAction_Admin_Menu_DS {
 	}
 
 	// 메뉴 가격 등록
-	public boolean insertMenuUpdate(String adminCode, String menu_menuCode, int menu_brand_brandCode,
+	public boolean insertMenuUpdate(String adminLogin, String menu_menuCode, int menu_brand_brandCode,
 			java.sql.Date createDate, java.sql.Date updateDate, String menuPrice, FileInputStream file) {
 
 		PreparedStatement ps = null;
@@ -361,8 +360,10 @@ public class DbAction_Admin_Menu_DS {
 			}
 
 			ps = conn_mysql.prepareStatement(query);
+			
+			Bean_Admin_Menu_DS bean = new Bean_Admin_Menu_DS();
 
-			ps.setString(1, adminCode);
+			ps.setString(1, bean.getAdminLogin());
 			ps.setString(2, brandName);
 			ps.setInt(3, menu_brand_brandCode);
 			ps.setDate(4, createDate);

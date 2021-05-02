@@ -23,6 +23,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import com.javalec.bean.Bean_Admin_Brand_YJ;
 import com.javalec.bean.Bean_Admin_ClientList_YJ;
 import com.javalec.dbaction.DbAction_Admin_ClientList_YJ;
 // test
@@ -54,6 +55,8 @@ public class Admin_ClientList_YJ {
 	private JTextField tfClientName;
 	private JButton btnCheck;
 	private JLabel lblNewLabel;
+	
+	String adminLogin = "", adminOnOff = "";
 
 	/**
 	 * Launch the application.
@@ -86,6 +89,10 @@ public class Admin_ClientList_YJ {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
+				DbAction_Admin_ClientList_YJ dbAction = new DbAction_Admin_ClientList_YJ();
+				Bean_Admin_ClientList_YJ bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
+				adminLogin = bean.getAdminLogin(); // 저장되어있는 로그인정보를 필드변수에 저장
+				adminOnOff = bean.getAdminOnoff();
 				tableInit();
 //				searchAction();
 				showAll();
@@ -139,7 +146,7 @@ public class Admin_ClientList_YJ {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(38, 77, 458, 134);
+			scrollPane.setBounds(30, 76, 483, 147);
 			scrollPane.setViewportView(getInner_table());
 		}
 		return scrollPane;
@@ -253,7 +260,7 @@ public class Admin_ClientList_YJ {
 	private JButton getBtnDelete() {
 		if (btnDelete == null) {
 			btnDelete = new JButton("삭제");
-			btnDelete.setBounds(413, 395, 83, 29);
+			btnDelete.setBounds(430, 402, 83, 29);
 		}
 		return btnDelete;
 	}
@@ -272,7 +279,7 @@ public class Admin_ClientList_YJ {
 					
 				}
 			});
-			btnReset.setBounds(313, 395, 83, 29);
+			btnReset.setBounds(335, 402, 83, 29);
 		}
 		return btnReset;
 	}
@@ -387,7 +394,7 @@ public class Admin_ClientList_YJ {
 					clearColumn();
 				}
 			});
-			btnCheck.setBounds(313, 396, 83, 29);
+			btnCheck.setBounds(335, 402, 83, 29);
 		}
 		return btnCheck;
 	}

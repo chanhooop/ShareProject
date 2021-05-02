@@ -23,6 +23,7 @@ import com.javalec.bean.Bean_Login_YJ;
 import com.javalec.dbaction.DbAction_Login_YJ;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.SwingConstants;
 
 public class Login_YJ extends JFrame{
 
@@ -48,6 +49,9 @@ public class Login_YJ extends JFrame{
 	private int clickRdAdmin = 0;
 	private boolean isClickRdAdmin = false;
 	private JLabel lbJoin;
+	private JLabel lbIdSearch;
+	private JLabel lblNewLabel_1;
+	private JLabel lbPwSearch;
 
 	/**
 	 * Launch the application.
@@ -108,6 +112,9 @@ public class Login_YJ extends JFrame{
 		frame.getContentPane().add(getBtnRogin());
 		frame.getContentPane().add(getLbMainLogo());
 		frame.getContentPane().add(getLbJoin());
+		frame.getContentPane().add(getLbIdSearch());
+		frame.getContentPane().add(getLblNewLabel_1());
+		frame.getContentPane().add(getLbPwSearch());
 //		frame.getContentPane().add(getLbTest());
 	}
 
@@ -286,6 +293,8 @@ public class Login_YJ extends JFrame{
 	private JLabel getLbJoin() {
 		if (lbJoin == null) {
 			lbJoin = new JLabel("회원가입");
+			lbJoin.setHorizontalAlignment(SwingConstants.TRAILING);
+			lbJoin.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 			lbJoin.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -295,8 +304,32 @@ public class Login_YJ extends JFrame{
 					
 				}
 			});
-			lbJoin.setBounds(310, 316, 49, 16);
+			lbJoin.setBounds(309, 316, 49, 16);
 		}
 		return lbJoin;
+	}
+	private JLabel getLbIdSearch() {
+		if (lbIdSearch == null) {
+			lbIdSearch = new JLabel("아이디");
+			lbIdSearch.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+			lbIdSearch.setBounds(191, 316, 34, 16);
+		}
+		return lbIdSearch;
+	}
+	private JLabel getLblNewLabel_1() {
+		if (lblNewLabel_1 == null) {
+			lblNewLabel_1 = new JLabel("/");
+			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+			lblNewLabel_1.setBounds(223, 316, 34, 16);
+		}
+		return lblNewLabel_1;
+	}
+	private JLabel getLbPwSearch() {
+		if (lbPwSearch == null) {
+			lbPwSearch = new JLabel("비밀번호 찾기");
+			lbPwSearch.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+			lbPwSearch.setBounds(233, 316, 76, 16);
+		}
+		return lbPwSearch;
 	}
 }
