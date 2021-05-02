@@ -12,17 +12,13 @@ public class MainProcess {
 
 	
 	public static void main(String[] args) {
-		System.out.println(1);
 		MainProcess main = new MainProcess();
-		System.out.println(2);
 		main.login_YJ = new Login_YJ();
-		System.out.println(3);
 		main.login_YJ.setMain(main);		
-		System.out.println(4);
 		}
 	
 	public void showSearch_CH() {
-		// TODO Auto-generated method stub
+
 		login_YJ.dispose();
 		search = new Search_CH();
 		
