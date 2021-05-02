@@ -9,7 +9,9 @@ public class Bean_Admin_Brand_YJ {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+
+
+
 	public Bean_Admin_Brand_YJ(int brandCode, String brandName) {
 		super();
 		this.brandCode = brandCode;
