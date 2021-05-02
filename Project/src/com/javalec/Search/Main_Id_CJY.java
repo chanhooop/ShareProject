@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -70,8 +71,8 @@ public class Main_Id_CJY {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("아이디 찾기");
-			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
-			lblNewLabel.setBounds(30, 35, 61, 16);
+			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+			lblNewLabel.setBounds(28, 42, 145, 32);
 		}
 		return lblNewLabel;
 	}
@@ -79,7 +80,7 @@ public class Main_Id_CJY {
 		if (lblNewLabel_1_1_1_2 == null) {
 			lblNewLabel_1_1_1_2 = new JLabel("이름");
 			lblNewLabel_1_1_1_2.setFont(new Font("돋움", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_2.setBounds(30, 71, 56, 40);
+			lblNewLabel_1_1_1_2.setBounds(28, 85, 56, 40);
 		}
 		return lblNewLabel_1_1_1_2;
 	}
@@ -103,7 +104,7 @@ public class Main_Id_CJY {
 		if (tfName == null) {
 			tfName = new JTextField();
 			tfName.setColumns(10);
-			tfName.setBounds(111, 75, 237, 32);
+			tfName.setBounds(109, 89, 237, 32);
 		}
 		return tfName;
 	}
@@ -207,8 +208,9 @@ public class Main_Id_CJY {
 	private JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("카페행");
-			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-			lblNewLabel_1.setBounds(240, 0, 63, 41);
+			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+			lblNewLabel_1.setBounds(243, 0, 63, 41);
+			lblNewLabel_1.setForeground(Color.white);
 		}
 		return lblNewLabel_1;
 	}

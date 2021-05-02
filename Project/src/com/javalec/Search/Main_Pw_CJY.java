@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -74,8 +75,8 @@ public class Main_Pw_CJY {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("비밀번호 찾기");
-			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
-			lblNewLabel.setBounds(30, 35, 110, 18);
+			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+			lblNewLabel.setBounds(28, 42, 183, 35);
 		}
 		return lblNewLabel;
 	}
@@ -83,7 +84,7 @@ public class Main_Pw_CJY {
 		if (lblNewLabel_1_1_1_2 == null) {
 			lblNewLabel_1_1_1_2 = new JLabel("아이디");
 			lblNewLabel_1_1_1_2.setFont(new Font("돋움", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_2.setBounds(30, 71, 56, 32);
+			lblNewLabel_1_1_1_2.setBounds(28, 87, 56, 32);
 		}
 		return lblNewLabel_1_1_1_2;
 	}
@@ -91,7 +92,7 @@ public class Main_Pw_CJY {
 		if (lblNewLabel_1_1_1_3 == null) {
 			lblNewLabel_1_1_1_3 = new JLabel("이름");
 			lblNewLabel_1_1_1_3.setFont(new Font("돋움", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_3.setBounds(30, 121, 56, 32);
+			lblNewLabel_1_1_1_3.setBounds(28, 137, 56, 32);
 		}
 		return lblNewLabel_1_1_1_3;
 	}
@@ -99,7 +100,7 @@ public class Main_Pw_CJY {
 		if (tfId == null) {
 			tfId = new JTextField();
 			tfId.setColumns(10);
-			tfId.setBounds(121, 71, 237, 32);
+			tfId.setBounds(119, 87, 237, 32);
 		}
 		return tfId;
 	}
@@ -107,7 +108,7 @@ public class Main_Pw_CJY {
 		if (tfName == null) {
 			tfName = new JTextField();
 			tfName.setColumns(10);
-			tfName.setBounds(121, 121, 237, 32);
+			tfName.setBounds(119, 137, 237, 32);
 		}
 		return tfName;
 	}
@@ -149,7 +150,7 @@ public class Main_Pw_CJY {
 		if (lblNewLabel_1_1_1_3_1 == null) {
 			lblNewLabel_1_1_1_3_1 = new JLabel("전화번호");
 			lblNewLabel_1_1_1_3_1.setFont(new Font("돋움", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_3_1.setBounds(30, 173, 68, 32);
+			lblNewLabel_1_1_1_3_1.setBounds(28, 189, 68, 32);
 		}
 		return lblNewLabel_1_1_1_3_1;
 	}
@@ -157,7 +158,7 @@ public class Main_Pw_CJY {
 		if (tfTel == null) {
 			tfTel = new JTextField();
 			tfTel.setColumns(10);
-			tfTel.setBounds(121, 173, 237, 32);
+			tfTel.setBounds(119, 189, 237, 32);
 		}
 		return tfTel;
 	}
@@ -227,8 +228,9 @@ public class Main_Pw_CJY {
 	private JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("카페행");
-			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-			lblNewLabel_1.setBounds(240, 0, 63, 41);
+			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+			lblNewLabel_1.setBounds(243, 0, 63, 41);
+			lblNewLabel_1.setForeground(Color.white);
 		}
 		return lblNewLabel_1;
 	}

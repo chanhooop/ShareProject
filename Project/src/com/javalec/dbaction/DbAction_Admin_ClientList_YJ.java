@@ -155,11 +155,12 @@ public class DbAction_Admin_ClientList_YJ {
 			String B = " where clientCode = ? ";
 
 			ps = conn_mysql.prepareStatement(A + B);
+			Bean_Admin_ClientList_YJ bean = new Bean_Admin_ClientList_YJ();
 
 			ps.setString(1, clientPw);
 			ps.setString(2, clientTelno);
 			ps.setString(3, clientNick);
-			ps.setInt(4, clientCode);
+			ps.setString(4, bean.getAdminLogin());
 			ps.executeUpdate();
 
 			conn_mysql.close();
