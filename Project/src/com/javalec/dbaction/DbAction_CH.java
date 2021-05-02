@@ -1,5 +1,9 @@
 package com.javalec.dbaction;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.javalec.bean.Bean_CH;
+import com.javalec.sharevar.ShareVar_Admin_Brand_YJ;
 import com.javalec.sharevar.ShareVar_CH;
 
 
@@ -23,6 +28,8 @@ public class DbAction_CH {
 	String menuType;
 	String menuName;
 	String menuprice;
+	
+	FileInputStream file;
 
 	
 
@@ -92,7 +99,7 @@ public class DbAction_CH {
 	public Bean_CH tableClick(Bean_CH bean_CH) {
 		Bean_CH bean_CH2 = null;
 
-		String query1 = "select b.brandName, m.menuName, mu.menuprice, m.menuAllergy from menu m, brand b, menuupdate mu ";
+		String query1 = "select b.brandName, m.menuName, mu.menuprice, m.menuAllergy, m.menuImg from menu m, brand b, menuupdate mu ";
 		String query2 = "where b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode and b.brandName = '";
 		String query3 = "' and m.menuName = '";
 
@@ -123,8 +130,24 @@ public class DbAction_CH {
 				bean_CH.setMenuName(tfmenuName);  
 				bean_CH.setmenuprice(tfmenuprice);  
 				bean_CH.setmaterialAllerge(tfmeterial);   		   
-	
-		
+				
+				
+				/**
+				 * @Method Name : TableClick_showImg
+				 * @작성일 : 2021. 5. 2
+				 * @작성자 : yejin
+				 * @변경이력 :
+				 * @Method설명 :테이블클릭시 이미지 출력
+				 */
+				// File
+				ShareVar_Admin_Brand_YJ.filename = ShareVar_Admin_Brand_YJ.filename + 1;
+				File file = new File(Integer.toString(ShareVar_Admin_Brand_YJ.filename));
+				FileOutputStream output = new FileOutputStream(file);
+				InputStream input = rs.getBinaryStream(5);
+				byte[] buffer = new byte[1024];
+				while (input.read(buffer) > 0) {
+					output.write(buffer);
+				}
 			}
 			
 			conn_mysql.close();

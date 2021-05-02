@@ -1,5 +1,5 @@
 package com.javalec.Search;
-
+// 김득수바보
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;

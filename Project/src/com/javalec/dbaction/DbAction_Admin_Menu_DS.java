@@ -244,8 +244,9 @@ public class DbAction_Admin_Menu_DS {
 			}
 
 			ps = conn_mysql.prepareStatement(query);
+			Bean_Admin_Menu_DS bean = new Bean_Admin_Menu_DS();
 
-			ps.setString(1, adminLogin);
+			ps.setString(1, bean.getAdminLogin());
 			ps.setString(2, brandName);
 			ps.setInt(3, menu_brand_brandCode);
 			ps.setDate(4, updateDate);
