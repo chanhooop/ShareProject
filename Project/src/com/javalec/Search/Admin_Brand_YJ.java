@@ -602,15 +602,19 @@ public class Admin_Brand_YJ {
 	private void deleteAction() { // 삭제
 		int i = Inner_table.getSelectedRow();
 		tkSequence = (String) Inner_table.getValueAt(i, 0);
-		
-		String brandName = tfBrandName.getText().trim();
-		
-		DbAction_Admin_Brand_YJ dbaction = new DbAction_Admin_Brand_YJ();
-		boolean isDelete = dbaction.deleteAction(tkSequence);
-		if (isDelete == true) {
-			JOptionPane.showMessageDialog(null, brandName + " 의 정보가 삭제 되었습니다.!");
-		} else {
-			JOptionPane.showMessageDialog(null, "DB에 자료 삭제중 에러가 발생했습니다! \n 시스템관리자에 문의하세요!");
+
+		String query1 = "delete from brand where brandCode = " + tkSequence;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+			Statement stmt_mysql = conn_mysql.createStatement();
+
+			stmt_mysql.executeUpdate(query1);
+			conn_mysql.close();
+			JOptionPane.showMessageDialog(null, tkSequence + " 의 정보가 삭제 되었습니다.!");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		tableInit();
 		searchAction();
