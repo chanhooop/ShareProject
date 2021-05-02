@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -77,7 +78,7 @@ public class Admin_Brand_YJ {
 	private final DefaultTableModel Outer_Table = new DefaultTableModel();
 	private JButton btnReset;
 	private JButton btnResetOk;
-	private JTextField tfAdminCode;
+	private JLabel lblNewLabel_2;
 
 	/**
 	 * Launch the application.
@@ -140,14 +141,15 @@ public class Admin_Brand_YJ {
 		frmBrand.getContentPane().add(getTfFilePath());
 		frmBrand.getContentPane().add(getBtnReset());
 		frmBrand.getContentPane().add(getBtnResetOk());
-		frmBrand.getContentPane().add(getTfAdminCode());
+		frmBrand.getContentPane().add(getLblNewLabel_2());
 	}
 
 	private JLabel getLabel_1() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("카페행");
-			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-			lblNewLabel.setBounds(240, 0, 63, 41);
+			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+			lblNewLabel.setBounds(243, 0, 63, 41);
+			lblNewLabel.setForeground(Color.white);
 		}
 		return lblNewLabel;
 	}
@@ -155,8 +157,8 @@ public class Admin_Brand_YJ {
 	private JLabel getLabel_2() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("브랜드관리");
-			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
-			lblNewLabel_1.setBounds(30, 35, 61, 16);
+			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+			lblNewLabel_1.setBounds(28, 42, 183, 35);
 		}
 		return lblNewLabel_1;
 	}
@@ -164,7 +166,7 @@ public class Admin_Brand_YJ {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(30, 54, 483, 169);
+			scrollPane.setBounds(30, 76, 483, 147);
 			scrollPane.setViewportView(getInner_table());
 			Inner_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			Inner_table.setModel(Outer_Table);
@@ -278,6 +280,7 @@ public class Admin_Brand_YJ {
 				public void actionPerformed(ActionEvent e) {
 					deleteAction();
 					clearColumn();
+					tableInit();
 					searchAction();
 				}
 			});
@@ -493,7 +496,8 @@ public class Admin_Brand_YJ {
 	}
 
 	private void insertBrandHistory() { // 신규등록 히스토리
-		String adminCode = tfAdminCode.getText().trim();
+		Bean_Admin_Brand_YJ bean = new Bean_Admin_Brand_YJ();
+		String adminCode = bean.getAdminLogin();
 		String brandCode = tfBrandCode.getText().trim();
 		java.sql.Date createDate = new java.sql.Date(System.currentTimeMillis());
 		java.sql.Date updateDate = new java.sql.Date(System.currentTimeMillis());
@@ -593,8 +597,9 @@ public class Admin_Brand_YJ {
 
 	private void editActionHistory() { // 수정히스토리
 		java.sql.Date updateDate = new java.sql.Date(System.currentTimeMillis());
+		Bean_Admin_Brand_YJ bean = new Bean_Admin_Brand_YJ();
 
-		String adminCode = tfAdminCode.getText();
+		String adminCode = bean.getAdminLogin();
 
 		// Image File
 		FileInputStream input = null;
@@ -623,18 +628,14 @@ public class Admin_Brand_YJ {
 		} else {
 			JOptionPane.showMessageDialog(null, "DB에 자료 삭제중 에러가 발생했습니다! \n 시스템관리자에 문의하세요!");
 		}
-		tableInit();
-		searchAction();
+		
 	}
-
-	private JTextField getTfAdminCode() {
-		if (tfAdminCode == null) {
-			tfAdminCode = new JTextField();
-			tfAdminCode.setBounds(409, 10, 130, 26);
-			tfAdminCode.setColumns(10);
-			tfAdminCode.setText("1"); // 합칠 때 리셋시켜서 db연동하여 관리자 코드 가져오게끔 해야함.
-			tfAdminCode.setVisible(false);
+	private JLabel getLblNewLabel_2() {
+		if (lblNewLabel_2 == null) {
+			lblNewLabel_2 = new JLabel("로그아웃");
+			lblNewLabel_2.setBounds(478, 16, 61, 16);
+			lblNewLabel_2.setForeground(Color.white);
 		}
-		return tfAdminCode;
+		return lblNewLabel_2;
 	}
 }

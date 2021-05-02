@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -107,8 +108,8 @@ public class Main_Join_CJY extends JFrame{
 	private JLabel getLblJoin() {
 		if (lblJoin == null) {
 			lblJoin = new JLabel("회원가입");
-			lblJoin.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
-			lblJoin.setBounds(28, 48, 61, 16);
+			lblJoin.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+			lblJoin.setBounds(28, 42, 183, 35);
 		}
 		return lblJoin;
 	}
@@ -447,8 +448,9 @@ public class Main_Join_CJY extends JFrame{
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("카페행");
-			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-			lblNewLabel.setBounds(240, 0, 63, 41);
+			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+			lblNewLabel.setBounds(243, 0, 63, 41);
+			lblNewLabel.setForeground(Color.white);
 		}
 		return lblNewLabel;
 	}
