@@ -447,7 +447,7 @@ public class Search_CH extends JFrame{
  	
  	// 조건콤보상자에 맞는 조건검색
  	private void conditionQueryAction(String a) {      // a 는 conditionQueryColumn
- 		// 필요한 값 빈으로 보내기
+ 		// 필요한 값 빈으로 보내기 
  		Bean_CH bean = new Bean_CH();
  		bean.setTfsearch((String)tfSearch.getText());
  		bean.setConditionQueryColumn(a);	
@@ -460,7 +460,9 @@ public class Search_CH extends JFrame{
  				
  		for(int i = 0 ; i < j ; i++) {
 
+ 			
  			String[] arr = {beanlist.get(i).getBrandName(), beanlist.get(i).getMenuName(), beanlist.get(i).getMenuType(),beanlist.get(i).getmenuprice()};
+ 			System.out.println(1);
  			Outer_Table.addRow(arr);	
  		}
  	

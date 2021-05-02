@@ -18,7 +18,7 @@ public class MainProcess {
 		}
 	
 	public void showSearch_CH() {
-		// TODO Auto-generated method stub
+
 		login_YJ.dispose();
 		search = new Search_CH();
 		
