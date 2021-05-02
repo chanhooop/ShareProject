@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -16,18 +18,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Login_YJ;
 import com.javalec.dbaction.DbAction_Login_YJ;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.SwingConstants;
 
 public class Login_YJ extends JFrame{
 
-	private MainProcess main;
+	private Main_Id_CJY main_Id_CJY;
+	private MainProcess mainpr;
 	private JFrame frame;
 	private JLabel lbMainSlogan;
 	private JRadioButton rdbtnClient;
@@ -119,7 +120,7 @@ public class Login_YJ extends JFrame{
 	}
 
     public void setMain(MainProcess main) {
-        this.main = main;
+        this.mainpr = main;
     }
 	private JLabel getLbMainSlogan() {
 		if (lbMainSlogan == null) {
@@ -200,6 +201,9 @@ public class Login_YJ extends JFrame{
 					switch(clickRdClient) {
 					case 1 :
 						clientLoginAction();
+
+
+						
 						break;
 					case 2 :
 						adminLoginAction();
@@ -211,24 +215,6 @@ public class Login_YJ extends JFrame{
 					
 					
 					
-//					if (isClickRdClient == true) {
-//						clientLoginAction();
-//					} else if (isClickRdAdmin == true && clickRdAdmin > 0) {
-//					}
-//					
-//
-//					if (isClickRdAdmin == true) {
-//						adminLoginAction();
-//					} else if (isClickRdClient == false && clickRdAdmin > 0){
-//						JOptionPane.showMessageDialog(null, "관리자만 접근 가능합니다.");
-//					}
-					
-//					clickRdClient = 0;
-//					clickRdAdmin = 0;
-//					isClickRdClient = false;
-//					isClickRdAdmin = false;
-//					System.out.println(clickRdAdmin);
-//					System.out.println(isClickRdAdmin);
 				}
 			});
 			btnRogin.setBounds(191, 268, 167, 44);
@@ -261,9 +247,8 @@ public class Login_YJ extends JFrame{
 		if (wkId.equals(bean.getClientId()) && wkPw.equals(bean.getClientPw())) {
 			JOptionPane.showMessageDialog(null, bean.getClientName() + "님 환영합니다.");
 			
-			main.showSearch_CH();
+			mainpr.showClient_FirstView_YJ();
 			frame.dispose();
-			
 		} else {
 			JOptionPane.showMessageDialog(null, "아이디 및 비밀번호를 확인하세요.");
 		}
@@ -280,6 +265,11 @@ public class Login_YJ extends JFrame{
 
 		if (adminId.equals(bean.getAdminId()) && wkPw.equals(bean.getAdminPw())) {
 			JOptionPane.showMessageDialog(null, "관리자님 환영합니다.");
+			
+			mainpr.showAdmin_FirstView_YJ();
+			frame.dispose();
+			
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "아이디 및 비밀번호를 확인하세요.");
 		}
@@ -298,10 +288,9 @@ public class Login_YJ extends JFrame{
 			lbJoin.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					Main_Join_CJY main_Join_CJY = new Main_Join_CJY();
-					main_Join_CJY.setVisible(true);
-					frame.dispose();
 					
+					mainpr.showMain_Join_CJY();
+					frame.dispose();					
 				}
 			});
 			lbJoin.setBounds(309, 316, 49, 16);
@@ -311,6 +300,16 @@ public class Login_YJ extends JFrame{
 	private JLabel getLbIdSearch() {
 		if (lbIdSearch == null) {
 			lbIdSearch = new JLabel("아이디");
+			lbIdSearch.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					mainpr.showMain_Id_CJY();
+					frame.dispose();
+				}
+
+
+			});
 			lbIdSearch.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 			lbIdSearch.setBounds(191, 316, 34, 16);
 		}
@@ -327,6 +326,15 @@ public class Login_YJ extends JFrame{
 	private JLabel getLbPwSearch() {
 		if (lbPwSearch == null) {
 			lbPwSearch = new JLabel("비밀번호 찾기");
+			lbPwSearch.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+
+					mainpr.showMain_Pw_CJY();
+					frame.dispose();
+					
+				}
+			});
 			lbPwSearch.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 			lbPwSearch.setBounds(233, 316, 76, 16);
 		}

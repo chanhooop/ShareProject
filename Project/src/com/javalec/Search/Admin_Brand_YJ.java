@@ -32,12 +32,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Admin_Brand_YJ;
 import com.javalec.dbaction.DbAction_Admin_Brand_YJ;
 import com.javalec.sharevar.ShareVar_Admin_Brand_YJ;
 
-public class Admin_Brand_YJ {
+public class Admin_Brand_YJ extends JFrame{
 
+	private MainProcess mainpr;
 	private JFrame frmBrand;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
@@ -79,6 +81,7 @@ public class Admin_Brand_YJ {
 	private JButton btnReset;
 	private JButton btnResetOk;
 	private JLabel lblNewLabel_2;
+	private JLabel lblback;
 
 	/**
 	 * Launch the application.
@@ -100,7 +103,16 @@ public class Admin_Brand_YJ {
 	 * Create the application.
 	 */
 	public Admin_Brand_YJ() {
-		initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frmBrand.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
@@ -142,6 +154,7 @@ public class Admin_Brand_YJ {
 		frmBrand.getContentPane().add(getBtnReset());
 		frmBrand.getContentPane().add(getBtnResetOk());
 		frmBrand.getContentPane().add(getLblNewLabel_2());
+		frmBrand.getContentPane().add(getLblback());
 	}
 
 	private JLabel getLabel_1() {
@@ -633,9 +646,32 @@ public class Admin_Brand_YJ {
 	private JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
 			lblNewLabel_2 = new JLabel("로그아웃");
+			lblNewLabel_2.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					mainpr.main(null);
+					frmBrand.dispose();
+					
+				}
+			});
 			lblNewLabel_2.setBounds(478, 16, 61, 16);
 			lblNewLabel_2.setForeground(Color.white);
 		}
 		return lblNewLabel_2;
+	}
+	private JLabel getLblback() {
+		if (lblback == null) {
+			lblback = new JLabel("돌아가기");
+			lblback.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					Admin_FirstView_YJ admin_FirstView_YJ = new Admin_FirstView_YJ();
+					frmBrand.dispose();
+				}
+			});
+			lblback.setEnabled(false);
+			lblback.setBounds(407, 17, 50, 15);
+		}
+		return lblback;
 	}
 }

@@ -9,11 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -26,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -36,8 +32,6 @@ import com.javalec.dbaction.DbAction_CH;
 import com.javalec.dbaction.DbAction_Main_Comment_KMJ;
 import com.javalec.sharevar.ShareVar_Admin_Brand_YJ;
 import com.javalec.sharevar.ShareVar_Main_Comment_KMJ;
-
-import javax.swing.SwingConstants;
 
 public class Search_CH extends JFrame {
 
@@ -58,6 +52,7 @@ public class Search_CH extends JFrame {
 	private final DefaultTableModel Outer_Table = new DefaultTableModel();
 	private final DefaultTableModel comment_Out_Table = new DefaultTableModel();
 
+	private MainProcess mainpr;
 	private JTextField tfBrand;
 	private JTextField tfName;
 	private JTextField tfPice;
@@ -145,6 +140,7 @@ public class Search_CH extends JFrame {
 		frame.getContentPane().add(getBtnCommentInsert());
 		frame.getContentPane().add(getBtnCommentUpdate());
 		frame.getContentPane().add(getTfFilePath());
+		frame.getContentPane().add(getLblLogout());
 	}
 
 	private JScrollPane getScrollPane() {
@@ -178,6 +174,9 @@ public class Search_CH extends JFrame {
 			btnMypage = new JButton("마이페이지");
 			btnMypage.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					Client_Mypage_YJ client_Mypage_YJ = new Client_Mypage_YJ();
+					frame.dispose();
+					
 				}
 			});
 			btnMypage.setBounds(443, 6, 91, 23);
@@ -569,6 +568,7 @@ public class Search_CH extends JFrame {
 	private final String id_mysql = ShareVar_Main_Comment_KMJ.id_mysql;
 	private final String pw_mysql = ShareVar_Main_Comment_KMJ.pw_mysql;
 	private JTextField tfFilePath;
+	private JLabel lblLogout;
 
 	private void commentLisetInnertable() { //
 		commentOuttable();
@@ -775,5 +775,20 @@ public class Search_CH extends JFrame {
 			tfFilePath.setVisible(false);
 		}
 		return tfFilePath;
+	}
+	private JLabel getLblLogout() {
+		if (lblLogout == null) {
+			lblLogout = new JLabel("로그아웃");
+			lblLogout.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					mainpr.main(null);
+					frame.dispose();
+				}
+			});
+			lblLogout.setEnabled(false);
+			lblLogout.setBounds(382, 10, 50, 15);
+		}
+		return lblLogout;
 	}
 } /// ------------------

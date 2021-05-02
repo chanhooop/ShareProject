@@ -12,10 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.dbaction.DbAction_Id_CJY;
 
-public class Main_Id_CJY {
+public class Main_Id_CJY extends JFrame{
 
+	private MainProcess mainPr;
 	private JFrame frame;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1_1_1_2;
@@ -46,7 +48,16 @@ public class Main_Id_CJY {
 	 * Create the application.
 	 */
 	public Main_Id_CJY() {
-		initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
@@ -134,6 +145,9 @@ public class Main_Id_CJY {
 				public void actionPerformed(ActionEvent e) {
 					
 					cancelAction();
+					Login_YJ login_YJ = new Login_YJ();
+					login_YJ.setVisible(true);
+					frame.dispose();
 					
 				}
 			});
@@ -163,12 +177,15 @@ public class Main_Id_CJY {
 			JOptionPane.showMessageDialog(null, "입력하신 정보를 확인해주세요!", "아이디 찾기", JOptionPane.WARNING_MESSAGE);
 		}else {
 			JOptionPane.showMessageDialog(null, tfName.getText() + "님의 아이디는 " + findClientId + " 입니다!");
+			
+			mainPr.main(null);
+			frame.dispose();
 		}
 
 	}
 	
-	
-	
+
+
 	// 완료 버튼 : tf 중에서 빠진 부분이 있을 때
 		private int insertFieldCheck() {	// void는 받는 게 없고 여기처럼 return하면 받아오는 값이 있는 것임
 				
@@ -213,5 +230,12 @@ public class Main_Id_CJY {
 			lblNewLabel_1.setForeground(Color.white);
 		}
 		return lblNewLabel_1;
+	}
+
+
+
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		
 	}
 } // --------------------------------------

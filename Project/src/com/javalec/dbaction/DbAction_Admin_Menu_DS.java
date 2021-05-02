@@ -13,6 +13,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.javalec.bean.Bean_Admin_Menu_DS;
+import com.javalec.sharevar.ShareVar_Admin_Menu_DS;
+
 public class DbAction_Admin_Menu_DS {
 	
 	// field

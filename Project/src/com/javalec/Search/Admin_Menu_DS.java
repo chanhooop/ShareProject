@@ -1,6 +1,5 @@
 package com.javalec.Search;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,10 +11,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -27,8 +22,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -38,12 +31,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-import com.javalec.function.Bean_Admin_Menu_DS;
-import com.javalec.function.DbAction_Admin_Menu_DS;
-import com.javalec.function.ShareVar_Admin_Menu_DS;
+import com.javalec.MainPackage.MainProcess;
+import com.javalec.bean.Bean_Admin_Menu_DS;
+import com.javalec.dbaction.DbAction_Admin_Menu_DS;
+import com.javalec.sharevar.ShareVar_Admin_Menu_DS;
 
-public class Admin_Menu_DS {
+public class Admin_Menu_DS extends JFrame{
 
+	private MainProcess mainpr;
 	private JFrame frame;
 	private JLabel lbAdminLogo;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -99,7 +94,16 @@ public class Admin_Menu_DS {
 	 * Create the application.
 	 */
 	public Admin_Menu_DS() {
-		initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
@@ -148,6 +152,8 @@ public class Admin_Menu_DS {
 		frame.getContentPane().add(getBtnAdd());
 		frame.getContentPane().add(getBtnResetOk());
 		frame.getContentPane().add(getBtnAddOk());
+		frame.getContentPane().add(getLblback());
+		frame.getContentPane().add(getLblLogout());
 
 	}
 
@@ -585,6 +591,8 @@ public class Admin_Menu_DS {
 	
 	int wkCodeInt = 0;
 	int j = 0;
+	private JLabel lblback;
+	private JLabel lblLogout;
 	private void tableClick() {
 		int i = Inner_table.getSelectedRow();
 		String menuType = (String) Inner_table.getValueAt(i, 2);
@@ -877,5 +885,35 @@ public class Admin_Menu_DS {
 			btnAddOk.setBounds(386, 409, 62, 23);
 		}
 		return btnAddOk;
+	}
+	private JLabel getLblback() {
+		if (lblback == null) {
+			lblback = new JLabel("돌아가기");
+			lblback.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					Admin_FirstView_YJ admin_FirstView_YJ = new Admin_FirstView_YJ();
+					frame.dispose();
+				}
+			});
+			lblback.setBounds(386, 30, 50, 15);
+		}
+		return lblback;
+	}
+	private JLabel getLblLogout() {
+		if (lblLogout == null) {
+			lblLogout = new JLabel("로그아웃");
+			lblLogout.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					mainpr.main(null);
+					frame.dispose();
+				}
+			});
+			lblLogout.setEnabled(false);
+			lblLogout.setBounds(448, 30, 50, 15);
+		}
+		return lblLogout;
 	}
 }

@@ -3,6 +3,10 @@ package com.javalec.Search;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -10,10 +14,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Client_FirstView_YJ;
 import com.javalec.dbaction.DbAction_Client_FirstView_YJ;
 
-public class Client_FirstView_YJ {
+public class Client_FirstView_YJ extends JFrame {
+	private MainProcess mainpr;
+
 
 	private JFrame frame;
 	private JLabel lbBackGround;
@@ -44,8 +51,18 @@ public class Client_FirstView_YJ {
 	 * Create the application.
 	 */
 	public Client_FirstView_YJ() {
-		initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -70,16 +87,34 @@ public class Client_FirstView_YJ {
 	private JButton getBtnSerch() {
 		if (btnSerch == null) {
 			btnSerch = new JButton("검색하러가기");
+			btnSerch.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					Search_CH search_CH = new Search_CH();
+					frame.dispose();
+				}
+
+			});
 			btnSerch.setForeground(Color.BLACK);
 			btnSerch.setBounds(160, 394, 218, 39);
 		}
 		return btnSerch;
 	}
 
+	
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("로그아웃");
-			lblNewLabel.setBounds(478, 16, 61, 16);
+			lblNewLabel.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					mainpr.main(null);
+					dispose();
+					
+				}
+			});
+			lblNewLabel.setBounds(447, 22, 61, 16);
 			lblNewLabel.setForeground(Color.white);
 		}
 		return lblNewLabel;
@@ -112,4 +147,5 @@ public class Client_FirstView_YJ {
 		System.out.println(adminLogin + adminOnOff);
 
 	}
+
 }
