@@ -31,12 +31,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Admin_Menu_DS;
 import com.javalec.dbaction.DbAction_Admin_Menu_DS;
 import com.javalec.sharevar.ShareVar_Admin_Menu_DS;
 
-public class Admin_Menu_DS {
+public class Admin_Menu_DS extends JFrame{
 
+	private MainProcess mainpr;
 	private JFrame frame;
 	private JLabel lbAdminLogo;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -92,7 +94,16 @@ public class Admin_Menu_DS {
 	 * Create the application.
 	 */
 	public Admin_Menu_DS() {
-		initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
@@ -141,6 +152,8 @@ public class Admin_Menu_DS {
 		frame.getContentPane().add(getBtnAdd());
 		frame.getContentPane().add(getBtnResetOk());
 		frame.getContentPane().add(getBtnAddOk());
+		frame.getContentPane().add(getLblback());
+		frame.getContentPane().add(getLblLogout());
 
 	}
 
@@ -578,6 +591,8 @@ public class Admin_Menu_DS {
 	
 	int wkCodeInt = 0;
 	int j = 0;
+	private JLabel lblback;
+	private JLabel lblLogout;
 	private void tableClick() {
 		int i = Inner_table.getSelectedRow();
 		String menuType = (String) Inner_table.getValueAt(i, 2);
@@ -870,5 +885,35 @@ public class Admin_Menu_DS {
 			btnAddOk.setBounds(386, 409, 62, 23);
 		}
 		return btnAddOk;
+	}
+	private JLabel getLblback() {
+		if (lblback == null) {
+			lblback = new JLabel("돌아가기");
+			lblback.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					Admin_FirstView_YJ admin_FirstView_YJ = new Admin_FirstView_YJ();
+					frame.dispose();
+				}
+			});
+			lblback.setBounds(386, 30, 50, 15);
+		}
+		return lblback;
+	}
+	private JLabel getLblLogout() {
+		if (lblLogout == null) {
+			lblLogout = new JLabel("로그아웃");
+			lblLogout.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					mainpr.main(null);
+					frame.dispose();
+				}
+			});
+			lblLogout.setEnabled(false);
+			lblLogout.setBounds(448, 30, 50, 15);
+		}
+		return lblLogout;
 	}
 }

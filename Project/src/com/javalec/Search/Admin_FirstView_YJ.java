@@ -10,11 +10,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Admin_FirstView_YJ;
 import com.javalec.dbaction.DbAction_Admin_FirstView_YJ;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Admin_FirstView_YJ {
+public class Admin_FirstView_YJ extends JFrame {
 
+	private MainProcess mainpr;
+	
 	private JFrame frame;
 	private JLabel lbBackGround;
 	private JButton btnMenu;
@@ -46,7 +51,16 @@ public class Admin_FirstView_YJ {
 	 * Create the application.
 	 */
 	public Admin_FirstView_YJ() {
-		initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
@@ -73,6 +87,13 @@ public class Admin_FirstView_YJ {
 	private JButton getBtnMenu() {
 		if (btnMenu == null) {
 			btnMenu = new JButton("메뉴관리");
+			btnMenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					Admin_Menu_DS admin_Menu_DS = new Admin_Menu_DS();
+					frame.dispose();
+				}
+			});
 			btnMenu.setForeground(Color.BLACK);
 			btnMenu.setBounds(160, 394, 218, 39);
 		}
@@ -106,6 +127,13 @@ public class Admin_FirstView_YJ {
 	private JButton getBtnBrand() {
 		if (btnBrand == null) {
 			btnBrand = new JButton("브랜드관리");
+			btnBrand.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Admin_Brand_YJ admin_Brand_YJ = new Admin_Brand_YJ();
+					frame.dispose();
+					
+				}
+			});
 			btnBrand.setForeground(Color.BLACK);
 			btnBrand.setBounds(160, 336, 218, 39);
 		}
@@ -114,6 +142,12 @@ public class Admin_FirstView_YJ {
 	private JButton getBtnClient() {
 		if (btnClient == null) {
 			btnClient = new JButton("고객관리");
+			btnClient.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Admin_ClientList_YJ admin_ClientList_YJ = new Admin_ClientList_YJ();
+					frame.dispose();
+				}
+			});
 			btnClient.setForeground(Color.BLACK);
 			btnClient.setBounds(160, 274, 218, 39);
 		}

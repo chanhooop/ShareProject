@@ -15,10 +15,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.dbaction.DbAction_Join_CJY;
 
 public class Main_Join_CJY extends JFrame{
 
+	private MainProcess mainPr;
 	private JFrame frame;
 	private JLabel lblJoin;
 	private JLabel lblId;
@@ -259,7 +261,9 @@ public class Main_Join_CJY extends JFrame{
 		}
 		return btnNick;
 	}
-
+	Login_YJ login_YJ; // 로그인 
+	Client_FirstView_YJ clientFirst;
+//	Main_Join_CJY join_CJY;
 	private JButton getBtnOK() {
 		if (btnOK == null) {
 			btnOK = new JButton("완료");
@@ -271,7 +275,6 @@ public class Main_Join_CJY extends JFrame{
 						if(chk == 0) {
 							okAction();
 						}
-				
 
 				}
 			});
@@ -288,6 +291,9 @@ public class Main_Join_CJY extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					
 					cancelAction();
+					Login_YJ login_YJ = new Login_YJ();
+					login_YJ.setVisible(true);
+					frame.dispose();
 					
 				}
 			});
@@ -331,7 +337,11 @@ public class Main_Join_CJY extends JFrame{
 			boolean msg = dbAction_Join_CJY.okAction();
 			
 			if(msg == true) {
-				JOptionPane.showMessageDialog(null, tfName.getText() + "님의 회원가입이 완료되었습니다!");
+				JOptionPane.showMessageDialog(null, tfName.getText() + "님의 회원가입이 완료되었습니다!\n" + "로그인창으로 돌아갑니다.");
+				
+				mainPr.main(null);
+				frame.dispose();
+				
 			} 
 		} 
 	}
