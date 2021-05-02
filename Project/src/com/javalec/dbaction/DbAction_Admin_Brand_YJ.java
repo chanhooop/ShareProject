@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import com.javalec.bean.Bean_Admin_Brand_YJ;
 import com.javalec.sharevar.ShareVar_Admin_Brand_YJ;
 
@@ -41,7 +43,8 @@ public class DbAction_Admin_Brand_YJ {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DbAction_Admin_Brand_YJ(String adminCode, String brandCode, Date createDate, Date updateDate, FileInputStream file) {
+	public DbAction_Admin_Brand_YJ(String adminCode, String brandCode, Date createDate, Date updateDate,
+			FileInputStream file) {
 		super();
 		this.brandCode = brandCode;
 		this.adminCode = adminCode;
@@ -280,10 +283,10 @@ public class DbAction_Admin_Brand_YJ {
 			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
 			Statement stmt_mysql = conn_mysql.createStatement();
 			selectps = conn_mysql.prepareStatement("select brandCode from coffee.brand");
-			 ResultSet rs = selectps.executeQuery();
-	         if(rs.next()) {
-	            brandCode = rs.getString(1);
-	         }
+			ResultSet rs = selectps.executeQuery();
+			if (rs.next()) {
+				brandCode = rs.getString(1);
+			}
 
 			String query1 = "insert into brandUpdate (updateDate, updateImg, brand_brandCode, admin_adminCode)";
 			String query2 = " value (?, ?, ?, ?)";
@@ -294,10 +297,24 @@ public class DbAction_Admin_Brand_YJ {
 			ps.setString(3, brandCode);
 			ps.setString(4, adminCode);
 			ps.executeUpdate();
-			System.out.println(ps);
 			conn_mysql.close();
 			return true;
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean deleteAction(String brandCode) {
+		String query1 = "delete from brand where brandCode = " + brandCode;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+			Statement stmt_mysql = conn_mysql.createStatement();
+			stmt_mysql.executeUpdate(query1);
+			conn_mysql.close();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
