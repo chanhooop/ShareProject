@@ -7,6 +7,35 @@ public class Bean_Admin_Menu_DS {
 	String menuType;
 	String menuName;
 	String menuPrice;
+	String menuAllergy;
+	String adminLogin; // 닉네임 값
+	String adminOnoff; // 어드민인지 아닌지 구분
+	
+	public String getMenuAllergy() {
+		return menuAllergy;
+	}
+
+	public void setMenuAllergy(String menuAllergy) {
+		this.menuAllergy = menuAllergy;
+	}
+
+	public Bean_Admin_Menu_DS(String adminLogin, String adminOnoff) {
+		super();
+		this.adminLogin = adminLogin;
+		this.adminOnoff = adminOnoff;
+	}
+
+	public Bean_Admin_Menu_DS(int menuCode, String brandName, String menuType, String menuName, String menuPrice,
+			String menuAllergy) {
+		super();
+		this.menuCode = menuCode;
+		this.brandName = brandName;
+		this.menuType = menuType;
+		this.menuName = menuName;
+		this.menuPrice = menuPrice;
+		this.menuAllergy = menuAllergy;
+	}
+
 
 	public Bean_Admin_Menu_DS(int menuCode, String brandName, String menuType, String menuName, String menuPrice) {
 		super();
@@ -67,6 +96,21 @@ public class Bean_Admin_Menu_DS {
 
 	public void setMenuPrice(String menuPrice) {
 		this.menuPrice = menuPrice;
+	}
+	public String getAdminLogin() {
+		return adminLogin;
+	}
+
+	public void setAdminLogin(String adminLogin) {
+		this.adminLogin = adminLogin;
+	}
+
+	public String getAdminOnoff() {
+		return adminOnoff;
+	}
+
+	public void setAdminOnoff(String adminOnoff) {
+		this.adminOnoff = adminOnoff;
 	}
 
 }

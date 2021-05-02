@@ -18,6 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,19 +27,19 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import com.javalec.bean.Bean_Admin_Menu_DS;
 import com.javalec.dbaction.DbAction_Admin_Menu_DS;
 import com.javalec.sharevar.ShareVar_Admin_Menu_DS;
-//yhyghyy
+
 public class Admin_Menu_DS {
 
 	private JFrame frame;
 	private JLabel lbAdminLogo;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private JTextField tfadmincode;
 
 	// Database 환경 정의
 	private final String url_mysql = "jdbc:mysql://127.0.0.1/coffee?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
@@ -68,6 +69,9 @@ public class Admin_Menu_DS {
 	private int resetBtnOk = 0;
 	private int cencel = 0;
 
+	
+	String adminLogin = "", adminOnOff = "";
+	
 	/**
 	 * Launch the application.
 	 */
@@ -120,8 +124,7 @@ public class Admin_Menu_DS {
 		frame.getContentPane().add(getLbBrandName());
 		frame.getContentPane().add(getTfBrandName());
 		frame.getContentPane().add(getCbMenuType());
-		frame.getContentPane().add(getTextField_1());
-		frame.getContentPane().add(getLbMenuImg());
+		frame.getContentPane().add(getLbmenuImg());
 		frame.getContentPane().add(getLblNewLabel());
 		frame.getContentPane().add(getTfMenuAllergy());
 		frame.getContentPane().add(getTextField_1_1());
@@ -129,11 +132,11 @@ public class Admin_Menu_DS {
 		frame.getContentPane().add(getTextField_1_2());
 		frame.getContentPane().add(getLblNewLabel_1());
 		frame.getContentPane().add(getBtnCancel());
-		frame.getContentPane().add(getBtnAddOk());
 		frame.getContentPane().add(getBtnReset());
 		frame.getContentPane().add(getBtnDelete());
 		frame.getContentPane().add(getBtnAdd());
 		frame.getContentPane().add(getBtnResetOk());
+		frame.getContentPane().add(getBtnAddOk());
 
 	}
 
@@ -161,6 +164,8 @@ public class Admin_Menu_DS {
 			scrollPane = new JScrollPane();
 			scrollPane.setBounds(38, 77, 458, 108);
 			scrollPane.setViewportView(getInner_table());
+			Inner_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			Inner_table.setModel(Outer_Table);
 
 		}
 		return scrollPane;
@@ -275,22 +280,12 @@ public class Admin_Menu_DS {
 		return cbMenuType;
 	}
 
-	private JTextField getTextField_1() {
-		if (tfadmincode == null) {
-			tfadmincode = new JTextField();
-			tfadmincode.setBounds(406, 27, 96, 21);
-			tfadmincode.setColumns(10);
-			tfadmincode.setVisible(false);
+	private JLabel getLbmenuImg() {
+		if (lbmenuImg == null) {
+			lbmenuImg = new JLabel("");
+			lbmenuImg.setBounds(339, 233, 137, 128);
 		}
-		return tfadmincode;
-	}
-
-	private JLabel getLbMenuImg() {
-		if (lbMenuImg == null) {
-			lbMenuImg = new JLabel("");
-			lbMenuImg.setBounds(244, 195, 137, 128);
-		}
-		return lbMenuImg;
+		return lbmenuImg;
 	}
 
 	private JLabel getLblNewLabel() {
@@ -324,9 +319,18 @@ public class Admin_Menu_DS {
 	private JButton getBtnAddImg() {
 		if (btnAddImg == null) {
 			btnAddImg = new JButton("등록");
+			btnAddImg.setEnabled(false);
 			btnAddImg.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-
+					FilePath();
+					FileInputStream input = null;
+					File file = new File(tfFilePath.getText());
+					try {
+						input = new FileInputStream(file);
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			});
 			btnAddImg.setBounds(244, 360, 66, 23);
@@ -364,8 +368,8 @@ public class Admin_Menu_DS {
 						btnReset.setEnabled(true);
 						tfBrandName.setEditable(false);
 					} else {
-//						cencelInfo();
 						ClearColumn();
+						selectAllMenu();
 					}
 					resetBtn = 0;
 					addBtn = 0;
@@ -379,26 +383,6 @@ public class Admin_Menu_DS {
 
 	}
 
-	private JButton getBtnAddOk() {
-		if (btnAddOk == null) {
-			btnAddOk = new JButton("확인");
-			btnAddOk.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					insertAction();
-					insertMenuUpdate();
-					ClearColumn();
-					btnDelete.setEnabled(true);
-					btnReset.setEnabled(true);
-					btnResetOk.setEnabled(true);
-					addBtn = 0;
-					btnAdd.setVisible(true);
-				}
-			});
-			btnAddOk.setBounds(386, 409, 62, 23);
-		}
-		return btnAddOk;
-	}
-
 	private JButton getBtnReset() {
 		if (btnReset == null) {
 			btnReset = new JButton("수정");
@@ -409,6 +393,10 @@ public class Admin_Menu_DS {
 					if (addBtn == 0) {
 						btnReset.setVisible(false);
 						tfBrandName.setEditable(true);
+						tfMenuName.setEditable(true);
+						tfMenuPrice.setEditable(true);
+						tfMenuAllergy.setEditable(true);
+						tfmenuImg.setEditable(true);
 						btnAddImg.setEnabled(true);
 						btnAdd.setEnabled(false);
 						btnAddOk.setVisible(false);
@@ -460,6 +448,11 @@ public class Admin_Menu_DS {
 					if (resetBtn == 0) {
 						btnAdd.setVisible(false);
 						tfBrandName.setEditable(true);
+						tfMenuName.setEditable(true);
+						tfMenuPrice.setEditable(true);
+						tfMenuAllergy.setEditable(true);
+						tfmenuImg.setEditable(true);
+						btnAddImg.setEnabled(true);
 						btnAddImg.setEnabled(true);
 						btnDelete.setEnabled(false);
 						btnReset.setEnabled(false);
@@ -491,6 +484,7 @@ public class Admin_Menu_DS {
 						updateMenu();
 						updateMenuPrice();
 						ClearColumn();
+						selectAllMenu();
 					}
 				}
 			});
@@ -545,7 +539,10 @@ public class Admin_Menu_DS {
 	private void selectAllMenu() {
 		DbAction_Admin_Menu_DS dbAction = new DbAction_Admin_Menu_DS();
 		ArrayList<Bean_Admin_Menu_DS> beanList = (ArrayList<Bean_Admin_Menu_DS>) dbAction.selectAllMenu();
-
+		Bean_Admin_Menu_DS bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
+		adminLogin = bean.getAdminLogin(); //저장되어있는 로그인정보를 필드변수에 저장
+		adminOnOff = bean.getAdminOnoff();
+		System.out.println(adminLogin + adminOnOff);
 		int listCount = beanList.size();
 		for (int i = 0; i < listCount; i++) {
 			String temp = Integer.toString(beanList.get(i).getMenuCode());
@@ -553,12 +550,12 @@ public class Admin_Menu_DS {
 					beanList.get(i).getMenuName(), beanList.get(i).getMenuPrice() };
 			Outer_Table.addRow(qTxt);
 		}
+		
 	}
 
 	// 테이블 클릭시
-	int wkCodeInt = 0;
-	int j = 0;
-	private JLabel lbMenuImg;
+	
+	private JLabel lbmenuImg;
 	private JTextField tfMaterial;
 	private JLabel lblNewLabel;
 	private JTextField tfMenuAllergy;
@@ -567,12 +564,14 @@ public class Admin_Menu_DS {
 	private JTextField tfmenuImg;
 	private JLabel lblNewLabel_1;
 	private JButton btnCancel;
-	private JButton btnAddOk;
 	private JButton btnReset;
 	private JButton btnDelete;
 	private JButton btnAdd;
 	private JButton btnResetOk;
-
+	private JButton btnAddOk;
+	
+	int wkCodeInt = 0;
+	int j = 0;
 	private void tableClick() {
 		int i = Inner_table.getSelectedRow();
 		String menuType = (String) Inner_table.getValueAt(i, 2);
@@ -601,7 +600,7 @@ public class Admin_Menu_DS {
 		tfMenuName.setText(bean.getMenuName());
 		tfMenuPrice.setText(bean.getMenuPrice());
 		cbMenuType.setSelectedIndex(j);
-
+		tfMenuAllergy.setText(bean.getMenuAllergy());
 		// Image처리
 		// File name이 틀려야 즉각 보여주기가 가능하여
 		// ShareVar에서 int값으로 정의하여 계속 증가하게 하여 file name으로 사용후 삭제
@@ -609,14 +608,30 @@ public class Admin_Menu_DS {
 		String filePath = Integer.toString(ShareVar_Admin_Menu_DS.filename);
 		tfFilePath.setText(filePath);
 
-		lbMenuImg.setIcon(new ImageIcon(filePath));
-		lbMenuImg.setHorizontalAlignment(SwingConstants.CENTER);
+		lbmenuImg.setIcon(new ImageIcon(filePath));
+		lbmenuImg.setHorizontalAlignment(SwingConstants.CENTER);
 
 		File file = new File(filePath);
 		file.delete();
 
 	}
 
+	private void FilePath() { // 이미지 등록
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG, PNG, BMP", "jpg", "png", "bmp");
+		chooser.setFileFilter(filter);
+
+		int ret = chooser.showOpenDialog(null);
+		if (ret != JFileChooser.APPROVE_OPTION) {
+			JOptionPane.showMessageDialog(null, "파일을 선택하지 않았습니다!", "경고", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		String filePath = chooser.getSelectedFile().getPath();
+		tfFilePath.setText(filePath);
+		lbmenuImg.setIcon(new ImageIcon(filePath));
+		lbmenuImg.setHorizontalAlignment(SwingConstants.CENTER);
+	}
+	
 	// 메뉴 수정 (메뉴명, 메뉴종류, 브랜드명)
 	private void updateMenu() {
 
@@ -651,8 +666,7 @@ public class Admin_Menu_DS {
 
 	// 메뉴 가격 수정
 	private void updateMenuPrice() {
-
-		String admin_adminCode = tfadmincode.getText().trim();
+		String adminLogin = "";
 		String menu_menuCode = tfMenuCode.getText().trim();
 		String brandname = tfBrandName.getText().trim();
 		java.sql.Date updateDate = new java.sql.Date(System.currentTimeMillis());
@@ -686,7 +700,7 @@ public class Admin_Menu_DS {
 			e.printStackTrace();
 		}
 
-		boolean isUpdate = dbAction.MenuPriceUpdate(admin_adminCode, menu_menuCode, brandCode, updateDate, menuPrice,
+		boolean isUpdate = dbAction.MenuPriceUpdate(adminLogin,menu_menuCode, brandCode, updateDate, menuPrice,
 				input);
 
 		if (isUpdate == true) {
@@ -705,7 +719,7 @@ public class Admin_Menu_DS {
 
 		String menuname = tfMenuName.getText().trim();
 
-		String menuAllergy = tfMaterial.getText().trim();
+		String menuAllergy = tfMenuAllergy.getText().trim();
 		// Image File
 		FileInputStream input = null;
 		File file = new File(tfFilePath.getText());
@@ -749,7 +763,7 @@ public class Admin_Menu_DS {
 
 	// 메뉴 등록 (어드민 코드, 브랜드명, 메뉴가격, 메뉴코드, 작성날짜, 수정날짜)
 	private void insertMenuUpdate() {
-		String admin_adminCode = tfadmincode.getText().trim();
+		String adminLogin="";
 		String brandname = tfBrandName.getText().trim();
 		String menuPrice = tfMenuPrice.getText().trim();
 		String menu_menuCode = tfMenuCode.getText().trim();
@@ -785,7 +799,7 @@ public class Admin_Menu_DS {
 
 		DbAction_Admin_Menu_DS dbAction = new DbAction_Admin_Menu_DS();
 
-		boolean msg = dbAction.insertMenuUpdate(admin_adminCode, menu_menuCode, brandCode, createDate, updateDate,
+		boolean msg = dbAction.insertMenuUpdate(adminLogin, menu_menuCode, brandCode, createDate, updateDate,
 				menuPrice, input);
 
 		if (msg == true) {
@@ -817,10 +831,33 @@ public class Admin_Menu_DS {
 		tfMenuCode.setText("");
 		tfBrandName.setText("");
 		tfMenuName.setText("");
+		lbmenuImg.setIcon(null);
 		tfMenuPrice.setText("");
 		tfMenuAllergy.setText("");
 		tfmenuImg.setText("");
 
 	}
 
+	private JButton getBtnAddOk() {
+		if (btnAddOk == null) {
+			btnAddOk = new JButton("확인");
+			btnAddOk.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					insertAction();
+					insertMenuUpdate();
+					ClearColumn();
+					selectAllMenu();
+					btnDelete.setEnabled(true);
+					btnReset.setEnabled(true);
+					btnResetOk.setEnabled(true);
+					addBtn = 0;
+					btnAdd.setVisible(true);
+					
+				}
+
+			});
+			btnAddOk.setBounds(386, 409, 62, 23);
+		}
+		return btnAddOk;
+	}
 }
