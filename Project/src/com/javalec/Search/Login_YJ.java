@@ -21,6 +21,8 @@ import javax.swing.table.DefaultTableModel;
 import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Login_YJ;
 import com.javalec.dbaction.DbAction_Login_YJ;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Login_YJ extends JFrame{
 
@@ -284,6 +286,15 @@ public class Login_YJ extends JFrame{
 	private JLabel getLbJoin() {
 		if (lbJoin == null) {
 			lbJoin = new JLabel("회원가입");
+			lbJoin.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					Main_Join_CJY main_Join_CJY = new Main_Join_CJY();
+					main_Join_CJY.setVisible(true);
+					frame.dispose();
+					
+				}
+			});
 			lbJoin.setBounds(310, 316, 49, 16);
 		}
 		return lbJoin;
