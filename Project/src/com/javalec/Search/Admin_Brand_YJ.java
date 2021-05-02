@@ -110,6 +110,10 @@ public class Admin_Brand_YJ {
 		frmBrand.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
+				DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ();
+				Bean_Admin_Brand_YJ bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
+				adminLogin = bean.getAdminLogin(); // 저장되어있는 로그인정보를 필드변수에 저장
+				adminOnOff = bean.getAdminOnoff();
 				tableInit();
 				searchAction();
 			}
@@ -143,7 +147,7 @@ public class Admin_Brand_YJ {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("카페행");
 			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-			lblNewLabel.setBounds(224, 10, 63, 41);
+			lblNewLabel.setBounds(240, 0, 63, 41);
 		}
 		return lblNewLabel;
 	}
@@ -151,6 +155,7 @@ public class Admin_Brand_YJ {
 	private JLabel getLabel_2() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("브랜드관리");
+			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 			lblNewLabel_1.setBounds(30, 35, 61, 16);
 		}
 		return lblNewLabel_1;
@@ -183,6 +188,7 @@ public class Admin_Brand_YJ {
 	private JLabel getLabel_3() {
 		if (lbBrandCode == null) {
 			lbBrandCode = new JLabel("브랜드코드");
+			lbBrandCode.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 			lbBrandCode.setBounds(30, 246, 61, 16);
 		}
 		return lbBrandCode;
@@ -318,6 +324,7 @@ public class Admin_Brand_YJ {
 	private JButton getBtnCencel() {
 		if (btnCencel == null) {
 			btnCencel = new JButton("취소");
+			btnCencel.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
 			btnCencel.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (tfBrandName.getText().trim().isEmpty()) {
@@ -449,10 +456,7 @@ public class Admin_Brand_YJ {
 
 	private void searchAction() { // 이너테이블에 나올 내용
 		DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ();
-		ArrayList<Bean_Admin_Brand_YJ> beanList = (ArrayList<Bean_Admin_Brand_YJ>) dbAction.SelectList();
-		Bean_Admin_Brand_YJ bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
-		adminLogin = bean.getAdminLogin(); // 저장되어있는 로그인정보를 필드변수에 저장
-		adminOnOff = bean.getAdminOnoff();
+		ArrayList<Bean_Admin_Brand_YJ> beanList = dbAction.SelectList();
 
 		int listCount = beanList.size();
 

@@ -171,8 +171,10 @@ public class DbAction_Admin_Brand_YJ {
 			String query1 = "insert into brandUpdate (admin_adminCode, brand_brandCode, CreateDate, updateDate, updateImg)";
 			String query2 = " values (?, ?, ?, ?, ?)";
 			ps = conn_mysql.prepareStatement(query1 + query2);
+			
+			Bean_Admin_Brand_YJ bean = new Bean_Admin_Brand_YJ();
 
-			ps.setString(1, adminCode);
+			ps.setString(1, bean.getAdminLogin());
 			ps.setString(2, brandCode);
 			ps.setDate(3, CreateDate);
 			ps.setDate(4, updateDate);
