@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 import com.javalec.dbaction.DbAction_Join_CJY;
 
-public class Main_Join_CJY {
+public class Main_Join_CJY extends JFrame{
 
 	private JFrame frame;
 	private JLabel lblJoin;
@@ -59,7 +59,17 @@ public class Main_Join_CJY {
 	 * Create the application.
 	 */
 	public Main_Join_CJY() {
-		initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
 	}
 
 	/**
