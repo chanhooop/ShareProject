@@ -72,7 +72,7 @@ public class Client_FirstView_YJ extends JFrame {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
-				adminLoginInfo();
+				System.out.println(Login_YJ.clientCode);
 			}
 		});
 		frame.setBounds(100, 100, 545, 478);

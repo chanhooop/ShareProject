@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.javalec.Search.Login_YJ;
 import com.javalec.bean.Bean_Admin_Menu_DS;
 import com.javalec.sharevar.ShareVar_Admin_Menu_DS;
 
@@ -247,7 +248,7 @@ public class DbAction_Admin_Menu_DS {
 
 			Bean_Admin_Menu_DS bean = new Bean_Admin_Menu_DS();
 			
-			ps.setString(1, bean.getAdminLogin());
+			ps.setString(1, Login_YJ.adminCode);
 			ps.setString(2, brandName);
 			ps.setInt(3, menu_brand_brandCode);
 			ps.setDate(4, updateDate);
@@ -366,7 +367,7 @@ public class DbAction_Admin_Menu_DS {
 			
 			Bean_Admin_Menu_DS bean = new Bean_Admin_Menu_DS();
 
-			ps.setString(1, bean.getAdminLogin());
+			ps.setString(1, Login_YJ.adminCode);
 			ps.setString(2, brandName);
 			ps.setInt(3, menu_brand_brandCode);
 			ps.setDate(4, createDate);

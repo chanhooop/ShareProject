@@ -53,6 +53,9 @@ public class Login_YJ extends JFrame{
 	private JLabel lbIdSearch;
 	private JLabel lblNewLabel_1;
 	private JLabel lbPwSearch;
+	
+	public static String clientCode = "";
+	public static String adminCode = "";
 
 	/**
 	 * Launch the application.
@@ -242,7 +245,7 @@ public class Login_YJ extends JFrame{
 
 		DbAction_Login_YJ dbAction = new DbAction_Login_YJ(wkId, wkPw, wkName); // DbAction 클래스로 넘기는것도, 전역변수로 넘김
 		Bean_Login_YJ bean = dbAction.clientRoginAction();
-
+		Login_YJ.clientCode = dbAction.clientgetCode();
 
 		if (wkId.equals(bean.getClientId()) && wkPw.equals(bean.getClientPw())) {
 			JOptionPane.showMessageDialog(null, bean.getClientName() + "님 환영합니다.");
@@ -262,10 +265,10 @@ public class Login_YJ extends JFrame{
 
 		DbAction_Login_YJ dbAction = new DbAction_Login_YJ(adminId, wkPw);
 		Bean_Login_YJ bean = dbAction.adminRoginAction();
+		Login_YJ.adminCode = dbAction.adminGetCode();
 
 		if (adminId.equals(bean.getAdminId()) && wkPw.equals(bean.getAdminPw())) {
 			JOptionPane.showMessageDialog(null, "관리자님 환영합니다.");
-			
 			mainpr.showAdmin_FirstView_YJ();
 			frame.dispose();
 			

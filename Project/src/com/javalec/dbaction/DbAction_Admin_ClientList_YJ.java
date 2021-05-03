@@ -160,7 +160,7 @@ public class DbAction_Admin_ClientList_YJ {
 			ps.setString(1, clientPw);
 			ps.setString(2, clientTelno);
 			ps.setString(3, clientNick);
-			ps.setString(4, bean.getAdminLogin());
+			ps.setInt(4, clientCode);
 			ps.executeUpdate();
 
 			conn_mysql.close();

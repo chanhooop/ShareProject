@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -160,8 +161,9 @@ public class Admin_Menu_DS extends JFrame{
 	private JLabel getLbAdminLogo() {
 		if (lbAdminLogo == null) {
 			lbAdminLogo = new JLabel("카페행");
-			lbAdminLogo.setFont(new Font("Dialog", Font.PLAIN, 35));
-			lbAdminLogo.setBounds(215, 0, 116, 59);
+			lbAdminLogo.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+			lbAdminLogo.setBounds(243, 0, 63, 41);
+			lbAdminLogo.setForeground(Color.white);
 		}
 		return lbAdminLogo;
 	}
@@ -170,7 +172,7 @@ public class Admin_Menu_DS extends JFrame{
 		if (lbMenuControll == null) {
 			lbMenuControll = new JLabel("메뉴관리");
 			lbMenuControll.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-			lbMenuControll.setBounds(28, 42, 83, 31);
+			lbMenuControll.setBounds(28, 42, 183, 35);
 
 		}
 		return lbMenuControll;
@@ -179,7 +181,7 @@ public class Admin_Menu_DS extends JFrame{
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(38, 77, 458, 108);
+			scrollPane.setBounds(28, 77, 483, 114);
 			scrollPane.setViewportView(getInner_table());
 			Inner_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			Inner_table.setModel(Outer_Table);
@@ -206,7 +208,7 @@ public class Admin_Menu_DS extends JFrame{
 	private JLabel getLbMenuCode() {
 		if (lbMenuCode == null) {
 			lbMenuCode = new JLabel("메뉴코드");
-			lbMenuCode.setBounds(40, 200, 61, 16);
+			lbMenuCode.setBounds(28, 200, 61, 16);
 		}
 		return lbMenuCode;
 	}
@@ -224,7 +226,7 @@ public class Admin_Menu_DS extends JFrame{
 	private JLabel getLbMenuType() {
 		if (lbMenuType == null) {
 			lbMenuType = new JLabel("메뉴종류");
-			lbMenuType.setBounds(41, 264, 61, 16);
+			lbMenuType.setBounds(28, 264, 61, 16);
 		}
 		return lbMenuType;
 	}
@@ -232,7 +234,7 @@ public class Admin_Menu_DS extends JFrame{
 	private JLabel getLbMenuName() {
 		if (lbMenuName == null) {
 			lbMenuName = new JLabel("메뉴이름");
-			lbMenuName.setBounds(41, 302, 61, 16);
+			lbMenuName.setBounds(28, 302, 61, 16);
 		}
 		return lbMenuName;
 	}
@@ -241,7 +243,7 @@ public class Admin_Menu_DS extends JFrame{
 		if (tfMenuName == null) {
 			tfMenuName = new JTextField();
 			tfMenuName.setEditable(false);
-			tfMenuName.setBounds(102, 297, 130, 26);
+			tfMenuName.setBounds(101, 297, 130, 26);
 			tfMenuName.setColumns(10);
 		}
 		return tfMenuName;
@@ -250,7 +252,7 @@ public class Admin_Menu_DS extends JFrame{
 	private JLabel getLbMenuPrice() {
 		if (lbMenuPrice == null) {
 			lbMenuPrice = new JLabel("메뉴가격");
-			lbMenuPrice.setBounds(41, 335, 61, 16);
+			lbMenuPrice.setBounds(28, 335, 61, 16);
 		}
 		return lbMenuPrice;
 	}
@@ -259,7 +261,7 @@ public class Admin_Menu_DS extends JFrame{
 		if (tfMenuPrice == null) {
 			tfMenuPrice = new JTextField();
 			tfMenuPrice.setEditable(false);
-			tfMenuPrice.setBounds(102, 330, 130, 26);
+			tfMenuPrice.setBounds(101, 330, 130, 26);
 			tfMenuPrice.setColumns(10);
 		}
 		return tfMenuPrice;
@@ -268,7 +270,7 @@ public class Admin_Menu_DS extends JFrame{
 	private JLabel getLbBrandName() {
 		if (lbBrandName == null) {
 			lbBrandName = new JLabel("브랜드명");
-			lbBrandName.setBounds(40, 233, 61, 16);
+			lbBrandName.setBounds(28, 233, 61, 16);
 		}
 		return lbBrandName;
 	}
@@ -277,7 +279,7 @@ public class Admin_Menu_DS extends JFrame{
 		if (tfBrandName == null) {
 			tfBrandName = new JTextField();
 			tfBrandName.setEditable(false);
-			tfBrandName.setBounds(102, 228, 130, 26);
+			tfBrandName.setBounds(101, 228, 130, 26);
 			tfBrandName.setColumns(10);
 		}
 		return tfBrandName;
@@ -300,7 +302,7 @@ public class Admin_Menu_DS extends JFrame{
 	private JLabel getLbmenuImg() {
 		if (lbmenuImg == null) {
 			lbmenuImg = new JLabel("");
-			lbmenuImg.setBounds(339, 233, 137, 128);
+			lbmenuImg.setBounds(316, 254, 137, 128);
 		}
 		return lbmenuImg;
 	}
@@ -308,7 +310,7 @@ public class Admin_Menu_DS extends JFrame{
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("재료");
-			lblNewLabel.setBounds(40, 361, 50, 31);
+			lblNewLabel.setBounds(28, 361, 50, 31);
 		}
 		return lblNewLabel;
 	}
@@ -350,7 +352,7 @@ public class Admin_Menu_DS extends JFrame{
 					}
 				}
 			});
-			btnAddImg.setBounds(244, 360, 66, 23);
+			btnAddImg.setBounds(170, 392, 66, 23);
 		}
 		return btnAddImg;
 	}
@@ -359,7 +361,7 @@ public class Admin_Menu_DS extends JFrame{
 		if (tfmenuImg == null) {
 			tfmenuImg = new JTextField();
 			tfmenuImg.setEditable(false);
-			tfmenuImg.setBounds(101, 392, 131, 21);
+			tfmenuImg.setBounds(101, 392, 66, 21);
 			tfmenuImg.setColumns(10);
 		}
 		return tfmenuImg;
@@ -368,7 +370,7 @@ public class Admin_Menu_DS extends JFrame{
 	private JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
 			lblNewLabel_1 = new JLabel("메뉴이미지");
-			lblNewLabel_1.setBounds(35, 400, 66, 15);
+			lblNewLabel_1.setBounds(28, 400, 66, 15);
 		}
 		return lblNewLabel_1;
 	}
@@ -385,6 +387,7 @@ public class Admin_Menu_DS extends JFrame{
 						btnReset.setEnabled(true);
 						tfBrandName.setEditable(false);
 					} else {
+						tableInit();
 						ClearColumn();
 						selectAllMenu();
 					}
@@ -394,7 +397,7 @@ public class Admin_Menu_DS extends JFrame{
 				}
 
 			});
-			btnCancel.setBounds(240, 409, 61, 23);
+			btnCancel.setBounds(152, 421, 83, 29);
 		}
 		return btnCancel;
 
@@ -431,7 +434,7 @@ public class Admin_Menu_DS extends JFrame{
 					}
 				}
 			});
-			btnReset.setBounds(313, 409, 61, 23);
+			btnReset.setBounds(247, 421, 83, 29);
 		}
 		return btnReset;
 	}
@@ -447,7 +450,7 @@ public class Admin_Menu_DS extends JFrame{
 					selectAllMenu();
 				}
 			});
-			btnDelete.setBounds(460, 409, 62, 23);
+			btnDelete.setBounds(431, 421, 83, 29);
 		}
 		return btnDelete;
 	}
@@ -489,7 +492,7 @@ public class Admin_Menu_DS extends JFrame{
 					}
 				}
 			});
-			btnAdd.setBounds(386, 409, 62, 23);
+			btnAdd.setBounds(335, 421, 83, 29);
 		}
 		return btnAdd;
 	}
@@ -510,7 +513,7 @@ public class Admin_Menu_DS extends JFrame{
 					}
 				}
 			});
-			btnResetOk.setBounds(313, 409, 62, 23);
+			btnResetOk.setBounds(247, 421, 83, 29);
 		}
 		return btnResetOk;
 	}
@@ -723,7 +726,7 @@ public class Admin_Menu_DS extends JFrame{
 			e.printStackTrace();
 		}
 
-		boolean isUpdate = dbAction.MenuPriceUpdate(adminLogin,menu_menuCode, brandCode, updateDate, menuPrice,
+		boolean isUpdate = dbAction.MenuPriceUpdate(Login_YJ.adminCode,menu_menuCode, brandCode, updateDate, menuPrice,
 				input);
 
 		if (isUpdate == true) {
@@ -824,7 +827,7 @@ public class Admin_Menu_DS extends JFrame{
 
 		DbAction_Admin_Menu_DS dbAction = new DbAction_Admin_Menu_DS();
 
-		boolean msg = dbAction.insertMenuUpdate(adminLogin, menu_menuCode, brandCode, createDate, updateDate,
+		boolean msg = dbAction.insertMenuUpdate(Login_YJ.adminCode, menu_menuCode, brandCode, createDate, updateDate,
 				menuPrice, input);
 
 		if (msg == true) {
@@ -882,7 +885,7 @@ public class Admin_Menu_DS extends JFrame{
 				}
 
 			});
-			btnAddOk.setBounds(386, 409, 62, 23);
+			btnAddOk.setBounds(335, 421, 83, 29);
 		}
 		return btnAddOk;
 	}
@@ -897,7 +900,8 @@ public class Admin_Menu_DS extends JFrame{
 					frame.dispose();
 				}
 			});
-			lblback.setBounds(386, 30, 50, 15);
+			lblback.setBounds(28, 17, 50, 15);
+			lblback.setForeground(Color.white);
 		}
 		return lblback;
 	}
@@ -911,8 +915,8 @@ public class Admin_Menu_DS extends JFrame{
 					frame.dispose();
 				}
 			});
-			lblLogout.setEnabled(false);
-			lblLogout.setBounds(448, 30, 50, 15);
+			lblLogout.setBounds(478, 16, 61, 16);
+			lblLogout.setForeground(Color.white);
 		}
 		return lblLogout;
 	}

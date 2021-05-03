@@ -100,6 +100,10 @@ public class Client_Mypage_YJ extends JFrame {
 	private void initialize() {
 		frame = new JFrame();
 		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				getMypage();
+			}
 		});
 		frame.setTitle("카페행");
 		frame.setBounds(100, 100, 545, 478);

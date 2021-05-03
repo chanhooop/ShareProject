@@ -41,6 +41,9 @@ public class Main_Join_CJY extends JFrame{
 	private JButton btnCancel;
 	private JLabel lblPwCheckText;
 	private JLabel lblNewLabel;
+	
+	private boolean isIdCheck = false;
+	private boolean isNickCheck = false;
 
 
 	/**
@@ -237,7 +240,7 @@ public class Main_Join_CJY extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					
 					checkIdAction();
-					
+					isIdCheck = true;
 				}
 			});
 			btnId.setFont(new Font("돋움", Font.PLAIN, 13));
@@ -253,7 +256,7 @@ public class Main_Join_CJY extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					
 					checkNickAction();
-					
+					isNickCheck = true;
 				}
 			});
 			btnNick.setFont(new Font("돋움", Font.PLAIN, 13));
@@ -273,7 +276,11 @@ public class Main_Join_CJY extends JFrame{
 						int chk = insertFieldCheck();
 						
 						if(chk == 0) {
-							okAction();
+							if (isIdCheck == false && isNickCheck == false) {
+								JOptionPane.showMessageDialog(null, "중복체크는 필수입니다.");
+							} else {
+								okAction();
+							}
 						}
 
 				}
@@ -348,7 +355,7 @@ public class Main_Join_CJY extends JFrame{
 	
 	// 완료 버튼 : tf 중에서 빠진 부분이 있을 때
 		private int insertFieldCheck() {	
-			
+				String checkMsg = "중복체크는 필수입니다.";
 				int i = 0;
 				String message = "";
 
@@ -356,6 +363,9 @@ public class Main_Join_CJY extends JFrame{
 					i++;					// 넣은 텍스트 없으면 i값 증가
 					message = "아이디를 ";		// tfName에 텍스트가 없을 때 나올 메세지의 정보
 					tfId.requestFocus();	// .requestFocus() 커서 깜빡이 위치로 해주기
+//					if (isIdCheck == false) {
+//						JOptionPane.showMessageDialog(null, checkMsg);
+//					}
 				}
 				if(pwtfPw.getPassword().toString().length() == 0) {  //.length() : 글자의 개수 /를 말하는 건데 여기서는 글자의 개수가 0일 때를 말하니깐
 					i++;
@@ -381,6 +391,9 @@ public class Main_Join_CJY extends JFrame{
 					i++;
 					message = "닉네임을 ";
 					tfNick.requestFocus();
+//					if (isNickCheck == false) {
+//						JOptionPane.showMessageDialog(null, checkMsg);
+//					}
 				}
 				
 				// i값이 0보다 클 때 = i값이 증가했을 때 = getText()가 없었을 때
