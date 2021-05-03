@@ -101,10 +101,11 @@ public class DbAction_Mypage_YJ {
 		return bean;
 	}
 
-	public Bean_Mypage_YJ getMypage() {
+	public Bean_Mypage_YJ getMypage(String clientCode) {
+		clientCode = Login_YJ.clientCode;
 		Bean_Mypage_YJ bean = null;
 		String query = "select clientId, clientPw, clientName, clientTelno, clientNick from client ";
-		String query1 = "where clientCode = '" + Login_YJ.clientCode + "'";
+		String query1 = "where clientCode = '" + clientCode + "'";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
@@ -120,9 +121,9 @@ public class DbAction_Mypage_YJ {
 				clientTelno = rs.getString("clientTelno");
 				clientNick = rs.getString("clientNick");
 			}
-
+			System.out.println("ghdl");
 			bean = new Bean_Mypage_YJ(clientId, clientPw, clientPwCheck, clientName, clientTelno, clientNick);
-
+			System.out.println(bean.getClientTelno());
 			conn_mysql.close();
 
 		} catch (Exception e) {
@@ -139,8 +140,8 @@ public class DbAction_Mypage_YJ {
 			Statement stmt_mysql = conn_mysql.createStatement();
 //		(clientId, clientPw, clientName, clientTelno, clientNick)
 			String query = "update client set ";
-			String query1 = "clientPw = ?, clientName = ?, clientTelno = ?, clientNick = ? where clientId = '"
-					+ clientId + "'";
+			String query1 = "clientPw = ?, clientName = ?, clientTelno = ?, clientNick = ? where clientCode = '"
+					+ Login_YJ.clientCode + "'";
 
 			ps = conn_mysql.prepareStatement(query + query1);
 			ps.setString(1, clientPw);
