@@ -1,5 +1,6 @@
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -11,10 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.dbaction.DbAction_Id_CJY;
 
-public class Main_Id_CJY {
+public class Main_Id_CJY extends JFrame{
 
+	private MainProcess mainPr;
 	private JFrame frame;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1_1_1_2;
@@ -23,6 +26,7 @@ public class Main_Id_CJY {
 	private JTextField tfName;
 	private JButton btnOK;
 	private JButton btnCancel;
+	private JLabel lblNewLabel_1;
 	
 	/**
 	 * Launch the application.
@@ -44,7 +48,16 @@ public class Main_Id_CJY {
 	 * Create the application.
 	 */
 	public Main_Id_CJY() {
-		initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
@@ -53,7 +66,7 @@ public class Main_Id_CJY {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("카페행");
-		frame.setBounds(100, 100, 500, 350);
+		frame.setBounds(100, 100, 545, 478);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getLblNewLabel());
@@ -63,13 +76,14 @@ public class Main_Id_CJY {
 		frame.getContentPane().add(getTfName());
 		frame.getContentPane().add(getBtnOK());
 		frame.getContentPane().add(getBtnCancel());
+		frame.getContentPane().add(getLblNewLabel_1());
 	}
 
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("아이디 찾기");
-			lblNewLabel.setFont(new Font("돋움", Font.BOLD, 20));
-			lblNewLabel.setBounds(25, 23, 125, 47);
+			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+			lblNewLabel.setBounds(28, 42, 145, 32);
 		}
 		return lblNewLabel;
 	}
@@ -77,7 +91,7 @@ public class Main_Id_CJY {
 		if (lblNewLabel_1_1_1_2 == null) {
 			lblNewLabel_1_1_1_2 = new JLabel("이름");
 			lblNewLabel_1_1_1_2.setFont(new Font("돋움", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_2.setBounds(49, 91, 56, 40);
+			lblNewLabel_1_1_1_2.setBounds(28, 85, 56, 40);
 		}
 		return lblNewLabel_1_1_1_2;
 	}
@@ -85,7 +99,7 @@ public class Main_Id_CJY {
 		if (lblNewLabel_1_1_1_3 == null) {
 			lblNewLabel_1_1_1_3 = new JLabel("전화번호");
 			lblNewLabel_1_1_1_3.setFont(new Font("돋움", Font.PLAIN, 13));
-			lblNewLabel_1_1_1_3.setBounds(49, 153, 74, 40);
+			lblNewLabel_1_1_1_3.setBounds(30, 133, 74, 40);
 		}
 		return lblNewLabel_1_1_1_3;
 	}
@@ -93,7 +107,7 @@ public class Main_Id_CJY {
 		if (tfTel == null) {
 			tfTel = new JTextField();
 			tfTel.setColumns(10);
-			tfTel.setBounds(146, 158, 237, 32);
+			tfTel.setBounds(111, 137, 237, 32);
 		}
 		return tfTel;
 	}
@@ -101,7 +115,7 @@ public class Main_Id_CJY {
 		if (tfName == null) {
 			tfName = new JTextField();
 			tfName.setColumns(10);
-			tfName.setBounds(146, 96, 237, 32);
+			tfName.setBounds(109, 89, 237, 32);
 		}
 		return tfName;
 	}
@@ -120,7 +134,7 @@ public class Main_Id_CJY {
 				}
 			});
 			btnOK.setFont(new Font("돋움", Font.PLAIN, 13));
-			btnOK.setBounds(381, 233, 93, 40);
+			btnOK.setBounds(430, 402, 83, 29);
 		}
 		return btnOK;
 	}
@@ -131,11 +145,14 @@ public class Main_Id_CJY {
 				public void actionPerformed(ActionEvent e) {
 					
 					cancelAction();
+					Login_YJ login_YJ = new Login_YJ();
+					login_YJ.setVisible(true);
+					frame.dispose();
 					
 				}
 			});
 			btnCancel.setFont(new Font("돋움", Font.PLAIN, 13));
-			btnCancel.setBounds(254, 233, 93, 40);
+			btnCancel.setBounds(335, 402, 83, 29);
 		}
 		return btnCancel;
 	}
@@ -160,12 +177,15 @@ public class Main_Id_CJY {
 			JOptionPane.showMessageDialog(null, "입력하신 정보를 확인해주세요!", "아이디 찾기", JOptionPane.WARNING_MESSAGE);
 		}else {
 			JOptionPane.showMessageDialog(null, tfName.getText() + "님의 아이디는 " + findClientId + " 입니다!");
+			
+			mainPr.main(null);
+			frame.dispose();
 		}
 
 	}
 	
-	
-	
+
+
 	// 완료 버튼 : tf 중에서 빠진 부분이 있을 때
 		private int insertFieldCheck() {	// void는 받는 게 없고 여기처럼 return하면 받아오는 값이 있는 것임
 				
@@ -202,4 +222,20 @@ public class Main_Id_CJY {
 		}
 
 	
+	private JLabel getLblNewLabel_1() {
+		if (lblNewLabel_1 == null) {
+			lblNewLabel_1 = new JLabel("카페행");
+			lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+			lblNewLabel_1.setBounds(243, 0, 63, 41);
+			lblNewLabel_1.setForeground(Color.white);
+		}
+		return lblNewLabel_1;
+	}
+
+
+
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
 } // --------------------------------------

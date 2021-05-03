@@ -16,7 +16,9 @@ import java.util.List;
 import com.javalec.bean.Bean_Admin_Menu_DS;
 import com.javalec.sharevar.ShareVar_Admin_Menu_DS;
 
-public class DbAction_Admin_Menu_DS {// field
+public class DbAction_Admin_Menu_DS {
+	
+	// field
 	private final String url_mysql = ShareVar_Admin_Menu_DS.DBName;
 	private final String id_mysql = ShareVar_Admin_Menu_DS.DBUser;
 	private final String pw_mysql = ShareVar_Admin_Menu_DS.DBPass;
@@ -36,7 +38,7 @@ public class DbAction_Admin_Menu_DS {// field
 	String menuPrice;
 	String adminCode;
 	String materialAllergy;
-	String menuAllergy;
+	String MenuAllergy;
 	java.sql.Date createDate;
 	java.sql.Date updateDate;
 
@@ -45,9 +47,9 @@ public class DbAction_Admin_Menu_DS {// field
 		// TODO Auto-generated constructor stub
 	}
 
-	public DbAction_Admin_Menu_DS(String menuAllergy) {
+	public DbAction_Admin_Menu_DS(String MenuAllergy) {
 		super();
-		this.menuAllergy = menuAllergy;
+		this.MenuAllergy = MenuAllergy;
 	}
 
 	public DbAction_Admin_Menu_DS(int material_menu_menuCode, String material_materialCode, String adminCode,
@@ -127,6 +129,25 @@ public class DbAction_Admin_Menu_DS {// field
 
 	// method
 	// 메뉴 출력
+	public Bean_Admin_Menu_DS login() {
+		Bean_Admin_Menu_DS bean = new Bean_Admin_Menu_DS();
+		PreparedStatement ps = null;
+		try {
+			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+			String select = "SELECT login.adminLogin, login.adminOnOff from coffee.login";
+			ps = conn_mysql.prepareStatement(select);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				String adminLogin = rs.getString(1);
+				String adminOnoff = rs.getString(2);
+				bean = new Bean_Admin_Menu_DS(adminLogin, adminOnoff);
+				conn_mysql.close();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return bean;
+	}
 	public List<Bean_Admin_Menu_DS> selectAllMenu() {
 
 		Statement stmt = null;
@@ -136,7 +157,7 @@ public class DbAction_Admin_Menu_DS {// field
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
 			stmt = conn_mysql.createStatement();
-			String query = "select menuCode, menuType, menuName, menuPrice, brandName "
+			String query = "select menuCode, menuType, menuName, menuPrice, brandName, menuAllergy "
 					+ "from menu m ,menuupdate mu, brand b "
 					+ "where m.menucode = mu.menu_menucode and b.brandcode = m.brand_brandCode";
 
@@ -152,7 +173,8 @@ public class DbAction_Admin_Menu_DS {// field
 				menu.setMenuType(rs.getString("menuType"));
 				menu.setMenuName(rs.getString("menuName"));
 				menu.setMenuPrice(rs.getString("menuPrice"));
-
+				menu.setMenuAllergy(rs.getString("menuAllergy"));
+				
 				menuList.add(menu);
 			}
 		} catch (Exception e) {
@@ -165,8 +187,9 @@ public class DbAction_Admin_Menu_DS {// field
 	public Bean_Admin_Menu_DS tableClick() {
 		Bean_Admin_Menu_DS bean = null;
 
-		String query = "select menuCode, brandName,  menuType, menuName, menuPrice, menuImg "
-				+ "from menu m ,menuupdate mu, brand b " + "where m.menucode = " + menuCode
+		String query = "select menuCode, brandName,  menuType, menuName, menuPrice, menuAllergy, menuImg "
+				+ "from menu m ,menuupdate mu, brand b "
+				+ "where m.menucode = " + menuCode
 				+ " and mu.menu_menuCode = m.menuCode and mu.menu_brand_brandCode = b.brandCode";
 
 		try {
@@ -182,18 +205,19 @@ public class DbAction_Admin_Menu_DS {// field
 				String wkmenuType = rs.getString(3);
 				String wkmenuName = rs.getString(4);
 				String wkmenuPrice = rs.getString(5);
+				String wkmenuAllergy = rs.getString(6);
 
 				// File
 				ShareVar_Admin_Menu_DS.filename = ShareVar_Admin_Menu_DS.filename + 1;
 				File file = new File(Integer.toString(ShareVar_Admin_Menu_DS.filename));
 				FileOutputStream output = new FileOutputStream(file);
-				InputStream input = rs.getBinaryStream(6);
+				InputStream input = rs.getBinaryStream(7);
 				byte[] buffer = new byte[1024];
 				while (input.read(buffer) > 0) {
 					output.write(buffer);
 				}
 
-				bean = new Bean_Admin_Menu_DS(wkCode, wkbrandName, wkmenuType, wkmenuName, wkmenuPrice);
+				bean = new Bean_Admin_Menu_DS(wkCode, wkbrandName, wkmenuType, wkmenuName, wkmenuPrice, wkmenuAllergy);
 			}
 			conn_mysql.close();
 		} catch (Exception e) {
@@ -203,7 +227,7 @@ public class DbAction_Admin_Menu_DS {// field
 	}
 
 	// 메뉴 가격 수정
-	public boolean MenuPriceUpdate(String admin_adminCode, String menu_menuCode, int menu_brand_brandCode,
+	public boolean MenuPriceUpdate(String adminLogin, String menu_menuCode, int menu_brand_brandCode,
 			java.sql.Date updateDate, String menuPrice, FileInputStream file) {
 		PreparedStatement ps = null;
 
@@ -221,7 +245,9 @@ public class DbAction_Admin_Menu_DS {// field
 
 			ps = conn_mysql.prepareStatement(query);
 
-			ps.setString(1, admin_adminCode);
+			Bean_Admin_Menu_DS bean = new Bean_Admin_Menu_DS();
+			
+			ps.setString(1, bean.getAdminLogin());
 			ps.setString(2, brandName);
 			ps.setInt(3, menu_brand_brandCode);
 			ps.setDate(4, updateDate);
@@ -319,7 +345,7 @@ public class DbAction_Admin_Menu_DS {// field
 	}
 
 	// 메뉴 가격 등록
-	public boolean insertMenuUpdate(String admin_adminCode, String menu_menuCode, int menu_brand_brandCode,
+	public boolean insertMenuUpdate(String adminLogin, String menu_menuCode, int menu_brand_brandCode,
 			java.sql.Date createDate, java.sql.Date updateDate, String menuPrice, FileInputStream file) {
 
 		PreparedStatement ps = null;
@@ -337,8 +363,10 @@ public class DbAction_Admin_Menu_DS {// field
 			}
 
 			ps = conn_mysql.prepareStatement(query);
+			
+			Bean_Admin_Menu_DS bean = new Bean_Admin_Menu_DS();
 
-			ps.setString(1, admin_adminCode);
+			ps.setString(1, bean.getAdminLogin());
 			ps.setString(2, brandName);
 			ps.setInt(3, menu_brand_brandCode);
 			ps.setDate(4, createDate);
