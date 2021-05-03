@@ -123,15 +123,15 @@ public class Admin_Brand_YJ extends JFrame{
 		frmBrand.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
-				DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ();
-				Bean_Admin_Brand_YJ bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
-				adminLogin = bean.getAdminLogin(); // 저장되어있는 로그인정보를 필드변수에 저장
-				adminOnOff = bean.getAdminOnoff();
+//				DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ();
+//				Bean_Admin_Brand_YJ bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
+//				adminLogin = bean.getAdminLogin(); // 저장되어있는 로그인정보를 필드변수에 저장
+//				adminOnOff = bean.getAdminOnoff();
 				tableInit();
 				searchAction();
 			}
 		});
-		frmBrand.setTitle("Brand");
+		frmBrand.setTitle("카페행");
 		frmBrand.setBounds(100, 100, 545, 478);
 		frmBrand.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmBrand.getContentPane().setLayout(null);
@@ -510,7 +510,7 @@ public class Admin_Brand_YJ extends JFrame{
 
 	private void insertBrandHistory() { // 신규등록 히스토리
 		Bean_Admin_Brand_YJ bean = new Bean_Admin_Brand_YJ();
-		String adminCode = bean.getAdminLogin();
+//		String adminCode = bean.getAdminLogin();
 		String brandCode = tfBrandCode.getText().trim();
 		java.sql.Date createDate = new java.sql.Date(System.currentTimeMillis());
 		java.sql.Date updateDate = new java.sql.Date(System.currentTimeMillis());
@@ -525,7 +525,7 @@ public class Admin_Brand_YJ extends JFrame{
 			e.printStackTrace();
 		}
 
-		DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ(adminCode, brandCode, createDate, updateDate,
+		DbAction_Admin_Brand_YJ dbAction = new DbAction_Admin_Brand_YJ(Login_YJ.adminCode, brandCode, createDate, updateDate,
 				input);
 		boolean aaa = dbAction.insertBrandHistory();
 
@@ -624,7 +624,7 @@ public class Admin_Brand_YJ extends JFrame{
 			e.printStackTrace();
 		}
 
-		DbAction_Admin_Brand_YJ dbaction = new DbAction_Admin_Brand_YJ(input, tkSequence, adminCode, updateDate);
+		DbAction_Admin_Brand_YJ dbaction = new DbAction_Admin_Brand_YJ(input, tkSequence, Login_YJ.adminCode, updateDate);
 		boolean aaa = dbaction.editActionHistory();
 	}
 
@@ -669,8 +669,8 @@ public class Admin_Brand_YJ extends JFrame{
 					frmBrand.dispose();
 				}
 			});
-			lblback.setEnabled(false);
-			lblback.setBounds(407, 17, 50, 15);
+			lblback.setBounds(28, 17, 50, 15);
+			lblback.setForeground(Color.white);
 		}
 		return lblback;
 	}

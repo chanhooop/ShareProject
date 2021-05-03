@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import com.javalec.Search.Login_YJ;
 import com.javalec.bean.Bean_Mypage_YJ;
 import com.javalec.sharevar.ShareVar_Mypage_YJ;
 
@@ -103,7 +104,7 @@ public class DbAction_Mypage_YJ {
 	public Bean_Mypage_YJ getMypage() {
 		Bean_Mypage_YJ bean = null;
 		String query = "select clientId, clientPw, clientName, clientTelno, clientNick from client ";
-		String query1 = "where clientId = '" + clientId + "'";
+		String query1 = "where clientCode = '" + Login_YJ.clientCode + "'";
 //		System.out.println(userId);
 		System.out.println(query + query1);
 		try {

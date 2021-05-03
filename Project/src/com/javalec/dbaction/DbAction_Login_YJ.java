@@ -21,6 +21,9 @@ public class DbAction_Login_YJ {
 	private String adminId;
 	private String adminPw;
 	
+	String getAdminId = "";
+	String getClientId = "";
+	
 	
 	public DbAction_Login_YJ(String adminId, String adminPw) {
 		super();
@@ -55,15 +58,16 @@ public class DbAction_Login_YJ {
 				wkName = rs.getString(3);
 			}
 			bean = new Bean_Login_YJ(wkId, wkPw, wkName);
-			String delete = "Delete from coffee.login";
-			String insert = "INSERT INTO `coffee`.`login` VALUES ('0','0','0')";
-			String update = "update coffee.login set \n"
-					+ "login.userLogin = (select client.clientNick from coffee.client where client.clientId = '" + clientId + "'),\n"
-					+ "login.adminLogin = '',\n"
-					+ "login.adminOnOff = '';"; // 로그인 정보 업데이트쿼리
-			stmt_mysql.executeUpdate(delete); // 로그인정보 테이블 초기화 실행
-			stmt_mysql.executeUpdate(insert); // 로그인정보 테이블 행1개 추가 실행
-			stmt_mysql.executeUpdate(update); // 로그인정보 업데이트 실행
+			getClientId = bean.getClientId();
+//			String delete = "Delete from coffee.login";
+//			String insert = "INSERT INTO `coffee`.`login` VALUES ('0','0','0')";
+//			String update = "update coffee.login set \n"
+//					+ "login.userLogin = (select client.clientNick from coffee.client where client.clientId = '" + clientId + "'),\n"
+//					+ "login.adminLogin = '',\n"
+//					+ "login.adminOnOff = '';"; // 로그인 정보 업데이트쿼리
+//			stmt_mysql.executeUpdate(delete); // 로그인정보 테이블 초기화 실행
+//			stmt_mysql.executeUpdate(insert); // 로그인정보 테이블 행1개 추가 실행
+//			stmt_mysql.executeUpdate(update); // 로그인정보 업데이트 실행
 			conn_mysql.close();
 			
 		} catch (Exception e) {
@@ -79,12 +83,12 @@ public class DbAction_Login_YJ {
 		Bean_Login_YJ bean = null;
 		String query = "select adminId, adminPw from admin where adminId = '" + adminId + "' and adminPw = '" + adminPw + "'; ";
 
-		String delete = "Delete from coffee.login";
-		String insert = "INSERT INTO `coffee`.`login` VALUES ('0','0','0')";
-		String update = "update coffee.login set \n"
-				+ "login.userLogin = '',\n"
-				+ "login.adminLogin = (select admin.adminId from coffee.admin where admin.adminId = '" + adminId + "'),\n"
-				+ "login.adminOnOff = 'admin'\n";
+//		String delete = "Delete from coffee.login";
+//		String insert = "INSERT INTO `coffee`.`login` VALUES ('0','0','0')";
+//		String update = "update coffee.login set \n"
+//				+ "login.userLogin = '',\n"
+//				+ "login.adminLogin = (select admin.adminId from coffee.admin where admin.adminId = '" + adminId + "'),\n"
+//				+ "login.adminOnOff = 'admin'\n";
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
@@ -97,16 +101,51 @@ public class DbAction_Login_YJ {
 					wkPw = rs.getString(2);
 				}
 				bean = new Bean_Login_YJ(wkId, wkPw);
-				System.out.println(update);
-				stmt_mysql.executeUpdate(delete); // 로그인정보 테이블 초기화 실행
-				stmt_mysql.executeUpdate(insert); // 로그인정보 테이블 행1개 추가 실행
-				stmt_mysql.executeUpdate(update); // 로그인정보 업데이트 실행
-				conn_mysql.close();
+				getAdminId = bean.getAdminId();
+//				System.out.println(update);
+//				stmt_mysql.executeUpdate(delete); // 로그인정보 테이블 초기화 실행
+//				stmt_mysql.executeUpdate(insert); // 로그인정보 테이블 행1개 추가 실행
+//				stmt_mysql.executeUpdate(update); // 로그인정보 업데이트 실행
+//				conn_mysql.close();
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			return bean;
+	}
+	
+	public String adminGetCode() {
+		String adminCode = "";
+		try {
+			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+			Statement stmt_mysql = conn_mysql.createStatement();
+			String query1 = "select adminCode from admin where adminId = '" + getAdminId + "'";
+			ResultSet rs1 = stmt_mysql.executeQuery(query1);
+			System.out.println(rs1);
+			if (rs1.next()) {
+				adminCode = rs1.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return adminCode;
+	}
+	
+	public String clientgetCode() {
+		String clientCode = "";
+		try {
+			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+			Statement stmt_mysql = conn_mysql.createStatement();
+			String query1 = "select clientCode from client where clientId = '" + getClientId + "'";
+			ResultSet rs1 = stmt_mysql.executeQuery(query1);
+			System.out.println(rs1);
+			if (rs1.next()) {
+				clientCode = rs1.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return clientCode;
 	}
 	
 }

@@ -472,7 +472,8 @@ public class Admin_ClientList_YJ extends JFrame{
 					frame.dispose();
 				}
 			});
-			lblBack.setBounds(407, 17, 50, 15);
+			lblBack.setBounds(28, 17, 50, 15);
+			lblBack.setForeground(Color.white);
 		}
 		return lblBack;
 	}
