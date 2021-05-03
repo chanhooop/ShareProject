@@ -1,6 +1,5 @@
 package com.javalec.Search;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -12,10 +11,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -27,8 +22,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -38,9 +31,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-import com.javalec.function.Bean_Admin_Menu_DS;
-import com.javalec.function.DbAction_Admin_Menu_DS;
-import com.javalec.function.ShareVar_Admin_Menu_DS;
+import com.javalec.bean.Bean_Admin_Menu_DS;
+import com.javalec.dbaction.DbAction_Admin_Menu_DS;
+import com.javalec.sharevar.ShareVar_Admin_Menu_DS;
 
 public class Admin_Menu_DS {
 
