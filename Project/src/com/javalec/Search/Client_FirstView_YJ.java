@@ -151,7 +151,6 @@ public class Client_FirstView_YJ extends JFrame {
 		Bean_Client_FirstView_YJ bean = dbAction.login(); // 엑션실행 해서 빈에다 로그인정보 저장
 		adminLogin = bean.getAdminLogin(); // 저장되어있는 로그인정보를 필드변수에 저장
 		adminOnOff = bean.getAdminOnoff();
-		System.out.println(adminLogin + adminOnOff);
 
 	}
 

@@ -40,7 +40,7 @@ public class MainProcess {
 	public void showMain_Id_CJY() {
 		login_YJ.dispose();
 		main_Id_CJY = new Main_Id_CJY();
-		
+	
 	}
 
 	public void showMain_Join_CJY() {

@@ -71,6 +71,8 @@ public class Search_CH extends JFrame {
 	private JButton btnCommentUpdate;
 	private JTable comment_table;
 
+	int clickValue = 0;
+	String BN="", MN="";
 	String loginId = "", adminOnOff = ""; // 로그인정보 selec 저장
 
 	/**
@@ -342,42 +344,48 @@ public class Search_CH extends JFrame {
 	// ------------------------------------------------------------------------------------------------------------------
 	// 테이블 초기화
 	private void tableInit() {
-
+		
 		Outer_Table.addColumn("브랜드");
 		Outer_Table.addColumn("이름");
 		Outer_Table.addColumn("메뉴타입");
 		Outer_Table.addColumn("가격");
-		Outer_Table.setColumnCount(4);
-
+		Outer_Table.addColumn("조회수");
+		Outer_Table.setColumnCount(5);
+		
 		int i = Outer_Table.getRowCount();
-		for (int j = 0; j < i; j++) {
+		for(int j=0; j<i; j++) {
 			Outer_Table.removeRow(0);
 		}
-
+		
 		InnerTable.setAutoResizeMode(InnerTable.AUTO_RESIZE_OFF);
-
+		
 		int vColIndex = 0;
 		TableColumn col = InnerTable.getColumnModel().getColumn(vColIndex);
 		int width = 100;
 		col.setPreferredWidth(width);
-
+		
 		vColIndex = 1;
 		col = InnerTable.getColumnModel().getColumn(vColIndex);
 		width = 100;
 		col.setPreferredWidth(width);
-
+		
 		vColIndex = 2;
 		col = InnerTable.getColumnModel().getColumn(vColIndex);
 		width = 100;
 		col.setPreferredWidth(width);
-
+		
 		vColIndex = 3;
 		col = InnerTable.getColumnModel().getColumn(vColIndex);
 		width = 100;
 		col.setPreferredWidth(width);
+		
+		vColIndex = 4;
+		col = InnerTable.getColumnModel().getColumn(vColIndex);
+		width = 60;
+		col.setPreferredWidth(width);
 
 	}
-
+	
 	// 데이터 불러오기
 	private void searchAction() {
 
@@ -385,39 +393,51 @@ public class Search_CH extends JFrame {
 		DbAction_Main_Comment_KMJ dbAction_Main_Comment_KMJ = new DbAction_Main_Comment_KMJ(); // 댓글 엑션
 		ArrayList<Bean_CH> beanList = dbAction_CH.selectList();
 		Bean_Main_Comment_KMJ bean_Main_Comment_KMJ = dbAction_Main_Comment_KMJ.login();
-
+		
 		dbAction_Main_Comment_KMJ.login(); // 민재가 만든 로그인 엑션 실행
 		loginId = bean_Main_Comment_KMJ.getUserNick();
 		adminOnOff = bean_Main_Comment_KMJ.getAdminOnOff();
-
+		
 		int j = beanList.size();
-		for (int i = 0; i < j; i++) {
-			String[] arr = { beanList.get(i).getBrandName(), beanList.get(i).getMenuName(),
-					beanList.get(i).getMenuType(), beanList.get(i).getmenuprice() };
-			Outer_Table.addRow(arr);
+		for(int i = 0 ; i < j; i++) {
+			Bean_CH bean_CH = new Bean_CH();
+			String menuCount = Integer.toString(beanList.get(i).getMenuCount());
+		String[] arr = {beanList.get(i).getBrandName(), beanList.get(i).getMenuName(), beanList.get(i).getMenuType(),beanList.get(i).getmenuprice(), menuCount};
+		Outer_Table.addRow(arr);
 		}
-
+		
 	}
 
 	// 데이터 하나 클릭했읗때 정보 뜨게 하는 기능
 
 	private void TableClick() {
-		int i = InnerTable.getSelectedRow();
-		Bean_CH bean_CH = new Bean_CH();
+        int i = InnerTable.getSelectedRow();
+        clickValue = i; // 메뉴리스트 클릭 번호를 가지고와야 코멘트 메소드 CRUD 가 가능함.
+        Bean_CH bean_CH = new Bean_CH();
 
-		String tmpSequence = (String) InnerTable.getValueAt(i, 0);
-		String tmpSequence2 = (String) InnerTable.getValueAt(i, 1);
-		bean_CH.setBrandName(tmpSequence);
-		bean_CH.setMenuName(tmpSequence2);
+        String tmpSequence = (String)InnerTable.getValueAt(i, 0);
+        String tmpSequence2 = (String)InnerTable.getValueAt(i, 1);
+        bean_CH.setBrandName(tmpSequence);
+        bean_CH.setMenuName(tmpSequence2);
+        BN = tmpSequence;// 메뉴리스트 브랜드 네임 정보를 가지고와야 코멘트 메소드 CRUD 가 가능함.
+        MN = tmpSequence2;// 메뉴리스트 메뉴 네임 정보를 가지고와야 코멘트 메소드 CRUD 가 가능함.
+        
+        DbAction_CH dbAction_CH = new DbAction_CH();
+        
+        dbAction_CH.tableClick(bean_CH);
+        dbAction_CH.tableClickCount(tmpSequence,tmpSequence2);
+        
+        tfBrand.setText(bean_CH.getBrandName());
+        tfName.setText(bean_CH.getMenuName());
+        tfPice.setText (bean_CH.getmenuprice());
+        tfMeterial.setText(bean_CH.getMetarialName());
 
-		DbAction_CH dbAction_CH = new DbAction_CH();
-		dbAction_CH.tableClick(bean_CH);
-
-		tfBrand.setText(bean_CH.getBrandName());
-		tfName.setText(bean_CH.getMenuName());
-		tfPice.setText(bean_CH.getmenuprice());
-		tfMeterial.setText(bean_CH.getMetarialName());
-		commentLisetInnertable();
+        
+//        tableInit();
+//        searchAction();
+//        priceconditionQuery();
+        conditionQuery();
+        commentLisetInnertable();
 
 		/**
 		 * @Method Name : TableClick_showImg
@@ -451,79 +471,79 @@ public class Search_CH extends JFrame {
 		tfMeterial.setText("");
 	}
 
-	// ####################################### 조건 검색 부분
-	// ###############################################
+	// ####################################### 조건 검색 부분 ###############################################
+	
+		 	// 조건 검색 콤보상자 선택
+		 	private void conditionQuery() {
+		 		int i = cmbList.getSelectedIndex();  // 콤보상자의 몇번쨰인지 알아봐주는 메서드 겟셀렉티드 인덱스
+		 		String conditionQueryColumn = "";
+		 		switch(i) {
+		 		case 0 : 
+		 			conditionQueryColumn = "m.menuName";
+		 	 		tableInit();		
+//		 			clearColumn();
+		 			conditionQueryAction(conditionQueryColumn);
+		 			break;
+		 		case 1 : 
+		 			conditionQueryColumn = "b.brandName";
+		 			tableInit();		
+//		 			clearColumn();
+		 			conditionQueryAction(conditionQueryColumn);
+		 			break;
+		 		case 2 : 
+		 									
+		 			tableInit();		
+//		 			clearColumn();
+		 			priceconditionQuery() ;		// 가격검색 콤보상자	메소드
+		 			break;
 
-	// 조건 검색 콤보상자 선택
-	private void conditionQuery() {
-		int i = cmbList.getSelectedIndex(); // 콤보상자의 몇번쨰인지 알아봐주는 메서드 겟셀렉티드 인덱스
-		String conditionQueryColumn = "";
-		switch (i) {
-		case 0:
-			conditionQueryColumn = "m.menuName";
-			tableInit();
-			clearColumn();
-			conditionQueryAction(conditionQueryColumn);
-			break;
-		case 1:
-			conditionQueryColumn = "b.brandName";
-			tableInit();
-			clearColumn();
-			conditionQueryAction(conditionQueryColumn);
-			break;
-		case 2:
-			tableInit();
-			clearColumn();
-			priceconditionQuery(); // 가격검색 콤보상자 메소드
-			break;
+		 		default : 
+		 			break;		
+		 		}
+		 	}
 
-		default:
-			break;
-		}
-	}
+		 	// 조건콤보상자에 맞는 조건검색
+		 	private void conditionQueryAction(String a) {      // a 는 conditionQueryColumn
+		 		// 필요한 값 빈으로 보내기 
+		 		Bean_CH bean = new Bean_CH();
+		 		bean.setTfsearch((String)tfSearch.getText());
+		 		bean.setConditionQueryColumn(a);	 
+		 		
+		 		//필요한 메서드 가져오기		
+		 		DbAction_CH dbAction = new DbAction_CH();
+		 		dbAction.conditionQueryDb(bean);
+		 		ArrayList<Bean_CH> beanlist = dbAction.conditionQueryDb(bean);
+		 		int j = beanlist.size();
+		 				
+		 		for(int i = 0 ; i < j ; i++) {
 
-	// 조건콤보상자에 맞는 조건검색
-	private void conditionQueryAction(String a) { // a 는 conditionQueryColumn
-		// 필요한 값 빈으로 보내기
-		Bean_CH bean = new Bean_CH();
-		bean.setTfsearch((String) tfSearch.getText());
-		bean.setConditionQueryColumn(a);
+					Bean_CH bean_CH = new Bean_CH();
+					String menuCount = Integer.toString(beanlist.get(i).getMenuCount());
+				String[] arr = {beanlist.get(i).getBrandName(), beanlist.get(i).getMenuName(), beanlist.get(i).getMenuType(),beanlist.get(i).getmenuprice(), menuCount};
+				Outer_Table.addRow(arr);
+		 		}
+		 	
+		 	}
 
-		// 필요한 메서드 가져오기
-		DbAction_CH dbAction = new DbAction_CH();
-		dbAction.conditionQueryDb(bean);
-		ArrayList<Bean_CH> beanlist = dbAction.conditionQueryDb(bean);
-		int j = beanlist.size();
-
-		for (int i = 0; i < j; i++) {
-
-			String[] arr = { beanlist.get(i).getBrandName(), beanlist.get(i).getMenuName(),
-					beanlist.get(i).getMenuType(), beanlist.get(i).getmenuprice() };
-			System.out.println(1);
-			Outer_Table.addRow(arr);
-		}
-
-	}
-
-	// 콤보상자에서 가격을 선택했을 때
-
-	private void priceconditionQuery() {
-		// 필요한 값 보내기
-		Bean_CH bean = new Bean_CH();
-		bean.setCmbPriceSelect(cmbPriceSelect.getSelectedIndex());
-
-		// 필요한 값 가져오기
-		DbAction_CH dbAction = new DbAction_CH();
-		ArrayList<Bean_CH> beanList = dbAction.priceconditionQueryDB(bean);
-		int j = beanList.size();
-
-		for (int i = 0; i < j; i++) {
-
-			String[] arr = { beanList.get(i).getBrandName(), beanList.get(i).getMenuName(),
-					beanList.get(i).getMenuType(), beanList.get(i).getmenuprice() };
-			Outer_Table.addRow(arr);
-		}
-	}
+		 	// 콤보상자에서 가격을 선택했을 때   
+		 	
+	 		private void priceconditionQuery() {
+	 			  // 필요한 값 보내기
+	 				Bean_CH bean = new Bean_CH();
+	 				bean.setCmbPriceSelect(cmbPriceSelect.getSelectedIndex());
+	 				//필요한 값 가져오기
+	 				DbAction_CH dbAction = new DbAction_CH();  
+	 				ArrayList<Bean_CH> beanList = dbAction.priceconditionQueryDB(bean);
+	 				int j = beanList.size();
+	 				
+	 				for(int i = 0 ; i < j ; i++) {
+	 					Bean_CH bean_CH = new Bean_CH();
+	 					String menuCount = Integer.toString(beanList.get(i).getMenuCount());
+	 				String[] arr = {beanList.get(i).getBrandName(), beanList.get(i).getMenuName(), beanList.get(i).getMenuType(),beanList.get(i).getmenuprice(), menuCount};
+	 				Outer_Table.addRow(arr);
+	 		 		}
+		 		}
+	 				
 
 	/**
 	 * @Method Name : commentOuttable
@@ -532,6 +552,8 @@ public class Search_CH extends JFrame {
 	 * @변경이력 :
 	 * @Method설명 :코멘트 아웃테이블 기본 설정
 	 */
+	 				
+	 				
 	private void commentOuttable() { //
 		comment_Out_Table.addColumn("댓글");
 		comment_Out_Table.addColumn("수정");
@@ -563,6 +585,7 @@ public class Search_CH extends JFrame {
 		col.setMaxWidth(0);
 	}
 
+	
 	/**
 	 * @Method Name : commentLisetInnertable
 	 * @작성일 : 2021. 4. 30.
@@ -588,8 +611,8 @@ public class Search_CH extends JFrame {
 
 		Bean_Main_Comment_KMJ Bean_Main_Comment_KMJ = new Bean_Main_Comment_KMJ();// 치환 선언 해준다.
 		int selectedMenu = InnerTable.getSelectedRow(); // 댓글 선택 리스트 맨윗줄을 1로 기준
-		String brandName = (String) InnerTable.getValueAt(selectedMenu, 0); // 해당 줄에서 0번쨰 컬럼명을 가져온다.
-		String menuName = (String) InnerTable.getValueAt(selectedMenu, 1); // 해당 줄에서 1번째 컬럼명을 가져온다.
+		String brandName = (String) InnerTable.getValueAt(clickValue, 0); // 해당 줄에서 0번쨰 컬럼명을 가져온다.
+		String menuName = (String) InnerTable.getValueAt(clickValue, 1); // 해당 줄에서 1번째 컬럼명을 가져온다.
 		Bean_Main_Comment_KMJ.setBrandName(brandName);
 		Bean_Main_Comment_KMJ.setMenuName(menuName);
 		ArrayList<Bean_Main_Comment_KMJ> beanList = DbAction_Main_Comment_KMJ
@@ -620,8 +643,8 @@ public class Search_CH extends JFrame {
 																								// 클래스를 변수로
 		Bean_Main_Comment_KMJ Bean_Main_Comment_KMJ = new Bean_Main_Comment_KMJ();
 		int selectedMenu = InnerTable.getSelectedRow();
-		String brandName = (String) InnerTable.getValueAt(selectedMenu, 0); // 해당 줄에서 0번쨰 컬럼명을 가져온다.
-		String menuName = (String) InnerTable.getValueAt(selectedMenu, 1); // 해당 줄에서 1번째 컬럼명을 가져온다.
+		String brandName = (String) InnerTable.getValueAt(clickValue, 0); // 해당 줄에서 0번쨰 컬럼명을 가져온다.
+		String menuName = (String) InnerTable.getValueAt(clickValue, 1); // 해당 줄에서 1번째 컬럼명을 가져온다.
 		String comment = tfComment.getText();
 
 		Bean_Main_Comment_KMJ.setBrandName(brandName);
