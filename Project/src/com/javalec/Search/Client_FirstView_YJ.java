@@ -30,6 +30,8 @@ public class Client_FirstView_YJ extends JFrame {
 	private JLabel lblNewLabel_2;
 
 	String adminLogin = "", adminOnOff = "";
+	private JLabel lbMypage;
+	private JLabel lblNewLabel_4;
 
 	/**
 	 * Launch the application.
@@ -82,6 +84,8 @@ public class Client_FirstView_YJ extends JFrame {
 		frame.getContentPane().add(getLblNewLabel());
 		frame.getContentPane().add(getLblNewLabel_1());
 		frame.getContentPane().add(getLblNewLabel_2());
+		frame.getContentPane().add(getLbMypage());
+		frame.getContentPane().add(getLblNewLabel_4());
 	}
 
 	private JButton getBtnSerch() {
@@ -114,7 +118,7 @@ public class Client_FirstView_YJ extends JFrame {
 					
 				}
 			});
-			lblNewLabel.setBounds(447, 22, 61, 16);
+			lblNewLabel.setBounds(417, 16, 49, 16);
 			lblNewLabel.setForeground(Color.white);
 		}
 		return lblNewLabel;
@@ -148,4 +152,27 @@ public class Client_FirstView_YJ extends JFrame {
 
 	}
 
+	private JLabel getLbMypage() {
+		if (lbMypage == null) {
+			lbMypage = new JLabel("마이페이지");
+			lbMypage.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					Client_Mypage_YJ client_Mypage_YJ = new Client_Mypage_YJ();
+					frame.dispose();
+				}
+			});
+			lbMypage.setBounds(478, 16, 61, 16);
+			lbMypage.setForeground(Color.white);
+		}
+		return lbMypage;
+	}
+	private JLabel getLblNewLabel_4() {
+		if (lblNewLabel_4 == null) {
+			lblNewLabel_4 = new JLabel("/");
+			lblNewLabel_4.setBounds(466, 16, 16, 16);
+			lblNewLabel_4.setForeground(Color.white);
+		}
+		return lblNewLabel_4;
+	}
 }
