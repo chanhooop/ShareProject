@@ -27,6 +27,7 @@ import javax.swing.table.TableColumn;
 import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Admin_Brand_YJ;
 import com.javalec.bean.Bean_Admin_ClientList_YJ;
+import com.javalec.dbaction.DbAction_Admin_Brand_YJ;
 import com.javalec.dbaction.DbAction_Admin_ClientList_YJ;
 // test
 public class Admin_ClientList_YJ extends JFrame{
@@ -277,6 +278,13 @@ public class Admin_ClientList_YJ extends JFrame{
 	private JButton getBtnDelete() {
 		if (btnDelete == null) {
 			btnDelete = new JButton("삭제");
+			btnDelete.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					deleteAction();
+					tableInit();
+					showAll();
+				}
+			});
 			btnDelete.setBounds(430, 402, 83, 29);
 		}
 		return btnDelete;
@@ -311,7 +319,6 @@ public class Admin_ClientList_YJ extends JFrame{
 		Outer_Table.addColumn("닉네임");
 		Outer_Table.setColumnCount(5);
 
-//		System.out.println("1"); // 테스트
 
 		int i = Outer_Table.getRowCount();
 		System.out.println(i);
@@ -319,7 +326,6 @@ public class Admin_ClientList_YJ extends JFrame{
 			Outer_Table.removeRow(0);
 		}
 
-//		System.out.println("2"); // 테스트
 
 		Inner_table.setAutoResizeMode(Inner_table.AUTO_RESIZE_OFF);
 
@@ -487,5 +493,23 @@ public class Admin_ClientList_YJ extends JFrame{
 			lblNewLabel_1.setBounds(0, -16, 545, 478);
 		}
 		return lblNewLabel_1;
+	}
+	
+	private void deleteAction() { // 삭제
+		System.out.println(1);
+		int i = Inner_table.getSelectedRow();
+		String tkSequence = (String) Inner_table.getValueAt(i, 0);
+		System.out.println(tkSequence);
+
+		String clientName = tfClientName.getText();
+
+		DbAction_Admin_ClientList_YJ dbaction = new DbAction_Admin_ClientList_YJ();
+		boolean isDelete = dbaction.deleteAction(tkSequence);
+		if (isDelete == true) {
+			JOptionPane.showMessageDialog(null, clientName +"님의 정보가 삭제 되었습니다.!");
+		} else {
+			JOptionPane.showMessageDialog(null, "DB에 자료 삭제중 에러가 발생했습니다! \n 시스템관리자에 문의하세요!");
+		}
+		
 	}
 }

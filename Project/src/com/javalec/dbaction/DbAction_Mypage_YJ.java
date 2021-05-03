@@ -105,8 +105,6 @@ public class DbAction_Mypage_YJ {
 		Bean_Mypage_YJ bean = null;
 		String query = "select clientId, clientPw, clientName, clientTelno, clientNick from client ";
 		String query1 = "where clientCode = '" + Login_YJ.clientCode + "'";
-//		System.out.println(userId);
-		System.out.println(query + query1);
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
@@ -145,7 +143,6 @@ public class DbAction_Mypage_YJ {
 					+ clientId + "'";
 
 			ps = conn_mysql.prepareStatement(query + query1);
-			System.out.println(query + query1);
 			ps.setString(1, clientPw);
 			ps.setString(2, clientName);
 			ps.setString(3, clientTelno);
