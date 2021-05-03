@@ -10,7 +10,6 @@ import com.javalec.Search.Main_Pw_CJY;
 import com.javalec.Search.Search_CH;
 
 
-
 public class MainProcess {
 	
 	public Login_YJ login_YJ; // 로그인 
@@ -23,7 +22,7 @@ public class MainProcess {
 	Main_Pw_CJY main_Pw_CJY;
 	Client_FirstView_YJ client_FirstView_YJ;
 	Admin_FirstView_YJ admin_FirstView_YJ;
-	
+	 
 	
 	public static void main(String[] args) {
 		MainProcess main = new MainProcess();
@@ -36,7 +35,7 @@ public class MainProcess {
 		clientFirst = new Client_FirstView_YJ();
 		
 	}
-	
+	// 아이스아메리카노 
 
 	public void showMain_Id_CJY() {
 		login_YJ.dispose();

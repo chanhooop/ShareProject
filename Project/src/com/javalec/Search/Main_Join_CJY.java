@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -107,6 +108,7 @@ public class Main_Join_CJY extends JFrame{
 		frame.getContentPane().add(getBtnCancel());
 		frame.getContentPane().add(getLblPwCheckText());
 		frame.getContentPane().add(getLblNewLabel());
+		frame.getContentPane().add(getLblNewLabel_1());
 //		frame.getContentPane().add(getLblpw());
 	}
 
@@ -266,6 +268,7 @@ public class Main_Join_CJY extends JFrame{
 	}
 	Login_YJ login_YJ; // 로그인 
 	Client_FirstView_YJ clientFirst;
+	private JLabel lblNewLabel_1;
 //	Main_Join_CJY join_CJY;
 	private JButton getBtnOK() {
 		if (btnOK == null) {
@@ -276,8 +279,8 @@ public class Main_Join_CJY extends JFrame{
 						int chk = insertFieldCheck();
 						
 						if(chk == 0) {
-							if (isIdCheck == false && isNickCheck == false) {
-								JOptionPane.showMessageDialog(null, "중복체크는 필수입니다.");
+							if (isIdCheck == false || isNickCheck == false) {
+								JOptionPane.showMessageDialog(null, "중복체크는 필수입니다.","중복 확인", JOptionPane.WARNING_MESSAGE);
 							} else {
 								okAction();
 							}
@@ -476,5 +479,13 @@ public class Main_Join_CJY extends JFrame{
 			lblNewLabel.setForeground(Color.white);
 		}
 		return lblNewLabel;
+	}
+	private JLabel getLblNewLabel_1() {
+		if (lblNewLabel_1 == null) {
+			lblNewLabel_1 = new JLabel("");
+			lblNewLabel_1.setIcon(new ImageIcon("/Users/gimminjae/Desktop/저장/background/background/client_mypage.png"));
+			lblNewLabel_1.setBounds(0, -16, 545, 478);
+		}
+		return lblNewLabel_1;
 	}
 } // ----------------

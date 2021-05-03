@@ -61,6 +61,7 @@ public class Client_Mypage_YJ extends JFrame {
 	private JButton btnMypageResetOk;
 	private String wkId = "";
 	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
 
 	/**
 	 * Launch the application.
@@ -129,6 +130,7 @@ public class Client_Mypage_YJ extends JFrame {
 		frame.getContentPane().add(getBtnMypageCancel());
 		frame.getContentPane().add(getBtnMypageResetOk());
 		frame.getContentPane().add(getLblNewLabel());
+		frame.getContentPane().add(getLblNewLabel_1());
 //		frame.getContentPane().add(getLbTest());
 	}
 
@@ -464,5 +466,13 @@ public class Client_Mypage_YJ extends JFrame {
 			lblNewLabel.setForeground(Color.white);
 		}
 		return lblNewLabel;
+	}
+	private JLabel getLblNewLabel_1() {
+		if (lblNewLabel_1 == null) {
+			lblNewLabel_1 = new JLabel("");
+			lblNewLabel_1.setIcon(new ImageIcon("/Users/gimminjae/Desktop/저장/background/background/client_mypage.png"));
+			lblNewLabel_1.setBounds(0, -16, 545, 478);
+		}
+		return lblNewLabel_1;
 	}
 }

@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,6 +33,7 @@ public class Admin_FirstView_YJ extends JFrame {
 	private JButton btnClient;
 	
 	String adminLogin = "", adminOnOff = "";
+	private JLabel lblNewLabel_3;
 
 	/**
 	 * Launch the application.
@@ -85,6 +87,7 @@ public class Admin_FirstView_YJ extends JFrame {
 		frame.getContentPane().add(getLblNewLabel_2());
 		frame.getContentPane().add(getBtnBrand());
 		frame.getContentPane().add(getBtnClient());
+		frame.getContentPane().add(getLblNewLabel_3());
 	}
 	private JButton getBtnMenu() {
 		if (btnMenu == null) {
@@ -172,4 +175,12 @@ public class Admin_FirstView_YJ extends JFrame {
 	      System.out.println(adminLogin + adminOnOff);
 	      
 	   }
+	private JLabel getLblNewLabel_3() {
+		if (lblNewLabel_3 == null) {
+			lblNewLabel_3 = new JLabel("");
+			lblNewLabel_3.setIcon(new ImageIcon("/Users/gimminjae/Desktop/저장/background/background/choiceBtn_client,admin.png"));
+			lblNewLabel_3.setBounds(0, 0, 545, 478);
+		}
+		return lblNewLabel_3;
+	}
 }

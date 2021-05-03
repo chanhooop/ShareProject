@@ -82,6 +82,7 @@ public class Admin_Brand_YJ extends JFrame{
 	private JButton btnResetOk;
 	private JLabel lblNewLabel_2;
 	private JLabel lblback;
+	private JLabel lblNewLabel_3;
 
 	/**
 	 * Launch the application.
@@ -155,6 +156,7 @@ public class Admin_Brand_YJ extends JFrame{
 		frmBrand.getContentPane().add(getBtnResetOk());
 		frmBrand.getContentPane().add(getLblNewLabel_2());
 		frmBrand.getContentPane().add(getLblback());
+		frmBrand.getContentPane().add(getLblNewLabel_3());
 	}
 
 	private JLabel getLabel_1() {
@@ -673,5 +675,13 @@ public class Admin_Brand_YJ extends JFrame{
 			lblback.setForeground(Color.white);
 		}
 		return lblback;
+	}
+	private JLabel getLblNewLabel_3() {
+		if (lblNewLabel_3 == null) {
+			lblNewLabel_3 = new JLabel("");
+			lblNewLabel_3.setIcon(new ImageIcon("/Users/gimminjae/Desktop/저장/background/background/client_mypage.png"));
+			lblNewLabel_3.setBounds(0, -16, 545, 478);
+		}
+		return lblNewLabel_3;
 	}
 }

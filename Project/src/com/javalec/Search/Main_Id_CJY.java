@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -27,6 +28,7 @@ public class Main_Id_CJY extends JFrame{
 	private JButton btnOK;
 	private JButton btnCancel;
 	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
 	
 	/**
 	 * Launch the application.
@@ -77,6 +79,7 @@ public class Main_Id_CJY extends JFrame{
 		frame.getContentPane().add(getBtnOK());
 		frame.getContentPane().add(getBtnCancel());
 		frame.getContentPane().add(getLblNewLabel_1());
+		frame.getContentPane().add(getLblNewLabel_2());
 	}
 
 	private JLabel getLblNewLabel() {
@@ -237,5 +240,13 @@ public class Main_Id_CJY extends JFrame{
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
 		
+	}
+	private JLabel getLblNewLabel_2() {
+		if (lblNewLabel_2 == null) {
+			lblNewLabel_2 = new JLabel("");
+			lblNewLabel_2.setIcon(new ImageIcon("/Users/gimminjae/Desktop/저장/background/background/client_mypage.png"));
+			lblNewLabel_2.setBounds(0, -16, 545, 478);
+		}
+		return lblNewLabel_2;
 	}
 } // --------------------------------------

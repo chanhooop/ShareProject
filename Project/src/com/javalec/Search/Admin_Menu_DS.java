@@ -155,6 +155,7 @@ public class Admin_Menu_DS extends JFrame{
 		frame.getContentPane().add(getBtnAddOk());
 		frame.getContentPane().add(getLblback());
 		frame.getContentPane().add(getLblLogout());
+		frame.getContentPane().add(getLblNewLabel_2());
 
 	}
 
@@ -596,6 +597,7 @@ public class Admin_Menu_DS extends JFrame{
 	int j = 0;
 	private JLabel lblback;
 	private JLabel lblLogout;
+	private JLabel lblNewLabel_2;
 	private void tableClick() {
 		int i = Inner_table.getSelectedRow();
 		String menuType = (String) Inner_table.getValueAt(i, 2);
@@ -668,13 +670,13 @@ public class Admin_Menu_DS extends JFrame{
 		int brandCode = 0;
 
 		switch (brandName) {
-		case "스타벅스":
+		case "starbucks":
 			brandCode = 1;
 			break;
-		case "투썸플레이스":
+		case "twosomeplace":
 			brandCode = 2;
 			break;
-		case "메가커피":
+		case "megacoffee":
 			brandCode = 3;
 			break;
 		}
@@ -702,15 +704,15 @@ public class Admin_Menu_DS extends JFrame{
 
 		int brandCode = 0;
 		switch (brandname) {
-		case "스타벅스": {
+		case "starbucks": {
 			brandCode = 1;
 			break;
 		}
-		case "투썸플레이스": {
+		case "twosomeplace": {
 			brandCode = 2;
 			break;
 		}
-		case "메가커피": {
+		case "megacoffee": {
 			brandCode = 3;
 		}
 			break;
@@ -759,15 +761,15 @@ public class Admin_Menu_DS extends JFrame{
 		int brandCode = 0;
 
 		switch (brandname) {
-		case "스타벅스": {
+		case "starbucks": {
 			brandCode = 1;
 			break;
 		}
-		case "투썸플레이스": {
+		case "twosomeplace": {
 			brandCode = 2;
 			break;
 		}
-		case "메가커피": {
+		case "megacoffee": {
 			brandCode = 3;
 		}
 			break;
@@ -811,15 +813,15 @@ public class Admin_Menu_DS extends JFrame{
 		// 브랜드 코드를 switch 문으로 써서 각 문자열과 비교하여 데이터 저장
 		int brandCode = 0;
 		switch (brandname) {
-		case "스타벅스": {
+		case "starbucks": {
 			brandCode = 1;
 			break;
 		}
-		case "투썸플레이스": {
+		case "twosomeplace": {
 			brandCode = 2;
 			break;
 		}
-		case "메가커피": {
+		case "megacoffee": {
 			brandCode = 3;
 		}
 			break;
@@ -919,5 +921,13 @@ public class Admin_Menu_DS extends JFrame{
 			lblLogout.setForeground(Color.white);
 		}
 		return lblLogout;
+	}
+	private JLabel getLblNewLabel_2() {
+		if (lblNewLabel_2 == null) {
+			lblNewLabel_2 = new JLabel("");
+			lblNewLabel_2.setIcon(new ImageIcon("/Users/gimminjae/Desktop/저장/background/background/client_mypage.png"));
+			lblNewLabel_2.setBounds(0, -16, 545, 478);
+		}
+		return lblNewLabel_2;
 	}
 }

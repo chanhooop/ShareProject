@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -60,6 +61,7 @@ public class Admin_ClientList_YJ extends JFrame{
 	
 	String adminLogin = "", adminOnOff = "";
 	private JLabel lblBack;
+	private JLabel lblNewLabel_1;
 
 	/**
 	 * Launch the application.
@@ -135,6 +137,7 @@ public class Admin_ClientList_YJ extends JFrame{
 		frame.getContentPane().add(getBtnCheck());
 		frame.getContentPane().add(getLblNewLabel());
 		frame.getContentPane().add(getLblBack());
+		frame.getContentPane().add(getLblNewLabel_1());
 //		frame.getContentPane().add(getLbTest());
 	}
 
@@ -476,5 +479,13 @@ public class Admin_ClientList_YJ extends JFrame{
 			lblBack.setForeground(Color.white);
 		}
 		return lblBack;
+	}
+	private JLabel getLblNewLabel_1() {
+		if (lblNewLabel_1 == null) {
+			lblNewLabel_1 = new JLabel("");
+			lblNewLabel_1.setIcon(new ImageIcon("/Users/gimminjae/Desktop/저장/background/background/client_mypage.png"));
+			lblNewLabel_1.setBounds(0, -16, 545, 478);
+		}
+		return lblNewLabel_1;
 	}
 }

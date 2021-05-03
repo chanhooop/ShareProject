@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Client_FirstView_YJ;
 import com.javalec.dbaction.DbAction_Client_FirstView_YJ;
+import javax.swing.ImageIcon;
 
 public class Client_FirstView_YJ extends JFrame {
 	private MainProcess mainpr;
@@ -32,6 +33,7 @@ public class Client_FirstView_YJ extends JFrame {
 	String adminLogin = "", adminOnOff = "";
 	private JLabel lbMypage;
 	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_3;
 
 	/**
 	 * Launch the application.
@@ -86,6 +88,7 @@ public class Client_FirstView_YJ extends JFrame {
 		frame.getContentPane().add(getLblNewLabel_2());
 		frame.getContentPane().add(getLbMypage());
 		frame.getContentPane().add(getLblNewLabel_4());
+		frame.getContentPane().add(getLblNewLabel_3());
 	}
 
 	private JButton getBtnSerch() {
@@ -174,5 +177,13 @@ public class Client_FirstView_YJ extends JFrame {
 			lblNewLabel_4.setForeground(Color.white);
 		}
 		return lblNewLabel_4;
+	}
+	private JLabel getLblNewLabel_3() {
+		if (lblNewLabel_3 == null) {
+			lblNewLabel_3 = new JLabel("");
+			lblNewLabel_3.setIcon(new ImageIcon("/Users/gimminjae/Desktop/저장/background/background/choiceBtn_client,admin.png"));
+			lblNewLabel_3.setBounds(0, 0, 545, 478);
+		}
+		return lblNewLabel_3;
 	}
 }

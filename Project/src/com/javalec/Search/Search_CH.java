@@ -146,6 +146,7 @@ public class Search_CH extends JFrame {
 		frame.getContentPane().add(getLblNewLabel_5());
 		frame.getContentPane().add(getLblNewLabel_6());
 		frame.getContentPane().add(getLbMypage());
+		frame.getContentPane().add(getLblNewLabel_7());
 	}
 
 	private JScrollPane getScrollPane() {
@@ -193,7 +194,7 @@ public class Search_CH extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("검색 :");
-			lblNewLabel.setBounds(24, 48, 50, 15);
+			lblNewLabel.setBounds(24, 53, 50, 15);
 		}
 		return lblNewLabel;
 	}
@@ -201,7 +202,7 @@ public class Search_CH extends JFrame {
 	private JTextField getTfSearch() {
 		if (tfSearch == null) {
 			tfSearch = new JTextField();
-			tfSearch.setBounds(184, 41, 203, 28);
+			tfSearch.setBounds(184, 45, 203, 28);
 			tfSearch.setColumns(10);
 		}
 		return tfSearch;
@@ -223,7 +224,7 @@ public class Search_CH extends JFrame {
 				}
 			});
 			cmbList.setModel(new DefaultComboBoxModel(new String[] { "이름", "브랜드", "가격" }));
-			cmbList.setBounds(66, 44, 104, 23);
+			cmbList.setBounds(66, 50, 104, 23);
 
 		}
 
@@ -241,7 +242,7 @@ public class Search_CH extends JFrame {
 
 				}
 			});
-			btnSearch.setBounds(421, 43, 91, 23);
+			btnSearch.setBounds(421, 53, 91, 23);
 		}
 		return btnSearch;
 	}
@@ -327,7 +328,7 @@ public class Search_CH extends JFrame {
 			cmbPriceSelect = new JComboBox();
 			cmbPriceSelect
 					.setModel(new DefaultComboBoxModel(new String[] { "전체", "1000~3000", "3000~6000", "6000~9000" }));
-			cmbPriceSelect.setBounds(185, 44, 188, 23);
+			cmbPriceSelect.setBounds(185, 48, 188, 23);
 
 		}
 		return cmbPriceSelect;
@@ -578,6 +579,7 @@ public class Search_CH extends JFrame {
 	private JLabel lblNewLabel_5;
 	private JLabel lblNewLabel_6;
 	private JLabel lbMypage;
+	private JLabel lblNewLabel_7;
 
 	private void commentLisetInnertable() { //
 		commentOuttable();
@@ -831,5 +833,13 @@ public class Search_CH extends JFrame {
 			lbMypage.setForeground(Color.white);
 		}
 		return lbMypage;
+	}
+	private JLabel getLblNewLabel_7() {
+		if (lblNewLabel_7 == null) {
+			lblNewLabel_7 = new JLabel("");
+			lblNewLabel_7.setIcon(new ImageIcon("/Users/gimminjae/Desktop/저장/background/background/client_mypage.png"));
+			lblNewLabel_7.setBounds(0, -16, 545, 478);
+		}
+		return lblNewLabel_7;
 	}
 } /// ------------------

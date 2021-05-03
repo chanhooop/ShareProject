@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Login_YJ;
 import com.javalec.dbaction.DbAction_Login_YJ;
+import javax.swing.ImageIcon;
 
 public class Login_YJ extends JFrame{
 
@@ -56,6 +57,7 @@ public class Login_YJ extends JFrame{
 	
 	public static String clientCode = "";
 	public static String adminCode = "";
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -119,6 +121,7 @@ public class Login_YJ extends JFrame{
 		frame.getContentPane().add(getLbIdSearch());
 		frame.getContentPane().add(getLblNewLabel_1());
 		frame.getContentPane().add(getLbPwSearch());
+		frame.getContentPane().add(getLblNewLabel());
 //		frame.getContentPane().add(getLbTest());
 	}
 
@@ -342,5 +345,13 @@ public class Login_YJ extends JFrame{
 			lbPwSearch.setBounds(233, 316, 76, 16);
 		}
 		return lbPwSearch;
+	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("");
+			lblNewLabel.setIcon(new ImageIcon("/Users/gimminjae/Desktop/저장/background/background/login.png"));
+			lblNewLabel.setBounds(0, 0, 545, 478);
+		}
+		return lblNewLabel;
 	}
 }
