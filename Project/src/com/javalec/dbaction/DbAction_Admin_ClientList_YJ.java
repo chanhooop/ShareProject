@@ -178,7 +178,6 @@ public class DbAction_Admin_ClientList_YJ {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
 			Statement stmt_mysql = conn_mysql.createStatement();
-			System.out.println(query1);
 			stmt_mysql.executeUpdate(query1);
 			conn_mysql.close();
 			return true;
