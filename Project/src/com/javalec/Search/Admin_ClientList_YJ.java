@@ -23,12 +23,14 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import com.javalec.MainPackage.MainProcess;
 import com.javalec.bean.Bean_Admin_Brand_YJ;
 import com.javalec.bean.Bean_Admin_ClientList_YJ;
 import com.javalec.dbaction.DbAction_Admin_ClientList_YJ;
 // test
-public class Admin_ClientList_YJ {
+public class Admin_ClientList_YJ extends JFrame{
 
+	private MainProcess mainpr;
 	private JFrame frame;
 	private JLabel lbAdminLogo;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
@@ -57,6 +59,7 @@ public class Admin_ClientList_YJ {
 	private JLabel lblNewLabel;
 	
 	String adminLogin = "", adminOnOff = "";
+	private JLabel lblBack;
 
 	/**
 	 * Launch the application.
@@ -78,7 +81,17 @@ public class Admin_ClientList_YJ {
 	 * Create the application.
 	 */
 	public Admin_ClientList_YJ() {
-		initialize();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					initialize();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 	}
 
 	/**
@@ -121,6 +134,7 @@ public class Admin_ClientList_YJ {
 		frame.getContentPane().add(getTfClientName());
 		frame.getContentPane().add(getBtnCheck());
 		frame.getContentPane().add(getLblNewLabel());
+		frame.getContentPane().add(getLblBack());
 //		frame.getContentPane().add(getLbTest());
 	}
 
@@ -414,6 +428,8 @@ public class Admin_ClientList_YJ {
 		if (isupdate == true) {
 			JOptionPane.showMessageDialog(null, tfClientCode.getText() + " 번의 정보가 수정 되었습니다.!", "수정 완료!",
 					JOptionPane.INFORMATION_MESSAGE);
+	
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "수정중 에러가 발생했습니다! \n 시스템관리자에 문의하세요!", "Critical Error!",
 					JOptionPane.ERROR_MESSAGE);
@@ -433,9 +449,31 @@ public class Admin_ClientList_YJ {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("로그아웃");
+			lblNewLabel.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					mainpr.main(null);
+					frame.dispose();
+				}
+			});
 			lblNewLabel.setBounds(478, 16, 61, 16);
 			lblNewLabel.setForeground(Color.white);
 		}
 		return lblNewLabel;
+	}
+	private JLabel getLblBack() {
+		if (lblBack == null) {
+			lblBack = new JLabel("돌아가기");
+			lblBack.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					Admin_FirstView_YJ admin_FirstView_YJ = new Admin_FirstView_YJ();
+					frame.dispose();
+				}
+			});
+			lblBack.setBounds(407, 17, 50, 15);
+		}
+		return lblBack;
 	}
 }

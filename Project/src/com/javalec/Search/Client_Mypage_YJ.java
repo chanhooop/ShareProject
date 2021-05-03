@@ -29,7 +29,7 @@ import com.javalec.dbaction.DbAction_Mypage_YJ;
 
 public class Client_Mypage_YJ extends JFrame {
 
-	private MainProcess main;
+	private MainProcess mainpr;
 	
 	
 	private JFrame frame;
@@ -348,6 +348,9 @@ public class Client_Mypage_YJ extends JFrame {
 		
 		if (isUpdate == true) {
 			JOptionPane.showMessageDialog(null, tfMypageName.getText().trim() + "님의 정보가 수정 되었습니다!");
+			Search_CH search_CH = new Search_CH();
+			frame.dispose();
+			
 		} else {
 			JOptionPane.showMessageDialog(null, tfMypageName.getText().trim() + "님의 정보수정 중 오류가 생겼습니다.");
 		}
@@ -434,11 +437,19 @@ public class Client_Mypage_YJ extends JFrame {
 		return btnMypageResetOk;
 	}
 	public void setMain(MainProcess main) {
-		this.main = main;
+		this.mainpr = main;
 	}
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("로그아웃");
+			lblNewLabel.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					mainpr.main(null);
+					frame.dispose();
+					
+				}
+			});
 			lblNewLabel.setBounds(478, 16, 61, 16);
 			lblNewLabel.setForeground(Color.white);
 		}
