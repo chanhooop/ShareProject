@@ -418,6 +418,12 @@ public class Client_Mypage_YJ extends JFrame {
 					tfMypageTelno.setEditable(false);
 					btnOverlap.setEnabled(false);
 					
+//					Client_Mypage_YJ client_Mypage_YJ = new Client_Mypage_YJ();
+//					frame.dispose();
+					
+					Client_FirstView_YJ client_FirstView_YJ = new Client_FirstView_YJ();
+					frame.dispose();
+					
 				}
 			});
 			btnMypageCancel.setBounds(404, 411, 117, 29);

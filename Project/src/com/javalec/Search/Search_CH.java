@@ -1,7 +1,9 @@
 
 package com.javalec.Search;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -141,6 +143,9 @@ public class Search_CH extends JFrame {
 		frame.getContentPane().add(getBtnCommentUpdate());
 		frame.getContentPane().add(getTfFilePath());
 		frame.getContentPane().add(getLblLogout());
+		frame.getContentPane().add(getLblNewLabel_5());
+		frame.getContentPane().add(getLblNewLabel_6());
+		frame.getContentPane().add(getLbMypage());
 	}
 
 	private JScrollPane getScrollPane() {
@@ -172,6 +177,7 @@ public class Search_CH extends JFrame {
 	private JButton getBtnMypage() {
 		if (btnMypage == null) {
 			btnMypage = new JButton("마이페이지");
+			btnMypage.setVisible(false);
 			btnMypage.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Client_Mypage_YJ client_Mypage_YJ = new Client_Mypage_YJ();
@@ -179,7 +185,7 @@ public class Search_CH extends JFrame {
 					
 				}
 			});
-			btnMypage.setBounds(443, 6, 91, 23);
+			btnMypage.setBounds(66, 14, 91, 23);
 		}
 		return btnMypage;
 	}
@@ -569,6 +575,9 @@ public class Search_CH extends JFrame {
 	private final String pw_mysql = ShareVar_Main_Comment_KMJ.pw_mysql;
 	private JTextField tfFilePath;
 	private JLabel lblLogout;
+	private JLabel lblNewLabel_5;
+	private JLabel lblNewLabel_6;
+	private JLabel lbMypage;
 
 	private void commentLisetInnertable() { //
 		commentOuttable();
@@ -786,9 +795,41 @@ public class Search_CH extends JFrame {
 					frame.dispose();
 				}
 			});
-			lblLogout.setEnabled(false);
-			lblLogout.setBounds(382, 10, 50, 15);
+			lblLogout.setBounds(417, 16, 49, 16);
+			lblLogout.setForeground(Color.white);
 		}
 		return lblLogout;
+	}
+	private JLabel getLblNewLabel_5() {
+		if (lblNewLabel_5 == null) {
+			lblNewLabel_5 = new JLabel("카페행");
+			lblNewLabel_5.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+			lblNewLabel_5.setBounds(243, 0, 63, 41);
+			lblNewLabel_5.setForeground(Color.white);
+		}
+		return lblNewLabel_5;
+	}
+	private JLabel getLblNewLabel_6() {
+		if (lblNewLabel_6 == null) {
+			lblNewLabel_6 = new JLabel("/");
+			lblNewLabel_6.setBounds(466, 16, 16, 16);
+			lblNewLabel_6.setForeground(Color.white);
+		}
+		return lblNewLabel_6;
+	}
+	private JLabel getLbMypage() {
+		if (lbMypage == null) {
+			lbMypage = new JLabel("마이페이지");
+			lbMypage.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					Client_Mypage_YJ client_Mypage_YJ = new Client_Mypage_YJ();
+					frame.dispose();
+				}
+			});
+			lbMypage.setBounds(478, 16, 61, 16);
+			lbMypage.setForeground(Color.white);
+		}
+		return lbMypage;
 	}
 } /// ------------------

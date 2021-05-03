@@ -15,6 +15,8 @@ import com.javalec.bean.Bean_Admin_FirstView_YJ;
 import com.javalec.dbaction.DbAction_Admin_FirstView_YJ;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Admin_FirstView_YJ extends JFrame {
 
@@ -102,6 +104,13 @@ public class Admin_FirstView_YJ extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("로그아웃");
+			lblNewLabel.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					mainpr.main(null);
+					frame.dispose();
+				}
+			});
 			lblNewLabel.setBounds(478, 16, 61, 16);
 			lblNewLabel.setForeground(Color.white);
 		}
