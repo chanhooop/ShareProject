@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.javalec.Search.Login_YJ;
 import com.javalec.bean.Bean_Admin_Brand_YJ;
 import com.javalec.bean.Bean_Admin_ClientList_YJ;
 import com.javalec.sharevar.ShareVar_Admin_ClientList_YJ;
@@ -163,6 +164,22 @@ public class DbAction_Admin_ClientList_YJ {
 			ps.setInt(4, clientCode);
 			ps.executeUpdate();
 
+			conn_mysql.close();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean deleteAction(String clientCode) {
+		String query1 = "delete from coffee.client where clientCode =" + clientCode;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+			Statement stmt_mysql = conn_mysql.createStatement();
+			System.out.println(query1);
+			stmt_mysql.executeUpdate(query1);
 			conn_mysql.close();
 			return true;
 		} catch (Exception e) {
