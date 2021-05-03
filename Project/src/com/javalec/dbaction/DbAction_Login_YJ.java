@@ -102,6 +102,7 @@ public class DbAction_Login_YJ {
 				}
 				bean = new Bean_Login_YJ(wkId, wkPw);
 				getAdminId = bean.getAdminId();
+				System.out.println(update);
 				stmt_mysql.executeUpdate(delete); // 로그인정보 테이블 초기화 실행
 				stmt_mysql.executeUpdate(insert); // 로그인정보 테이블 행1개 추가 실행
 				stmt_mysql.executeUpdate(update); // 로그인정보 업데이트 실행
@@ -120,6 +121,7 @@ public class DbAction_Login_YJ {
 			Statement stmt_mysql = conn_mysql.createStatement();
 			String query1 = "select adminCode from admin where adminId = '" + getAdminId + "'";
 			ResultSet rs1 = stmt_mysql.executeQuery(query1);
+			System.out.println(rs1);
 			if (rs1.next()) {
 				adminCode = rs1.getString(1);
 			}
@@ -136,6 +138,7 @@ public class DbAction_Login_YJ {
 			Statement stmt_mysql = conn_mysql.createStatement();
 			String query1 = "select clientCode from client where clientId = '" + getClientId + "'";
 			ResultSet rs1 = stmt_mysql.executeQuery(query1);
+			System.out.println(rs1);
 			if (rs1.next()) {
 				clientCode = rs1.getString(1);
 			}

@@ -319,6 +319,7 @@ public class Admin_ClientList_YJ extends JFrame{
 		Outer_Table.addColumn("닉네임");
 		Outer_Table.setColumnCount(5);
 
+//		System.out.println("1"); // 테스트
 
 		int i = Outer_Table.getRowCount();
 		System.out.println(i);
@@ -326,6 +327,7 @@ public class Admin_ClientList_YJ extends JFrame{
 			Outer_Table.removeRow(0);
 		}
 
+//		System.out.println("2"); // 테스트
 
 		Inner_table.setAutoResizeMode(Inner_table.AUTO_RESIZE_OFF);
 
@@ -496,14 +498,13 @@ public class Admin_ClientList_YJ extends JFrame{
 	}
 	
 	private void deleteAction() { // 삭제
-		System.out.println(1);
 		int i = Inner_table.getSelectedRow();
 		String tkSequence = (String) Inner_table.getValueAt(i, 0);
 		System.out.println(tkSequence);
 
 		String clientName = tfClientName.getText();
 
-		DbAction_Admin_ClientList_YJ dbaction = new DbAction_Admin_ClientList_YJ();
+		DbAction_Admin_Brand_YJ dbaction = new DbAction_Admin_Brand_YJ();
 		boolean isDelete = dbaction.deleteAction(tkSequence);
 		if (isDelete == true) {
 			JOptionPane.showMessageDialog(null, clientName +"님의 정보가 삭제 되었습니다.!");

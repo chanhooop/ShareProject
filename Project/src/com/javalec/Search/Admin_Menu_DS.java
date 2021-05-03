@@ -528,6 +528,7 @@ public class Admin_Menu_DS extends JFrame{
 		Outer_Table.setColumnCount(5);
 
 		int i = Outer_Table.getRowCount();
+		System.out.println(i);
 		for (int j = 0; j < i; j++) {
 			Outer_Table.removeRow(0);
 		}
@@ -602,6 +603,7 @@ public class Admin_Menu_DS extends JFrame{
 		String menuType = (String) Inner_table.getValueAt(i, 2);
 		String wkCode = (String) Inner_table.getValueAt(i, 0);
 		wkCodeInt = Integer.parseInt(wkCode);
+		System.out.println(wkCodeInt);
 		switch (menuType) {
 		case "커피":
 			j = 0;
@@ -774,6 +776,7 @@ public class Admin_Menu_DS extends JFrame{
 		}
 
 		DbAction_Admin_Menu_DS dbAction = new DbAction_Admin_Menu_DS();
+		System.out.println(brandCode + menutype + menuname);
 		boolean msg = dbAction.insertAction(brandCode, menutype, menuname, menuAllergy, input);
 
 		if (msg == true) {
