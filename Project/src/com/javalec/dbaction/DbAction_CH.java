@@ -68,7 +68,6 @@ public class DbAction_CH {
 		
 
 		  String WhereDefault = "select b.brandName, m.menuType, m.menuName, mu.menuprice, m.menuCount from brand b, menu m, menuupdate mu where b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode order by m.menuCount desc";
-	     System.out.println(WhereDefault);
 		  try{
 	          Class.forName("com.mysql.cj.jdbc.Driver");
 	          Connection conn_mysql = DriverManager.getConnection(url_mysql,id_mysql,pw_mysql);
@@ -107,12 +106,11 @@ public class DbAction_CH {
 
 		Bean_CH bean_CH2 = null;
 
-		String query1 = "select b.brandName, m.menuName, mu.menuprice, m.menuAllergy from menu m, brand b, menuupdate mu ";
+		String query1 = "select b.brandName, m.menuName, mu.menuprice, m.menuAllergy, menuImg from menu m, brand b, menuupdate mu ";
 		String query2 = "where b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode and b.brandName = '";
 		String query3 = "' and m.menuName = '";
 
 
-		System.out.println(query1 + query2 + bean_CH.getBrandName() + query3 + bean_CH.getMenuName() + "'");
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 	
@@ -186,7 +184,6 @@ public class DbAction_CH {
 	
 			ps.executeUpdate();
 			
-			System.out.println(ps);
 			conn_mysql.close();
 			
 		} catch(Exception e) {
@@ -211,9 +208,6 @@ public class DbAction_CH {
 				+ "where b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode "
 				+ "and " + beanget.getConditionQueryColumn();
 		String query2 = " like '%" + beanget.getTfsearch() + "%' order by m.menuCount desc";
-		System.out.println(555555);
-		System.out.println(query1 + query2);
-		System.out.println(555555);			
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
@@ -247,7 +241,6 @@ public class DbAction_CH {
 	// 가격선택시 콤보상자 검색
 	
 	public ArrayList<Bean_CH> priceconditionQueryDB(Bean_CH beanget) {
-			System.out.println(beanget);
 		int i = beanget.getCmbPriceSelect();    // 몇번째인지 알아봐주는 메서드 겟셀렉티드 인덱스
 				
 		String conditionPriceColumn = "";
@@ -274,7 +267,6 @@ public class DbAction_CH {
 		
 		String query1 = "select b.brandName, m.menuType, m.menuName, mu.menuprice, m.menuCount from brand b, menu m, menuupdate mu where b.brandCode = m.brand_brandCode and m.menuCode = mu.menu_menuCode and" + conditionPriceColumn;
 
-		System.out.println(query1);
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);

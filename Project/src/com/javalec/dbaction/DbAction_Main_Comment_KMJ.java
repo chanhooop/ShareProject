@@ -13,6 +13,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 import com.javalec.bean.Bean_Main_List_KMJ;
+import com.javalec.Search.Login_YJ;
 import com.javalec.bean.Bean_Main_Comment_KMJ;
 import com.javalec.sharevar.ShareVar_Main_Comment_KMJ;
 
@@ -119,6 +120,7 @@ public class DbAction_Main_Comment_KMJ {
 	 * @return
 	 */
 	public ArrayList<Bean_Main_Comment_KMJ> commentLisetInnertable(Bean_Main_Comment_KMJ beanData) {
+		
 		ArrayList<Bean_Main_Comment_KMJ> beanList = new ArrayList<Bean_Main_Comment_KMJ>();
 		PreparedStatement ps = null;
 		try {
@@ -163,11 +165,12 @@ public class DbAction_Main_Comment_KMJ {
 	  * @return
 	  */
 	public boolean addCommend(Bean_Main_Comment_KMJ beanData) {
+		String clientCode = Login_YJ.clientCode;
 		PreparedStatement selectps = null;
 		PreparedStatement ps = null;
 		try {
 			Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
-			String select = "SELECT brand.brandCode, menu.menuCode, client.clientCode ";
+			String select = "SELECT brand.brandCode, menu.menuCode, "+clientCode+" ";
 			String from = "FROM coffee.menu, coffee.brand, coffee.login, coffee.client ";
 			String where = "WHERE menu.brand_brandCode = brand.brandCode and brand.brandName = ? and menu.menuName = ? and login.userLogin = client.clientNick";
 			selectps = conn_mysql.prepareStatement(select + from + where);
@@ -185,7 +188,7 @@ public class DbAction_Main_Comment_KMJ {
 			if (rs.next()) {
 			ps.setString(1, rs.getString(1));
 			ps.setString(2, rs.getString(2));
-			ps.setString(3, rs.getString(3));
+			ps.setString(3, clientCode);
 			ps.setString(4, beanData.getComment());
 			}
 			ps.executeUpdate();

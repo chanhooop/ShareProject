@@ -312,8 +312,8 @@ public class Client_Mypage_YJ extends JFrame {
 	
 	private void getMypage() { // 로그인 한 사용자의 정보 불러오는 것도, 전역변수를 기준으로 DbAction 클래스로 넘겨준다.
 		
-		DbAction_Mypage_YJ dbAction = new DbAction_Mypage_YJ(wkId);
-		Bean_Mypage_YJ bean = dbAction.getMypage();
+		DbAction_Mypage_YJ dbAction = new DbAction_Mypage_YJ();
+		Bean_Mypage_YJ bean = dbAction.getMypage(Login_YJ.clientCode);
 		
 		tfMypageId.setText(bean.getClientId());
 		pwfMypagePw.setText(bean.getClientPw());

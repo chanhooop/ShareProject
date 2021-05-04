@@ -65,7 +65,7 @@ public class MainProcess {
 		search = new Search_CH();
 		
 	}
-
+//  메가 , 스타 
 	public void showAdmin_FirstView_YJ() {
 		login_YJ.dispose();
 		admin_FirstView_YJ  = new Admin_FirstView_YJ();

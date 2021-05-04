@@ -181,7 +181,6 @@ public class DbAction_Admin_Brand_YJ {
 			ps.setDate(4, updateDate);
 			ps.setBinaryStream(5, file);
 			ps.executeUpdate();
-			System.out.println(Login_YJ.adminCode);
 			conn_mysql.close();
 			return true;
 

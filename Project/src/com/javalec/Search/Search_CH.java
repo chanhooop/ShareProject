@@ -71,6 +71,8 @@ public class Search_CH extends JFrame {
 	private JButton btnCommentUpdate;
 	private JTable comment_table;
 
+	int clickValue = 0;
+	String BN="", MN="";
 	String loginId = "", adminOnOff = ""; // 로그인정보 selec 저장
 
 	/**
@@ -379,7 +381,7 @@ public class Search_CH extends JFrame {
 		
 		vColIndex = 4;
 		col = InnerTable.getColumnModel().getColumn(vColIndex);
-		width = 100;
+		width = 60;
 		col.setPreferredWidth(width);
 
 	}
@@ -409,33 +411,27 @@ public class Search_CH extends JFrame {
 	// 데이터 하나 클릭했읗때 정보 뜨게 하는 기능
 
 	private void TableClick() {
-System.out.println(124);
         int i = InnerTable.getSelectedRow();
-
+        clickValue = i; // 메뉴리스트 클릭 번호를 가지고와야 코멘트 메소드 CRUD 가 가능함.
         Bean_CH bean_CH = new Bean_CH();
 
-        
         String tmpSequence = (String)InnerTable.getValueAt(i, 0);
-
         String tmpSequence2 = (String)InnerTable.getValueAt(i, 1);
         bean_CH.setBrandName(tmpSequence);
-
         bean_CH.setMenuName(tmpSequence2);
-
-        
+        BN = tmpSequence;// 메뉴리스트 브랜드 네임 정보를 가지고와야 코멘트 메소드 CRUD 가 가능함.
+        MN = tmpSequence2;// 메뉴리스트 메뉴 네임 정보를 가지고와야 코멘트 메소드 CRUD 가 가능함.
         
         DbAction_CH dbAction_CH = new DbAction_CH();
         
         dbAction_CH.tableClick(bean_CH);
         dbAction_CH.tableClickCount(tmpSequence,tmpSequence2);
-        System.out.println(bean_CH.getBrandName());
         
         tfBrand.setText(bean_CH.getBrandName());
         tfName.setText(bean_CH.getMenuName());
         tfPice.setText (bean_CH.getmenuprice());
         tfMeterial.setText(bean_CH.getMetarialName());
 
-        System.out.println(tfBrand.getText());
         
 //        tableInit();
 //        searchAction();
@@ -534,25 +530,16 @@ System.out.println(124);
 	 		private void priceconditionQuery() {
 	 			  // 필요한 값 보내기
 	 				Bean_CH bean = new Bean_CH();
-	 				System.out.println(1);
-	 				System.out.println(cmbPriceSelect.getSelectedIndex());
 	 				bean.setCmbPriceSelect(cmbPriceSelect.getSelectedIndex());
-	 				System.out.println(2);
-	 				System.out.println(bean.getCmbPriceSelect());
 	 				//필요한 값 가져오기
 	 				DbAction_CH dbAction = new DbAction_CH();  
-	 				System.out.println(3);
 	 				ArrayList<Bean_CH> beanList = dbAction.priceconditionQueryDB(bean);
-	 				System.out.println(4);
 	 				int j = beanList.size();
-	 				System.out.println(5);
 	 				
 	 				for(int i = 0 ; i < j ; i++) {
 	 					Bean_CH bean_CH = new Bean_CH();
 	 					String menuCount = Integer.toString(beanList.get(i).getMenuCount());
-	 					System.out.println(6);
 	 				String[] arr = {beanList.get(i).getBrandName(), beanList.get(i).getMenuName(), beanList.get(i).getMenuType(),beanList.get(i).getmenuprice(), menuCount};
-	 				System.out.println(7);
 	 				Outer_Table.addRow(arr);
 	 		 		}
 		 		}
@@ -624,8 +611,8 @@ System.out.println(124);
 
 		Bean_Main_Comment_KMJ Bean_Main_Comment_KMJ = new Bean_Main_Comment_KMJ();// 치환 선언 해준다.
 		int selectedMenu = InnerTable.getSelectedRow(); // 댓글 선택 리스트 맨윗줄을 1로 기준
-		String brandName = (String) InnerTable.getValueAt(selectedMenu, 0); // 해당 줄에서 0번쨰 컬럼명을 가져온다.
-		String menuName = (String) InnerTable.getValueAt(selectedMenu, 1); // 해당 줄에서 1번째 컬럼명을 가져온다.
+		String brandName = (String) InnerTable.getValueAt(clickValue, 0); // 해당 줄에서 0번쨰 컬럼명을 가져온다.
+		String menuName = (String) InnerTable.getValueAt(clickValue, 1); // 해당 줄에서 1번째 컬럼명을 가져온다.
 		Bean_Main_Comment_KMJ.setBrandName(brandName);
 		Bean_Main_Comment_KMJ.setMenuName(menuName);
 		ArrayList<Bean_Main_Comment_KMJ> beanList = DbAction_Main_Comment_KMJ
@@ -656,8 +643,8 @@ System.out.println(124);
 																								// 클래스를 변수로
 		Bean_Main_Comment_KMJ Bean_Main_Comment_KMJ = new Bean_Main_Comment_KMJ();
 		int selectedMenu = InnerTable.getSelectedRow();
-		String brandName = (String) InnerTable.getValueAt(selectedMenu, 0); // 해당 줄에서 0번쨰 컬럼명을 가져온다.
-		String menuName = (String) InnerTable.getValueAt(selectedMenu, 1); // 해당 줄에서 1번째 컬럼명을 가져온다.
+		String brandName = (String) InnerTable.getValueAt(clickValue, 0); // 해당 줄에서 0번쨰 컬럼명을 가져온다.
+		String menuName = (String) InnerTable.getValueAt(clickValue, 1); // 해당 줄에서 1번째 컬럼명을 가져온다.
 		String comment = tfComment.getText();
 
 		Bean_Main_Comment_KMJ.setBrandName(brandName);

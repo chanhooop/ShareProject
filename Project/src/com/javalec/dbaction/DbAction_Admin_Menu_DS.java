@@ -282,7 +282,6 @@ public class DbAction_Admin_Menu_DS {
 			ps.setString(2, menutype);
 			ps.setString(3, menuname);
 
-			System.out.println(ps);
 
 			ps.executeUpdate();
 
@@ -375,7 +374,6 @@ public class DbAction_Admin_Menu_DS {
 			ps.setString(6, menuPrice);
 			ps.setBinaryStream(7, file);
 
-			System.out.println(ps);
 
 			ps.executeUpdate();
 
