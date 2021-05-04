@@ -20,7 +20,7 @@ public class MainProcess {
 	Main_Id_CJY main_Id_CJY;
 	Main_Join_CJY main_Join_CJY;
 	Main_Pw_CJY main_Pw_CJY;
-	Client_FirstView_YJ client_FirstView_YJ;
+	Client_FirstView_YJ client_FirstView_YJ;  
 	Admin_FirstView_YJ admin_FirstView_YJ;
 	 
 	
